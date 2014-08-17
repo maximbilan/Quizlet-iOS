@@ -19,6 +19,7 @@
 		94ECE8F119A0D5FD00E2641B /* QZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE8F019A0D5FD00E2641B /* QZViewController.m */; };
 		94ECE8F319A0D5FD00E2641B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94ECE8F219A0D5FD00E2641B /* Images.xcassets */; };
 		94ECE91119A0EF9300E2641B /* QZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE91019A0EF9300E2641B /* QZLoginViewController.m */; };
+		94ECE91619A103E900E2641B /* Quizlet.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE91519A103E900E2641B /* Quizlet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		94ECE8F919A0D5FE00E2641B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		94ECE90F19A0EF9300E2641B /* QZLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZLoginViewController.h; sourceTree = "<group>"; };
 		94ECE91019A0EF9300E2641B /* QZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZLoginViewController.m; sourceTree = "<group>"; };
+		94ECE91419A103E900E2641B /* Quizlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quizlet.h; path = Quizlet/Quizlet.h; sourceTree = "<group>"; };
+		94ECE91519A103E900E2641B /* Quizlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Quizlet.m; path = Quizlet/Quizlet.m; sourceTree = "<group>"; };
 		9AD079B923374187BE0F03A3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +95,7 @@
 		94ECE8DD19A0D5FD00E2641B /* ios_quizlet_client */ = {
 			isa = PBXGroup;
 			children = (
+				94ECE91319A103CC00E2641B /* Quizlet */,
 				94ECE8E619A0D5FD00E2641B /* QZAppDelegate.h */,
 				94ECE8E719A0D5FD00E2641B /* QZAppDelegate.m */,
 				94ECE8E919A0D5FD00E2641B /* Main_iPhone.storyboard */,
@@ -115,6 +119,15 @@
 				94ECE8E519A0D5FD00E2641B /* ios_quizlet_client-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94ECE91319A103CC00E2641B /* Quizlet */ = {
+			isa = PBXGroup;
+			children = (
+				94ECE91419A103E900E2641B /* Quizlet.h */,
+				94ECE91519A103E900E2641B /* Quizlet.m */,
+			);
+			name = Quizlet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +235,7 @@
 				94ECE8E419A0D5FD00E2641B /* main.m in Sources */,
 				94ECE91119A0EF9300E2641B /* QZLoginViewController.m in Sources */,
 				94ECE8E819A0D5FD00E2641B /* QZAppDelegate.m in Sources */,
+				94ECE91619A103E900E2641B /* Quizlet.m in Sources */,
 				94ECE8F119A0D5FD00E2641B /* QZViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

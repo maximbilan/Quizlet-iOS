@@ -7,6 +7,7 @@
 //
 
 #import "QZAppDelegate.h"
+#import "AFNetworking.h"
 
 @implementation QZAppDelegate
 
@@ -50,6 +51,62 @@
     NSLog(@"Calling Application Bundle ID: %@", sourceApplication);
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
+    
+    if ([[url scheme] isEqualToString:@"maximbilan"]) {
+        NSString* res = [url resourceSpecifier];
+		
+		NSRange r = [res rangeOfString:@"?"];
+		NSString* action = r.length ? [res substringToIndex:r.location] : res;
+		NSString* params_query = r.length ? [res substringFromIndex:r.location+1] : nil;
+		NSMutableDictionary* params = [NSMutableDictionary dictionary];
+		
+		NSArray* key_vars = [params_query componentsSeparatedByString:@"&"];
+		for (NSString* key_var in key_vars)
+		{
+			NSArray* a = [key_var componentsSeparatedByString:@"="];
+			if ([a count] == 2)
+			{
+				params[[a[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] =
+                [a[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			}
+		}
+		
+		NSLog(@"URL detected:");
+		NSLog(@"  action: %@", action);
+		NSLog(@"  params: %@", params);
+        
+        if (params[@"code"]) {
+            NSString *code = params[@"code"];
+            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            
+            NSDictionary *parameters = @{@"grant_type" : @"authorization_code",
+                                         @"code" : code};
+                                         //@"redirect_uri" : @"maximbilan:/after_oauth"};
+            
+            NSString *clientId = @"E3Ww84Uwp2";
+            NSString *secretKey = @"4677En2h5bPUd5j6HmjNn5";
+            NSString *authData = [NSString stringWithFormat:@"%@:%@", clientId, secretKey];
+            
+            NSData *plainData = [authData dataUsingEncoding:NSUTF8StringEncoding];
+            NSString *base64String = [plainData base64EncodedStringWithOptions:0];
+            
+            //manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            //manager.securityPolicy.allowInvalidCertificates = YES;
+            [manager.requestSerializer setValue:[NSString stringWithFormat:@"Basic %@", base64String] forHTTPHeaderField:@"Authorization"];
+//            [manager.requestSerializer setValue:code forHTTPHeaderField:@"code"];
+//            [manager.requestSerializer setValue:@"authorization_code" forHTTPHeaderField:@"grant_type"];
+            [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            
+            
+            
+            [manager POST:@"https://api.quizlet.com/oauth/token" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"JSON: %@", responseObject);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+        }
+    }
     
     return YES;
 }
