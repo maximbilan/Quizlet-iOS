@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E04F786F-56ED-4CA0-93C4-51214FAAD1CA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ios_quizlet_client</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>683B956D-A63F-44A7-BAC3-A27F3E15CAAE</key>
+		<string>https://github.com/maximbilan/ios_quizlet_client.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ios_quizlet_client.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>683B956D-A63F-44A7-BAC3-A27F3E15CAAE</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/maximbilan/ios_quizlet_client.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>683B956D-A63F-44A7-BAC3-A27F3E15CAAE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>683B956D-A63F-44A7-BAC3-A27F3E15CAAE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios_quizlet_client</string>
+		</dict>
+	</array>
+</dict>
+</plist>
