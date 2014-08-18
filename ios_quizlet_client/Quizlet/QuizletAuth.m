@@ -7,10 +7,8 @@
 //
 
 #import "QuizletAuth.h"
-#import "QuizletScope.h"
 
 #import "AFNetworking.h"
-
 
 static NSString * const QuizletAuthBaseUrl = @"https://quizlet.com/authorize";
 static NSString * const QuizletAuthParams = @"response_type=%@&client_id=%@&scope=%@&state=%@";
