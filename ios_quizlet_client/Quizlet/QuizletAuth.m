@@ -9,11 +9,11 @@
 #import "QuizletAuth.h"
 #import "QuizletRequest.h"
 
-#import "AFNetworking.h"
-
 static NSString * const QuizletAuthBaseUrl = @"https://quizlet.com/authorize";
+static NSString * const QuizletAuthTokenUrl = @"https://api.quizlet.com/oauth/token";
 static NSString * const QuizletAuthParams = @"response_type=%@&client_id=%@&scope=%@&state=%@";
 static NSString * const QuizletAuthResponseType = @"code";
+static NSString * const QuizletAuthGrantType = @"authorization_code";
 
 @interface QuizletAuth ()
 
@@ -41,7 +41,7 @@ static NSString * const QuizletAuthResponseType = @"code";
 - (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code
 {
     NSDictionary *parameters = @{
-                                 @"grant_type" : @"authorization_code",
+                                 @"grant_type" : QuizletAuthGrantType,
                                  @"code" : code
                                  };
     
@@ -54,7 +54,7 @@ static NSString * const QuizletAuthResponseType = @"code";
                                    };
     
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request POST:@"https://api.quizlet.com/oauth/token" parameters:parameters headerFields:headerFields success:^(id responseObject) {
+    [request POST:QuizletAuthTokenUrl parameters:parameters headerFields:headerFields success:^(id responseObject) {
         NSLog(@"responseObject %@", responseObject);
         if (responseObject) {
             NSDictionary *dict = (NSDictionary *)responseObject;
