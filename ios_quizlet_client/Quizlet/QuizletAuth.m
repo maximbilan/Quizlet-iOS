@@ -7,6 +7,7 @@
 //
 
 #import "QuizletAuth.h"
+#import "QuizletRequest.h"
 
 #import "AFNetworking.h"
 
@@ -39,19 +40,22 @@ static NSString * const QuizletAuthResponseType = @"code";
 
 - (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSDictionary *parameters = @{@"grant_type" : @"authorization_code",
-                                 @"code" : code};
+    NSDictionary *parameters = @{
+                                 @"grant_type" : @"authorization_code",
+                                 @"code" : code
+                                 };
     
     NSString *authData = [NSString stringWithFormat:@"%@:%@", clientID, secretKey];
     NSData *plainData = [authData dataUsingEncoding:NSUTF8StringEncoding];
     NSString *base64String = [plainData base64EncodedStringWithOptions:0];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Basic %@", base64String] forHTTPHeaderField:@"Authorization"];
     
-    [manager POST:@"https://api.quizlet.com/oauth/token" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        
+    NSDictionary *headerFields = @{
+                                   @"Authorization" : [NSString stringWithFormat:@"Basic %@", base64String]
+                                   };
+    
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request POST:@"https://api.quizlet.com/oauth/token" parameters:parameters headerFields:headerFields success:^(id responseObject) {
+        NSLog(@"responseObject %@", responseObject);
         if (responseObject) {
             NSDictionary *dict = (NSDictionary *)responseObject;
             if (dict) {
@@ -65,17 +69,15 @@ static NSString * const QuizletAuthResponseType = @"code";
                     self.scope = [dict[@"scope"] integerValue];
                 }
                 if (dict[@"token_type"]) {
-                   self.tokenType = dict[@"token_type"];
+                    self.tokenType = dict[@"token_type"];
                 }
                 if (dict[@"user_id"]) {
                     self.userId = dict[@"user_id"];
                 }
             }
         }
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+    } failure:^(NSError *error) {
+        NSLog(@"error %@", error);
     }];
 }
 
