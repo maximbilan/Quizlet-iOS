@@ -49,4 +49,28 @@
     [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
 }
 
+- (void)favoritesWithAuth:(QuizletAuth *)auth
+                  success:(void (^)(id responseObject))success
+                  failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://api.quizlet.com/2.0/users/%@/favorites", auth.userId];
+    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+}
+
+- (void)classesWithAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://api.quizlet.com/2.0/users/%@/classes", auth.userId];
+    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+}
+
+- (void)studiedWithAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://api.quizlet.com/2.0/users/%@/studied", auth.userId];
+    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+}
+
 @end

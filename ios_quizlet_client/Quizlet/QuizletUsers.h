@@ -10,6 +10,10 @@
 
 @class QuizletAuth;
 
+/**
+ Quizlet Users API
+ Viewing users, their sets, classes, favorites and study sessions
+ */
 @interface QuizletUsers : NSObject
 
 /**
@@ -28,5 +32,28 @@
              success:(void (^)(id responseObject))success
              failure:(void (^)(NSError *error))failure;
 
+/**
+ GET: /users/USERNAME/favorites
+ View complete details about all the user's favorited sets.
+ */
+- (void)favoritesWithAuth:(QuizletAuth *)auth
+                  success:(void (^)(id responseObject))success
+                  failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /users/USERNAME/classes
+ View complete details about all the classes that the user is a member of.
+ */
+- (void)classesWithAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /users/USERNAME/studied
+ View the last 100 recently studied sessions for a user.
+ */
+- (void)studiedWithAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
 
 @end
