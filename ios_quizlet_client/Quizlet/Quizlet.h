@@ -52,9 +52,34 @@
  */
 - (void)handleURL:(NSURL *)url;
 
+/**
+ GET: /users/USERNAME
+ View basic user information, including their sets, favorites, last 25 sessions, etc.
+ */
+- (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
-- (void)userDetails;
+/**
+ GET: /users/USERNAME/sets
+ View complete details about all the user's created sets.
+ */
+- (void)userSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
-- (void)userSets;
+/**
+ GET: /users/USERNAME/favorites
+ View complete details about all the user's favorited sets.
+ */
+- (void)userFavorites:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /users/USERNAME/classes
+ View complete details about all the classes that the user is a member of.
+ */
+- (void)userClasses:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /users/USERNAME/studied
+ View the last 100 recently studied sessions for a user.
+ */
+- (void)userStudied:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 @end

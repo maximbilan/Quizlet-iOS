@@ -89,22 +89,29 @@
     }
 }
 
-- (void)userDetails
+- (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.users userDetailsWithAuth:self.auth success:^(id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    [self.users userDetailsWithAuth:self.auth success:success failure:failure];
 }
 
-- (void)userSets
+- (void)userSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.users setsWithAuth:self.auth success:^(id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    [self.users setsWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userFavorites:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users favoritesWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userClasses:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users classesWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userStudied:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users studiedWithAuth:self.auth success:success failure:failure];
 }
 
 @end
