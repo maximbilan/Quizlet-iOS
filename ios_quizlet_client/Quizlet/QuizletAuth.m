@@ -14,6 +14,16 @@ static NSString * const QuizletAuthBaseUrl = @"https://quizlet.com/authorize";
 static NSString * const QuizletAuthParams = @"response_type=%@&client_id=%@&scope=%@&state=%@";
 static NSString * const QuizletAuthResponseType = @"code";
 
+@interface QuizletAuth ()
+
+@property (nonatomic, strong, readwrite) NSString *accessToken;
+@property (nonatomic, readwrite) double expiresIn;
+@property (nonatomic, readwrite) QuizletScope scope;
+@property (nonatomic, strong, readwrite) NSString *tokenType;
+@property (nonatomic, strong, readwrite) NSString *userId;
+
+@end
+
 @implementation QuizletAuth
 
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID
@@ -38,10 +48,32 @@ static NSString * const QuizletAuthResponseType = @"code";
     NSData *plainData = [authData dataUsingEncoding:NSUTF8StringEncoding];
     NSString *base64String = [plainData base64EncodedStringWithOptions:0];
     [manager.requestSerializer setValue:[NSString stringWithFormat:@"Basic %@", base64String] forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     [manager POST:@"https://api.quizlet.com/oauth/token" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        
+        if (responseObject) {
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            if (dict) {
+                if (dict[@"access_token"]) {
+                    self.accessToken = dict[@"access_token"];
+                }
+                if (dict[@"expires_in"]) {
+                    self.expiresIn = [dict[@"expires_in"] doubleValue];
+                }
+                if (dict[@"scope"]) {
+                    self.scope = [dict[@"scope"] integerValue];
+                }
+                if (dict[@"token_type"]) {
+                   self.tokenType = dict[@"token_type"];
+                }
+                if (dict[@"user_id"]) {
+                    self.userId = dict[@"user_id"];
+                }
+            }
+        }
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

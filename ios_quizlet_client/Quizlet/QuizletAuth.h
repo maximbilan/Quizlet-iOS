@@ -13,7 +13,9 @@
 @interface QuizletAuth : NSObject
 
 @property (nonatomic, strong, readonly) NSString *accessToken;
+@property (nonatomic, readonly) double expiresIn;
 @property (nonatomic, readonly) QuizletScope scope;
+@property (nonatomic, strong, readonly) NSString *tokenType;
 @property (nonatomic, strong, readonly) NSString *userId;
 
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID;
