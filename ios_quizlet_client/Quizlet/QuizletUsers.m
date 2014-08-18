@@ -13,15 +13,24 @@
 
 @interface QuizletUsers ()
 
-- (NSDictionary *)authHeaderFields:(QuizletAuth *)auth;
+- (void)getRequestByUrl:(NSString *)urlString
+               withAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
 
 @end
 
 @implementation QuizletUsers
 
-- (NSDictionary *)authHeaderFields:(QuizletAuth *)auth
+- (void)getRequestByUrl:(NSString *)urlString
+               withAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure
 {
-    return @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
+    NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
+    
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request GET:urlString parameters:nil headerFields:headerFields success:success failure:failure];
 }
 
 - (void)userDetailsWithAuth:(QuizletAuth *)auth
@@ -29,11 +38,7 @@
                     failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"https://api.quizlet.com/2.0/users/%@", auth.userId];
-    
-    NSDictionary *headerFields = [self authHeaderFields:auth];
-    
-    QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request GET:urlString parameters:nil headerFields:headerFields success:success failure:failure];
+    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
 }
 
 - (void)setsWithAuth:(QuizletAuth *)auth
@@ -41,11 +46,7 @@
              failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"https://api.quizlet.com/2.0/users/%@/sets", auth.userId];
-    
-    NSDictionary *headerFields = [self authHeaderFields:auth];
-    
-    QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request GET:urlString parameters:nil headerFields:headerFields success:success failure:failure];
+    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
 }
 
 @end
