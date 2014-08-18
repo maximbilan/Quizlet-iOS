@@ -11,6 +11,7 @@
 #define QUIZLET_LOG
 
 @class QuizletAuth;
+@class QuizletUsers;
 
 @interface Quizlet : NSObject
 
@@ -35,6 +36,11 @@
 @property (nonatomic, strong, readonly) QuizletAuth *auth;
 
 /**
+ Object for viewing users, their sets, classes, favorites and study sessions.
+ */
+@property (nonatomic, strong, readonly) QuizletUsers *users;
+
+/**
  Shared Quizlet object.
  */
 + (Quizlet *)sharedQuizlet;
@@ -50,5 +56,8 @@
 /**
  */
 - (void)handleURL:(NSURL *)url;
+
+
+- (void)userDetails;
 
 @end

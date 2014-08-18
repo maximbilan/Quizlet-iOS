@@ -8,6 +8,7 @@
 
 #import "Quizlet.h"
 #import "QuizletAuth.h"
+#import "QuizletUsers.h"
 
 @interface Quizlet ()
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong, readwrite) NSString *secretKey;
 @property (nonatomic, strong, readwrite) NSString *redirectURI;
 @property (nonatomic, strong, readwrite) QuizletAuth *auth;
+@property (nonatomic, strong, readwrite) QuizletUsers *users;
 
 @end
 
@@ -45,6 +47,7 @@
     self.secretKey = secretKey;
     self.redirectURI = redirectURI;
     self.auth = [[QuizletAuth alloc] init];
+    self.users = [[QuizletUsers alloc] init];
 }
 
 - (void)authorize
@@ -84,6 +87,15 @@
                                                      withCode:code];
         }
     }
+}
+
+- (void)userDetails
+{
+    [self.users userDetailsWithAuth:self.auth success:^(id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 @end
