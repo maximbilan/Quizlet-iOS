@@ -10,6 +10,22 @@
 
 @interface QuizletRequest : NSObject
 
+- (void)GET:(NSString *)urlString
+ parameters:(id)parameters
+    success:(void (^)(id responseObject))success
+    failure:(void (^)(NSError *error))failure;
+
+- (void)GET:(NSString *)urlString
+  parameters:(id)parameters
+headerFields:(id)headerFields
+     success:(void (^)(id responseObject))success
+     failure:(void (^)(NSError *error))failure;
+
+- (void)POST:(NSString *)urlString
+  parameters:(id)parameters
+     success:(void (^)(id responseObject))success
+     failure:(void (^)(NSError *error))failure;
+
 - (void)POST:(NSString *)urlString
   parameters:(id)parameters
 headerFields:(id)headerFields

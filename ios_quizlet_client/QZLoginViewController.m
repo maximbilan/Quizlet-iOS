@@ -12,9 +12,6 @@
 
 @interface QZLoginViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-
 @end
 
 @implementation QZLoginViewController
@@ -69,6 +66,11 @@
 //    [[UIApplication sharedApplication] openURL:url];
     
     [[Quizlet sharedQuizlet] authorize];
+}
+
+- (IBAction)actionButton:(UIButton *)sender
+{
+    [[Quizlet sharedQuizlet] userSets];
 }
 
 @end

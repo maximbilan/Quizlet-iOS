@@ -8,6 +8,7 @@
 
 #import "Quizlet.h"
 #import "QuizletAuth.h"
+#import "QuizletUsers.h"
 
 @interface Quizlet ()
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong, readwrite) NSString *secretKey;
 @property (nonatomic, strong, readwrite) NSString *redirectURI;
 @property (nonatomic, strong, readwrite) QuizletAuth *auth;
+@property (nonatomic, strong, readwrite) QuizletUsers *users;
 
 @end
 
@@ -45,6 +47,7 @@
     self.secretKey = secretKey;
     self.redirectURI = redirectURI;
     self.auth = [[QuizletAuth alloc] init];
+    self.users = [[QuizletUsers alloc] init];
 }
 
 - (void)authorize
@@ -84,6 +87,31 @@
                                                      withCode:code];
         }
     }
+}
+
+- (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users userDetailsWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users setsWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userFavorites:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users favoritesWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userClasses:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users classesWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)userStudied:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users studiedWithAuth:self.auth success:success failure:failure];
 }
 
 @end
