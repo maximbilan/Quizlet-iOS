@@ -60,4 +60,6 @@
 
 - (void)userDetails;
 
+- (void)userSets;
+
 @end

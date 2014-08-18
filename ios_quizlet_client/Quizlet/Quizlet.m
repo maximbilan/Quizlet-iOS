@@ -98,4 +98,13 @@
     }];
 }
 
+- (void)userSets
+{
+    [self.users setsWithAuth:self.auth success:^(id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
 @end

@@ -37,6 +37,7 @@
 		730FF9D1886F4066A8E08E69 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9437A27019A261CA0071E1C1 /* QuizletUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletUsers.h; path = Quizlet/QuizletUsers.h; sourceTree = "<group>"; };
 		9437A27119A261CA0071E1C1 /* QuizletUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuizletUsers.m; path = Quizlet/QuizletUsers.m; sourceTree = "<group>"; };
+		9437A27419A278510071E1C1 /* QuizletConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletConfig.h; path = Quizlet/QuizletConfig.h; sourceTree = "<group>"; };
 		94ECE8D419A0D5FD00E2641B /* ios_quizlet_client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_quizlet_client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ECE8D719A0D5FD00E2641B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,6 +140,7 @@
 			children = (
 				94ECE91419A103E900E2641B /* Quizlet.h */,
 				94ECE91519A103E900E2641B /* Quizlet.m */,
+				9437A27419A278510071E1C1 /* QuizletConfig.h */,
 				6D771B3C19A22A840085A2BE /* QuizletAuth.h */,
 				6D771B3D19A22A840085A2BE /* QuizletAuth.m */,
 				6D771B4619A2327C0085A2BE /* QuizletScope.h */,

@@ -70,7 +70,7 @@
 
 - (IBAction)actionButton:(UIButton *)sender
 {
-    [[Quizlet sharedQuizlet] userDetails];
+    [[Quizlet sharedQuizlet] userSets];
 }
 
 @end
