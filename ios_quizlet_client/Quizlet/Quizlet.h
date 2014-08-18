@@ -41,14 +41,17 @@
 + (Quizlet *)sharedQuizlet;
 
 /**
+ Setup the Quizlet client ID, secret key and redirect URI.
  */
 - (void)startWithClientID:(NSString *)clientId withSecretKey:(NSString *)secretKey withRedirectURI:(NSString *)redirectURI;
 
 /**
+ Authorization to Quizlet service. Goes to browser, and after entering login and password calls the redirect URI.
  */
 - (void)authorize;
 
 /**
+ You should use in app delegate after redirecting from authorization. This method request an access token from Quizlet authorization server.
  */
 - (void)handleURL:(NSURL *)url;
 

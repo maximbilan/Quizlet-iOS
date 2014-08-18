@@ -70,7 +70,11 @@
 
 - (IBAction)actionButton:(UIButton *)sender
 {
-    [[Quizlet sharedQuizlet] userSets];
+    [[Quizlet sharedQuizlet] userSets:^(id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
 }
-
+    
 @end
