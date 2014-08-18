@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D771B3E19A22A840085A2BE /* QuizletAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D771B3D19A22A840085A2BE /* QuizletAuth.m */; };
+		6D771B4119A22AC30085A2BE /* QuizletSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D771B4019A22AC30085A2BE /* QuizletSets.m */; };
+		6D771B4419A22AE30085A2BE /* QuizletRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D771B4319A22AE30085A2BE /* QuizletRequest.m */; };
 		7A80A10994A74AAABBD1F323 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FF9D1886F4066A8E08E69 /* libPods.a */; };
 		94ECE8D819A0D5FD00E2641B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D719A0D5FD00E2641B /* Foundation.framework */; };
 		94ECE8DA19A0D5FD00E2641B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */; };
@@ -23,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D771B3C19A22A840085A2BE /* QuizletAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletAuth.h; path = Quizlet/QuizletAuth.h; sourceTree = "<group>"; };
+		6D771B3D19A22A840085A2BE /* QuizletAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuizletAuth.m; path = Quizlet/QuizletAuth.m; sourceTree = "<group>"; };
+		6D771B3F19A22AC30085A2BE /* QuizletSets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletSets.h; path = Quizlet/QuizletSets.h; sourceTree = "<group>"; };
+		6D771B4019A22AC30085A2BE /* QuizletSets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuizletSets.m; path = Quizlet/QuizletSets.m; sourceTree = "<group>"; };
+		6D771B4219A22AE30085A2BE /* QuizletRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletRequest.h; path = Quizlet/QuizletRequest.h; sourceTree = "<group>"; };
+		6D771B4319A22AE30085A2BE /* QuizletRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuizletRequest.m; path = Quizlet/QuizletRequest.m; sourceTree = "<group>"; };
+		6D771B4619A2327C0085A2BE /* QuizletScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletScope.h; path = Quizlet/QuizletScope.h; sourceTree = "<group>"; };
 		730FF9D1886F4066A8E08E69 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ECE8D419A0D5FD00E2641B /* ios_quizlet_client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_quizlet_client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ECE8D719A0D5FD00E2641B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -126,6 +136,13 @@
 			children = (
 				94ECE91419A103E900E2641B /* Quizlet.h */,
 				94ECE91519A103E900E2641B /* Quizlet.m */,
+				6D771B3C19A22A840085A2BE /* QuizletAuth.h */,
+				6D771B3D19A22A840085A2BE /* QuizletAuth.m */,
+				6D771B4619A2327C0085A2BE /* QuizletScope.h */,
+				6D771B3F19A22AC30085A2BE /* QuizletSets.h */,
+				6D771B4019A22AC30085A2BE /* QuizletSets.m */,
+				6D771B4219A22AE30085A2BE /* QuizletRequest.h */,
+				6D771B4319A22AE30085A2BE /* QuizletRequest.m */,
 			);
 			name = Quizlet;
 			sourceTree = "<group>";
@@ -232,11 +249,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D771B3E19A22A840085A2BE /* QuizletAuth.m in Sources */,
 				94ECE8E419A0D5FD00E2641B /* main.m in Sources */,
+				6D771B4419A22AE30085A2BE /* QuizletRequest.m in Sources */,
 				94ECE91119A0EF9300E2641B /* QZLoginViewController.m in Sources */,
 				94ECE8E819A0D5FD00E2641B /* QZAppDelegate.m in Sources */,
 				94ECE91619A103E900E2641B /* Quizlet.m in Sources */,
 				94ECE8F119A0D5FD00E2641B /* QZViewController.m in Sources */,
+				6D771B4119A22AC30085A2BE /* QuizletSets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

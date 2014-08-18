@@ -7,7 +7,7 @@
 //
 
 #import "QZLoginViewController.h"
-
+#import "Quizlet.h"
 #import "AFNetworking.h"
 
 @interface QZLoginViewController ()
@@ -64,9 +64,11 @@
 //    //}
     
     
-    NSString *urlString = [NSString stringWithFormat:@"https://quizlet.com/authorize?response_type=code&client_id=E3Ww84Uwp2&scope=read&state=%@", [[NSProcessInfo processInfo] globallyUniqueString]];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:url];
+//    NSString *urlString = [NSString stringWithFormat:@"https://quizlet.com/authorize?response_type=code&client_id=E3Ww84Uwp2&scope=read&state=%@", [[NSProcessInfo processInfo] globallyUniqueString]];
+//    NSURL *url = [NSURL URLWithString:urlString];
+//    [[UIApplication sharedApplication] openURL:url];
+    
+    [[Quizlet sharedQuizlet] authorize];
 }
 
 @end
