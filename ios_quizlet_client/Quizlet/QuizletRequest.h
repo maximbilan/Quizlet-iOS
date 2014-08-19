@@ -43,4 +43,15 @@ headerFields:(id)headerFields
     success:(void (^)(id responseObject))success
     failure:(void (^)(NSError *error))failure;
 
+- (void)DELETE:(NSString *)urlString
+    parameters:(id)parameters
+       success:(void (^)(id responseObject))success
+       failure:(void (^)(NSError *error))failure;
+
+- (void)DELETE:(NSString *)urlString
+    parameters:(id)parameters
+  headerFields:(id)headerFields
+       success:(void (^)(id responseObject))success
+       failure:(void (^)(NSError *error))failure;
+
 @end

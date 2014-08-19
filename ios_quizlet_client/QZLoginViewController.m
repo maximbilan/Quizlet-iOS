@@ -78,7 +78,7 @@
     
     // 46072777
     
-    [[Quizlet sharedQuizlet] markUserSetAsFavoriteById:@"46072777" success:^(id responseObject) {
+    [[Quizlet sharedQuizlet] unmarkUserSetAsFavoriteById:@"46072777" success:^(id responseObject) {
         NSLog(@"%@", responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@", error);

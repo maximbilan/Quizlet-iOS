@@ -88,7 +88,11 @@
                             success:(void (^)(id responseObject))success
                             failure:(void (^)(NSError *error))failure
 {
+    NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
+    NSString *urlString = [NSString stringWithFormat:@"https://api.quizlet.com/2.0/users/%@/favorites/%@", auth.userId, setId];
     
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request DELETE:urlString parameters:nil headerFields:headerFields success:success failure:failure];
 }
 
 @end
