@@ -9,6 +9,7 @@
 #import "Quizlet.h"
 #import "QuizletAuth.h"
 #import "QuizletUsers.h"
+#import "QuizletSets.h"
 
 @interface Quizlet ()
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong, readwrite) NSString *redirectURI;
 @property (nonatomic, strong, readwrite) QuizletAuth *auth;
 @property (nonatomic, strong, readwrite) QuizletUsers *users;
+@property (nonatomic, strong, readwrite) QuizletSets *sets;
 
 @end
 
@@ -42,6 +44,7 @@
     self.redirectURI = nil;
     self.auth = nil;
     self.users = nil;
+    self.sets = nil;
 }
 
 #pragma mark - Setup
@@ -53,6 +56,7 @@
     self.redirectURI = redirectURI;
     self.auth = [[QuizletAuth alloc] init];
     self.users = [[QuizletUsers alloc] init];
+    self.sets = [[QuizletSets alloc] init];
 }
 
 #pragma mark - Authorization
@@ -94,6 +98,13 @@
                                                      withCode:code];
         }
     }
+}
+
+#pragma mark - Sets API
+
+- (void)setId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets setById:setId withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Users API
