@@ -30,7 +30,7 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID
 {
     NSString *responseType = QuizletAuthResponseType;
-    NSString *scope = QuizletScopeValues[QuizletScopeWriteSet];
+    NSString *scope = QuizletScopeValues[QuizletScopeRead];
     NSString *state = [[NSProcessInfo processInfo] globallyUniqueString];
     NSString *paramsString = [NSString stringWithFormat:QuizletAuthParams, responseType, clientID, scope, state];
     NSString *urlString = [NSString stringWithFormat:@"%@?%@", QuizletAuthBaseUrl, paramsString];
