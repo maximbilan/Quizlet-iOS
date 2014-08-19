@@ -85,4 +85,8 @@
  */
 - (void)userStudied:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
+- (void)markUserSetAsFavoriteById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)unmarkUserSetAsFavoriteById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
 @end
