@@ -85,4 +85,16 @@
  */
 - (void)userStudied:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
+/**
+ PUT: /users/USERNAME/favorites/SET_ID
+ Mark a set as a favorite.
+ */
+- (void)markUserSetAsFavoriteById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ DELETE: /users/USERNAME/favorites/SET_ID
+ Unmark a set as a favorite.
+ */
+- (void)unmarkUserSetAsFavoriteById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
 @end

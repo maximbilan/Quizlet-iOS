@@ -22,6 +22,8 @@
 
 @implementation Quizlet
 
+#pragma mark - Common
+
 + (Quizlet *)sharedQuizlet
 {
     static dispatch_once_t once_token;
@@ -39,7 +41,10 @@
     self.secretKey = nil;
     self.redirectURI = nil;
     self.auth = nil;
+    self.users = nil;
 }
+
+#pragma mark - Setup
 
 - (void)startWithClientID:(NSString *)clientId withSecretKey:(NSString *)secretKey withRedirectURI:(NSString *)redirectURI
 {
@@ -49,6 +54,8 @@
     self.auth = [[QuizletAuth alloc] init];
     self.users = [[QuizletUsers alloc] init];
 }
+
+#pragma mark - Authorization
 
 - (void)authorize
 {
@@ -89,6 +96,8 @@
     }
 }
 
+#pragma mark - Users API
+
 - (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     [self.users userDetailsWithAuth:self.auth success:success failure:failure];
@@ -112,6 +121,16 @@
 - (void)userStudied:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     [self.users studiedWithAuth:self.auth success:success failure:failure];
+}
+
+- (void)markUserSetAsFavoriteById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users markUserSetAsFavoriteById:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)unmarkUserSetAsFavoriteById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.users unmarkUserSetAsFavoriteById:setId withAuth:self.auth success:success failure:failure];
 }
 
 @end
