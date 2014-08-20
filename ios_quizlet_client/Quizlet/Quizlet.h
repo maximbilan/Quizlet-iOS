@@ -56,9 +56,28 @@
 - (void)handleURL:(NSURL *)url;
 
 /**
- 
+ GET: /sets/SET_ID
+ View complete details (including all terms) of a single set.
  */
-- (void)setId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+- (void)viewSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /sets/SET_ID/terms
+ View just the terms in a single set.
+ */
+- (void)viewSetTermsById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /sets/SET_ID/password
+ Submit a password for a password-protected set.
+ */
+- (void)submitPasswordBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /sets
+ View complete details of multiple sets at once.
+ */
+- (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /users/USERNAME
