@@ -1,60 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tcd-th-i3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hhb-Pf-zeN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller - Login-->
-        <scene sceneID="95s-Rf-4HU">
+        <!--Table View Controller - Examples-->
+        <scene sceneID="WWa-RY-8Yg">
             <objects>
-                <viewController id="4MP-xE-tLp" customClass="QZLoginViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ePM-d1-wac"/>
-                        <viewControllerLayoutGuide type="bottom" id="r68-Zp-gbq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zzS-oX-VoD">
+                <tableViewController id="YTf-Za-5kH" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oIB-R9-jgv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIz-Ej-pJZ">
-                                <rect key="frame" x="129" y="133" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Action">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="actionButton:" destination="4MP-xE-tLp" eventType="touchUpInside" id="p7u-6y-EQR"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Login" id="sJX-pO-bmp">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="zk7-0e-QD8">
-                            <connections>
-                                <action selector="loginAction:" destination="4MP-xE-tLp" id="9lb-hk-ezu"/>
-                            </connections>
-                        </barButtonItem>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4PK-sK-zPa">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4PK-sK-zPa" id="yTk-w4-vGs">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YTf-Za-5kH" id="Nmg-va-KkZ"/>
+                            <outlet property="delegate" destination="YTf-Za-5kH" id="GbO-m1-dvV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Examples" id="CAc-OD-FEI">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="EaR-1W-VWM"/>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dqT-MB-KXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krr-Dz-YQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="23"/>
+            <point key="canvasLocation" x="-14" y="15"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="2lN-Hu-qXs">
+        <scene sceneID="9Uy-d4-N1Q">
             <objects>
-                <navigationController definesPresentationContext="YES" id="tcd-th-i3Y" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="00E-jr-aKT">
+                <navigationController definesPresentationContext="YES" id="Hhb-Pf-zeN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MNg-yF-suU">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="4MP-xE-tLp" kind="relationship" relationship="rootViewController" id="7hy-c8-ruU"/>
+                        <segue destination="YTf-Za-5kH" kind="relationship" relationship="rootViewController" id="gsg-ye-yhu"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8XJ-yO-geK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4d9-dT-Dai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-393" y="43"/>
+            <point key="canvasLocation" x="-455" y="15"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
