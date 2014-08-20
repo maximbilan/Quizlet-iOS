@@ -21,10 +21,7 @@
 
 @implementation QZUsersViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
+#pragma mark - View Controller Methods
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -95,6 +92,8 @@
             break;
     }
 }
+
+#pragma mark - Actions
 
 - (IBAction)submitButtonAction:(UIButton *)sender
 {
