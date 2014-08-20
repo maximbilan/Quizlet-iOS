@@ -14,6 +14,8 @@
 @interface QZUsersViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
+@property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
@@ -82,19 +84,50 @@
         break;
             
         case QZExamplesMarkSetAsFavorite:
-        {
-            
-        }
-        break;
-            
         case QZExamplesUnmarkSetAsFavorite:
         {
-            
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
         }
         break;
             
         default:
             break;
+    }
+}
+
+- (IBAction)submitButtonAction:(UIButton *)sender
+{
+    [self.setIdTextField resignFirstResponder];
+    
+    if (self.setIdTextField.text.length > 0) {
+        switch (self.exampleId) {
+            case QZExamplesMarkSetAsFavorite:
+            {
+                [[Quizlet sharedQuizlet] markUserSetAsFavoriteById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+            
+            case QZExamplesUnmarkSetAsFavorite:
+            {
+                [[Quizlet sharedQuizlet] unmarkUserSetAsFavoriteById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+            
+            default:
+                break;
+        }
+        
+        self.setIdTextField.hidden = YES;
+        self.submitButton.hidden = YES;
     }
 }
 

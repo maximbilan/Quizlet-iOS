@@ -77,11 +77,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJs-td-EW7">
+                                <rect key="frame" x="100" y="94" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vew-1L-cXj" id="HtZ-Va-Sda"/>
+                                </connections>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52A-de-LjO">
+                                <rect key="frame" x="130" y="132" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonAction:" destination="vew-1L-cXj" eventType="touchUpInside" id="N4V-Yf-Yns"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="logTextView" destination="9a2-cD-Myd" id="VrX-Wh-Y9M"/>
+                        <outlet property="setIdTextField" destination="UJs-td-EW7" id="oEA-uG-Bu2"/>
+                        <outlet property="submitButton" destination="52A-de-LjO" id="F5D-n3-tB7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZC-BJ-22L" userLabel="First Responder" sceneMemberID="firstResponder"/>
