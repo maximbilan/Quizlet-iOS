@@ -40,9 +40,10 @@ typedef NS_ENUM(NSInteger, QZExamples)
     QZExamplesUserClasses,
     QZExamplesUserStudied,
     QZExamplesMarkSetAsFavorite,
-    QZExamplesUnmarkSetAsFavorite
+    QZExamplesUnmarkSetAsFavorite,
+    QZExamplesCount
 };
 
-@interface QZExamplesViewController : UIViewController
+@interface QZExamplesViewController : UITableViewController
 
 @end
