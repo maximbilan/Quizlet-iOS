@@ -22,12 +22,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.logTextView.text = @"";
     
     switch (self.exampleId) {
         case QZExamplesUserDetails:
@@ -41,43 +42,60 @@
         break;
             
         case QZExamplesUserSets:
-            break;
+        {
+            [[Quizlet sharedQuizlet] userSets:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
             
         case QZExamplesUserFavorites:
-            break;
+        {
+            [[Quizlet sharedQuizlet] userFavorites:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
             
         case QZExamplesUserClasses:
-            break;
+        {
+            [[Quizlet sharedQuizlet] userClasses:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
             
         case QZExamplesUserStudied:
-            break;
+        {
+            [[Quizlet sharedQuizlet] userStudied:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
             
         case QZExamplesMarkSetAsFavorite:
-            break;
+        {
+            
+        }
+        break;
             
         case QZExamplesUnmarkSetAsFavorite:
-            break;
+        {
+            
+        }
+        break;
             
         default:
             break;
     }
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
