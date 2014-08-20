@@ -9,6 +9,8 @@
 #import "QZExamplesViewController.h"
 #import "QZExamplesTableViewCell.h"
 
+#import "Quizlet.h"
+
 static NSString * const QZExamplesTitles[] = {
     @"GET /classes/CLASS_ID",
     @"GET /classes/CLASS_ID/sets",
@@ -79,8 +81,6 @@ static NSString * const QZExamplesDescrs[] = {
 
 @interface QZExamplesViewController ()
 
-
-
 @end
 
 @implementation QZExamplesViewController
@@ -105,6 +105,11 @@ static NSString * const QZExamplesDescrs[] = {
     cell.descrLabel.text = QZExamplesDescrs[indexPath.row];
     
     return cell;
+}
+
+- (IBAction)loginButtonAction:(UIBarButtonItem *)sender
+{
+    [[Quizlet sharedQuizlet] authorize];
 }
 
 @end

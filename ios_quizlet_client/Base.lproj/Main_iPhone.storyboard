@@ -47,7 +47,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Examples" id="CAc-OD-FEI">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="EaR-1W-VWM"/>
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="EaR-1W-VWM">
+                            <connections>
+                                <action selector="loginButtonAction:" destination="YTf-Za-5kH" id="Ee0-pK-W6n"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krr-Dz-YQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
