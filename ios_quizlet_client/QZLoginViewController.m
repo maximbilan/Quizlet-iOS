@@ -84,11 +84,29 @@
 //        NSLog(@"%@", error);
 //    }];
     
-    [[Quizlet sharedQuizlet] setId:@"46072777" success:^(id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+//    [[Quizlet sharedQuizlet] viewSetById:@"46072777" success:^(id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+    
+//    [[Quizlet sharedQuizlet] viewSetTermsById:@"46072777" success:^(id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+    
+//    [[Quizlet sharedQuizlet] submitPasswordBySetId:@"46072777" success:^(id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+    
+//    [[Quizlet sharedQuizlet] viewSets:^(id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
 }
 
 @end

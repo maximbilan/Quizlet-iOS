@@ -102,9 +102,24 @@
 
 #pragma mark - Sets API
 
-- (void)setId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+- (void)viewSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets setById:setId withAuth:self.auth success:success failure:failure];
+    [self.sets viewSetById:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)viewSetTermsById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets viewSetTermsById:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)submitPasswordBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets submitPasswordBySetId:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets viewSetsWithAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Users API

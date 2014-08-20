@@ -16,31 +16,37 @@
 @interface QuizletSets : NSObject
 
 /**
-
+ GET: /sets/SET_ID
+ View complete details (including all terms) of a single set.
  */
-- (void)setById:(NSString *)Id withAuth:(QuizletAuth *)auth
-        success:(void (^)(id responseObject))success
-        failure:(void (^)(NSError *error))failure;
-
-/**
- 
- */
-- (void)setTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
-             success:(void (^)(id responseObject))success
-             failure:(void (^)(NSError *error))failure;
+- (void)viewSetById:(NSString *)Id withAuth:(QuizletAuth *)auth
+            success:(void (^)(id responseObject))success
+            failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ GET: /sets/SET_ID/terms
+ View just the terms in a single set.
  */
-- (void)setPasswordById:(NSString *)Id withAuth:(QuizletAuth *)auth
-                success:(void (^)(id responseObject))success
-                failure:(void (^)(NSError *error))failure;
+- (void)viewSetTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ GET: /sets/SET_ID/password
+ Submit a password for a password-protected set.
  */
-- (void)setsWithAuth:(QuizletAuth *)auth
-             success:(void (^)(id responseObject))success
-             failure:(void (^)(NSError *error))failure;
+- (void)submitPasswordBySetId:(NSString *)Id withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure;
+
+/**
+ GET: /sets
+ View complete details of multiple sets at once.
+ */
+- (void)viewSetsWithAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
+
+
 
 @end
