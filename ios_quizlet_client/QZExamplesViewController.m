@@ -8,6 +8,7 @@
 
 #import "QZExamplesViewController.h"
 #import "QZExamplesTableViewCell.h"
+#import "QZUsersViewController.h"
 
 #import "Quizlet.h"
 
@@ -85,12 +86,14 @@ static NSString * const QZExamplesDescrs[] = {
 
 @implementation QZExamplesViewController
 
+#pragma mark - View Controller Methods
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 }
+
+#pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -106,6 +109,30 @@ static NSString * const QZExamplesDescrs[] = {
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case QZExamplesUserDetails:
+        case QZExamplesUserSets:
+        case QZExamplesUserFavorites:
+        case QZExamplesUserClasses:
+        case QZExamplesUserStudied:
+        case QZExamplesMarkSetAsFavorite:
+        case QZExamplesUnmarkSetAsFavorite:
+        {
+            QZUsersViewController *usersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"usersViewControllerId"];
+            usersViewController.exampleId = indexPath.row;
+            [self.navigationController pushViewController:usersViewController animated:YES];
+        }
+        break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - Actions
 
 - (IBAction)loginButtonAction:(UIBarButtonItem *)sender
 {

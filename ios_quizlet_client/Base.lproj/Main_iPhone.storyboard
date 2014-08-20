@@ -58,6 +58,36 @@
             </objects>
             <point key="canvasLocation" x="-14" y="15"/>
         </scene>
+        <!--Users View Controller - Response-->
+        <scene sceneID="DKc-Bz-QCP">
+            <objects>
+                <viewController storyboardIdentifier="usersViewControllerId" title="Response" id="vew-1L-cXj" customClass="QZUsersViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nIq-4c-p7H"/>
+                        <viewControllerLayoutGuide type="bottom" id="y6P-ri-09D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6yY-LA-mc5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9a2-cD-Myd">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="logTextView" destination="9a2-cD-Myd" id="VrX-Wh-Y9M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YZC-BJ-22L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="428" y="15"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Uy-d4-N1Q">
             <objects>
