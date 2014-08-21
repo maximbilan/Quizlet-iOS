@@ -69,7 +69,7 @@
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
  */
-- (void)submitPasswordBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+- (void)submitPassword:(NSString *)password bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets

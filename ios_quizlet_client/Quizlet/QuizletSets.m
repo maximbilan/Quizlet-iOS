@@ -14,6 +14,7 @@
 @implementation QuizletSets
 
 - (void)getRequestByUrl:(NSString *)urlString
+             parameters:(NSDictionary *)parameters
                withAuth:(QuizletAuth *)auth
                 success:(void (^)(id responseObject))success
                 failure:(void (^)(NSError *error))failure
@@ -29,7 +30,7 @@
             failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, Id];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    [self getRequestByUrl:urlString parameters:nil withAuth:auth success:success failure:failure];
 }
 
 - (void)viewSetTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
@@ -37,15 +38,21 @@
                  failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms", QuizletAPIBaseUrl, Id];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    [self getRequestByUrl:urlString parameters:nil withAuth:auth success:success failure:failure];
 }
 
-- (void)submitPasswordBySetId:(NSString *)Id withAuth:(QuizletAuth *)auth
+- (void)submitPasswordBySetId:(NSString *)Id
+                 withPassword:(NSString *)password
+                     withAuth:(QuizletAuth *)auth
                       success:(void (^)(id responseObject))success
                       failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/password", QuizletAPIBaseUrl, Id];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    NSDictionary *parameters = nil;
+    if (password) {
+        parameters = @{ @"password": password };
+    }
+    [self getRequestByUrl:urlString parameters:parameters withAuth:auth success:success failure:failure];
 }
 
 - (void)viewSetsWithAuth:(QuizletAuth *)auth
@@ -53,7 +60,7 @@
                  failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets", QuizletAPIBaseUrl];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    [self getRequestByUrl:urlString parameters:nil withAuth:auth success:success failure:failure];
 }
 
 @end

@@ -90,7 +90,7 @@
                 
             case QZExamplesSubmitSetPassword:
             {
-                [[Quizlet sharedQuizlet] submitPasswordBySetId:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] submitPassword:@"123" bySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
