@@ -7,6 +7,7 @@
 //
 
 #import "Quizlet.h"
+#import "QuizletConfig.h"
 #import "QuizletAuth.h"
 #import "QuizletUsers.h"
 #import "QuizletSets.h"
@@ -112,9 +113,9 @@
     [self.sets viewSetTermsById:setId withAuth:self.auth success:success failure:failure];
 }
 
-- (void)submitPasswordBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+- (void)submitPassword:(NSString *)password bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets submitPasswordBySetId:setId withAuth:self.auth success:success failure:failure];
+    [self.sets submitPasswordBySetId:setId withPassword:password withAuth:self.auth success:success failure:failure];
 }
 
 - (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure

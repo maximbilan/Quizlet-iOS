@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Maxim Bilan. All rights reserved.
 //
 
+#import "QuizletConfig.h"
 #import "QuizletAuth.h"
 #import "QuizletRequest.h"
 
@@ -30,7 +31,7 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID
 {
     NSString *responseType = QuizletAuthResponseType;
-    NSString *scope = QuizletScopeValues[QuizletScopeRead];
+    NSString *scope = [NSString stringWithFormat:@"%@+%@", QuizletScopeValues[QuizletScopeRead], QuizletScopeValues[QuizletScopeWriteSet]];
     NSString *state = [[NSProcessInfo processInfo] globallyUniqueString];
     NSString *paramsString = [NSString stringWithFormat:QuizletAuthParams, responseType, clientID, scope, state];
     NSString *urlString = [NSString stringWithFormat:@"%@?%@", QuizletAuthBaseUrl, paramsString];
@@ -55,7 +56,9 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
     
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request POST:QuizletAuthTokenUrl parameters:parameters headerFields:headerFields success:^(id responseObject) {
+#ifdef QUIZLET_LOG
         NSLog(@"responseObject %@", responseObject);
+#endif
         if (responseObject) {
             NSDictionary *dict = (NSDictionary *)responseObject;
             if (dict) {
@@ -77,7 +80,9 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
             }
         }
     } failure:^(NSError *error) {
+#ifdef QUIZLET_LOG
         NSLog(@"error %@", error);
+#endif
     }];
 }
 

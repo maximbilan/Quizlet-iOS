@@ -9,6 +9,7 @@
 #import "QZExamplesViewController.h"
 #import "QZExamplesTableViewCell.h"
 #import "QZUsersViewController.h"
+#import "QZSetsViewController.h"
 
 #import "Quizlet.h"
 
@@ -124,6 +125,23 @@ static NSString * const QZExamplesDescrs[] = {
             QZUsersViewController *usersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"usersViewControllerId"];
             usersViewController.exampleId = indexPath.row;
             [self.navigationController pushViewController:usersViewController animated:YES];
+        }
+        break;
+            
+        case QZExamplesViewSet:
+        case QZExamplesViewSetTerms:
+        case QZExamplesSubmitSetPassword:
+        case QZExamplesViewSets:
+        case QZExamplesAddSet:
+        case QZExamplesEditSet:
+        case QZExamplesDeleteSet:
+        case QZExamplesAddTermToSet:
+        case QZExamplesEditTermFromSet:
+        case QZExamplesDeleteTermFromSet:
+        {
+            QZSetsViewController *setsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"setsViewControllerId"];
+            setsViewController.exampleId = indexPath.row;
+            [self.navigationController pushViewController:setsViewController animated:YES];
         }
         break;
             
