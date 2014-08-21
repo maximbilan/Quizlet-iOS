@@ -26,9 +26,7 @@
 		94ECE8E819A0D5FD00E2641B /* QZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE8E719A0D5FD00E2641B /* QZAppDelegate.m */; };
 		94ECE8EB19A0D5FD00E2641B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94ECE8E919A0D5FD00E2641B /* Main_iPhone.storyboard */; };
 		94ECE8EE19A0D5FD00E2641B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94ECE8EC19A0D5FD00E2641B /* Main_iPad.storyboard */; };
-		94ECE8F119A0D5FD00E2641B /* QZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE8F019A0D5FD00E2641B /* QZViewController.m */; };
 		94ECE8F319A0D5FD00E2641B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94ECE8F219A0D5FD00E2641B /* Images.xcassets */; };
-		94ECE91119A0EF9300E2641B /* QZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE91019A0EF9300E2641B /* QZLoginViewController.m */; };
 		94ECE91619A103E900E2641B /* Quizlet.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ECE91519A103E900E2641B /* Quizlet.m */; };
 /* End PBXBuildFile section */
 
@@ -68,12 +66,8 @@
 		94ECE8E719A0D5FD00E2641B /* QZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QZAppDelegate.m; sourceTree = "<group>"; };
 		94ECE8EA19A0D5FD00E2641B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		94ECE8ED19A0D5FD00E2641B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		94ECE8EF19A0D5FD00E2641B /* QZViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QZViewController.h; sourceTree = "<group>"; };
-		94ECE8F019A0D5FD00E2641B /* QZViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QZViewController.m; sourceTree = "<group>"; };
 		94ECE8F219A0D5FD00E2641B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		94ECE8F919A0D5FE00E2641B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		94ECE90F19A0EF9300E2641B /* QZLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZLoginViewController.h; sourceTree = "<group>"; };
-		94ECE91019A0EF9300E2641B /* QZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZLoginViewController.m; sourceTree = "<group>"; };
 		94ECE91419A103E900E2641B /* Quizlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quizlet.h; path = Quizlet/Quizlet.h; sourceTree = "<group>"; };
 		94ECE91519A103E900E2641B /* Quizlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Quizlet.m; path = Quizlet/Quizlet.m; sourceTree = "<group>"; };
 		9AD079B923374187BE0F03A3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -94,6 +88,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D2AAFEF19A6458400D0D55A /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				94ECE8E619A0D5FD00E2641B /* QZAppDelegate.h */,
+				94ECE8E719A0D5FD00E2641B /* QZAppDelegate.m */,
+				6D54A0D819A4DD1A009D9E95 /* QZExamplesViewController.h */,
+				6D54A0D919A4DD1A009D9E95 /* QZExamplesViewController.m */,
+				6D54A0DB19A4E4A3009D9E95 /* QZExamplesTableViewCell.h */,
+				6D54A0DC19A4E4A3009D9E95 /* QZExamplesTableViewCell.m */,
+				6D54A0DE19A4EB78009D9E95 /* QZUsersViewController.h */,
+				6D54A0DF19A4EB78009D9E95 /* QZUsersViewController.m */,
+			);
+			name = Example;
+			sourceTree = "<group>";
+		};
+		6D2AAFF019A645C900D0D55A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				94ECE8F219A0D5FD00E2641B /* Images.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		6D2AAFF119A645E300D0D55A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				94ECE8E919A0D5FD00E2641B /* Main_iPhone.storyboard */,
+				94ECE8EC19A0D5FD00E2641B /* Main_iPad.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		94ECE8CB19A0D5FD00E2641B = {
 			isa = PBXGroup;
 			children = (
@@ -127,23 +153,11 @@
 		94ECE8DD19A0D5FD00E2641B /* ios_quizlet_client */ = {
 			isa = PBXGroup;
 			children = (
+				6D2AAFEF19A6458400D0D55A /* Example */,
 				94ECE91319A103CC00E2641B /* Quizlet */,
-				94ECE8E619A0D5FD00E2641B /* QZAppDelegate.h */,
-				94ECE8E719A0D5FD00E2641B /* QZAppDelegate.m */,
-				94ECE8E919A0D5FD00E2641B /* Main_iPhone.storyboard */,
-				94ECE8EC19A0D5FD00E2641B /* Main_iPad.storyboard */,
-				94ECE8EF19A0D5FD00E2641B /* QZViewController.h */,
-				94ECE8F019A0D5FD00E2641B /* QZViewController.m */,
-				94ECE90F19A0EF9300E2641B /* QZLoginViewController.h */,
-				94ECE91019A0EF9300E2641B /* QZLoginViewController.m */,
-				94ECE8F219A0D5FD00E2641B /* Images.xcassets */,
+				6D2AAFF119A645E300D0D55A /* Storyboard */,
 				94ECE8DE19A0D5FD00E2641B /* Supporting Files */,
-				6D54A0D819A4DD1A009D9E95 /* QZExamplesViewController.h */,
-				6D54A0D919A4DD1A009D9E95 /* QZExamplesViewController.m */,
-				6D54A0DB19A4E4A3009D9E95 /* QZExamplesTableViewCell.h */,
-				6D54A0DC19A4E4A3009D9E95 /* QZExamplesTableViewCell.m */,
-				6D54A0DE19A4EB78009D9E95 /* QZUsersViewController.h */,
-				6D54A0DF19A4EB78009D9E95 /* QZUsersViewController.m */,
+				6D2AAFF019A645C900D0D55A /* Assets */,
 			);
 			path = ios_quizlet_client;
 			sourceTree = "<group>";
@@ -293,11 +307,9 @@
 				9437A27219A261CA0071E1C1 /* QuizletUsers.m in Sources */,
 				6D54A0E019A4EB78009D9E95 /* QZUsersViewController.m in Sources */,
 				6D54A0DA19A4DD1A009D9E95 /* QZExamplesViewController.m in Sources */,
-				94ECE91119A0EF9300E2641B /* QZLoginViewController.m in Sources */,
 				94ECE8E819A0D5FD00E2641B /* QZAppDelegate.m in Sources */,
 				94ECE91619A103E900E2641B /* Quizlet.m in Sources */,
 				6D54A0DD19A4E4A3009D9E95 /* QZExamplesTableViewCell.m in Sources */,
-				94ECE8F119A0D5FD00E2641B /* QZViewController.m in Sources */,
 				6D425ECA19A33F0E0060E543 /* QuizletImages.m in Sources */,
 				6D425ECD19A33F250060E543 /* QuizletSearch.m in Sources */,
 				6D771B4119A22AC30085A2BE /* QuizletSets.m in Sources */,
