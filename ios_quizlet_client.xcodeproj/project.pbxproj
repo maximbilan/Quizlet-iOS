@@ -18,6 +18,7 @@
 		6D771B4419A22AE30085A2BE /* QuizletRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D771B4319A22AE30085A2BE /* QuizletRequest.m */; };
 		7A80A10994A74AAABBD1F323 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FF9D1886F4066A8E08E69 /* libPods.a */; };
 		9437A27219A261CA0071E1C1 /* QuizletUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437A27119A261CA0071E1C1 /* QuizletUsers.m */; };
+		946AFA0719A6609B0024A009 /* QZSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AFA0619A6609B0024A009 /* QZSetsViewController.m */; };
 		94ECE8D819A0D5FD00E2641B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D719A0D5FD00E2641B /* Foundation.framework */; };
 		94ECE8DA19A0D5FD00E2641B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */; };
 		94ECE8DC19A0D5FD00E2641B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8DB19A0D5FD00E2641B /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		9437A27019A261CA0071E1C1 /* QuizletUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletUsers.h; path = Quizlet/QuizletUsers.h; sourceTree = "<group>"; };
 		9437A27119A261CA0071E1C1 /* QuizletUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuizletUsers.m; path = Quizlet/QuizletUsers.m; sourceTree = "<group>"; };
 		9437A27419A278510071E1C1 /* QuizletConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletConfig.h; path = Quizlet/QuizletConfig.h; sourceTree = "<group>"; };
+		946AFA0519A6609B0024A009 /* QZSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZSetsViewController.h; sourceTree = "<group>"; };
+		946AFA0619A6609B0024A009 /* QZSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZSetsViewController.m; sourceTree = "<group>"; };
 		94ECE8D419A0D5FD00E2641B /* ios_quizlet_client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_quizlet_client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ECE8D719A0D5FD00E2641B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,6 +102,8 @@
 				6D54A0DC19A4E4A3009D9E95 /* QZExamplesTableViewCell.m */,
 				6D54A0DE19A4EB78009D9E95 /* QZUsersViewController.h */,
 				6D54A0DF19A4EB78009D9E95 /* QZUsersViewController.m */,
+				946AFA0519A6609B0024A009 /* QZSetsViewController.h */,
+				946AFA0619A6609B0024A009 /* QZSetsViewController.m */,
 			);
 			name = Example;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				946AFA0719A6609B0024A009 /* QZSetsViewController.m in Sources */,
 				6D771B3E19A22A840085A2BE /* QuizletAuth.m in Sources */,
 				94ECE8E419A0D5FD00E2641B /* main.m in Sources */,
 				6D771B4419A22AE30085A2BE /* QuizletRequest.m in Sources */,
