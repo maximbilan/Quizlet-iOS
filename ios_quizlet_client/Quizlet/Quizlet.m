@@ -7,6 +7,7 @@
 //
 
 #import "Quizlet.h"
+#import "QuizletConfig.h"
 #import "QuizletAuth.h"
 #import "QuizletUsers.h"
 #import "QuizletSets.h"

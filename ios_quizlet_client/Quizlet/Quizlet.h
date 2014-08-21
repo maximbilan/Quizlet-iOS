@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define QUIZLET_LOG
-
 @class QuizletAuth;
 @class QuizletUsers;
 
