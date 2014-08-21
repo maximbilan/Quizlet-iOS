@@ -112,7 +112,7 @@
         <!--Sets View Controller-->
         <scene sceneID="QW7-0f-NHe">
             <objects>
-                <viewController id="lwi-js-cD7" customClass="QZSetsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="setsViewControllerId" id="lwi-js-cD7" customClass="QZSetsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hRG-oK-yRs"/>
                         <viewControllerLayoutGuide type="bottom" id="sBp-Dr-Ww8"/>
@@ -128,11 +128,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="17H-3l-0nc">
+                                <rect key="frame" x="100" y="69" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vew-1L-cXj" id="i5T-uN-hXj"/>
+                                </connections>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O1-lH-eiT">
+                                <rect key="frame" x="130" y="107" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonAction:" destination="lwi-js-cD7" eventType="touchUpInside" id="F8R-2o-0J1"/>
+                                    <action selector="submitButtonAction:" destination="vew-1L-cXj" eventType="touchUpInside" id="HaP-vA-lER"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="logTextView" destination="cnn-r4-sur" id="AWD-Qd-kIF"/>
+                        <outlet property="setIdTextField" destination="17H-3l-0nc" id="i4w-pf-dsS"/>
+                        <outlet property="submitButton" destination="5O1-lH-eiT" id="ldt-qq-zCL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LnE-fX-IVy" userLabel="First Responder" sceneMemberID="firstResponder"/>

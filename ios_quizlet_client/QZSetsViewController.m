@@ -7,10 +7,15 @@
 //
 
 #import "QZSetsViewController.h"
+#import "QZExamplesViewController.h"
+
+#import "Quizlet.h"
 
 @interface QZSetsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
+@property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
@@ -31,6 +36,49 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.logTextView.text = @"";
+    
+    switch (self.exampleId) {
+        case QZExamplesViewSet:
+        {
+//            [[Quizlet sharedQuizlet] viewSetById:@"" success:^(id responseObject) {
+//                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+//            } failure:^(NSError *error) {
+//                self.logTextView.text = [error description];
+//            }];
+        }
+        break;
+        case QZExamplesViewSetTerms:
+        case QZExamplesSubmitSetPassword:
+        case QZExamplesViewSets:
+        {
+            [[Quizlet sharedQuizlet] viewSets:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+        case QZExamplesAddSet:
+        case QZExamplesEditSet:
+        case QZExamplesDeleteSet:
+        case QZExamplesAddTermToSet:
+        case QZExamplesEditTermFromSet:
+        case QZExamplesDeleteTermFromSet:
+        {
+        
+        }
+        break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -47,5 +95,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)submitButtonAction:(UIButton *)sender
+{
+    
+}
 
 @end

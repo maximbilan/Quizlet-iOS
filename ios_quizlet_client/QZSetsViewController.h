@@ -10,4 +10,6 @@
 
 @interface QZSetsViewController : UIViewController
 
+@property (nonatomic) NSInteger exampleId;
+
 @end
