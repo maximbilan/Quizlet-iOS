@@ -21,21 +21,6 @@
 
 @implementation QZSetsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -44,16 +29,14 @@
     
     switch (self.exampleId) {
         case QZExamplesViewSet:
-        {
-//            [[Quizlet sharedQuizlet] viewSetById:@"" success:^(id responseObject) {
-//                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-//            } failure:^(NSError *error) {
-//                self.logTextView.text = [error description];
-//            }];
-        }
-        break;
         case QZExamplesViewSetTerms:
         case QZExamplesSubmitSetPassword:
+        {
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
+        }
+        break;
+        
         case QZExamplesViewSets:
         {
             [[Quizlet sharedQuizlet] viewSets:^(id responseObject) {
@@ -79,26 +62,49 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)submitButtonAction:(UIButton *)sender
 {
+    [self.setIdTextField resignFirstResponder];
     
+    if (self.setIdTextField.text.length > 0) {
+        switch (self.exampleId) {
+            case QZExamplesViewSet:
+            {
+                [[Quizlet sharedQuizlet] viewSetById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+            
+            case QZExamplesViewSetTerms:
+            {
+                [[Quizlet sharedQuizlet] viewSetTermsById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            case QZExamplesSubmitSetPassword:
+            {
+                [[Quizlet sharedQuizlet] submitPasswordBySetId:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            default:
+                break;
+        }
+        
+        self.setIdTextField.hidden = YES;
+        self.submitButton.hidden = YES;
+    }
 }
 
 @end

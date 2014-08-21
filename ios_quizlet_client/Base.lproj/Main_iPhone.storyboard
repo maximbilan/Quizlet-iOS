@@ -129,7 +129,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="17H-3l-0nc">
-                                <rect key="frame" x="100" y="69" width="120" height="30"/>
+                                <rect key="frame" x="100" y="97" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -138,14 +138,13 @@
                                 </connections>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O1-lH-eiT">
-                                <rect key="frame" x="130" y="107" width="60" height="30"/>
+                                <rect key="frame" x="130" y="135" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="submitButtonAction:" destination="lwi-js-cD7" eventType="touchUpInside" id="F8R-2o-0J1"/>
-                                    <action selector="submitButtonAction:" destination="vew-1L-cXj" eventType="touchUpInside" id="HaP-vA-lER"/>
                                 </connections>
                             </button>
                         </subviews>
