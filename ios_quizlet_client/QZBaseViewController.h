@@ -1,5 +1,5 @@
 //
-//  QZSetsViewController.h
+//  QZBaseViewController.h
 //  ios_quizlet_client
 //
 //  Created by Maxim Bilan on 8/21/14.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "QZBaseViewController.h"
+@interface QZBaseViewController : UIViewController
 
-@interface QZSetsViewController : QZBaseViewController
+@property (nonatomic) NSInteger exampleId;
 
 @end

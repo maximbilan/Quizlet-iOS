@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QZUsersViewController : UIViewController
+#import "QZBaseViewController.h"
 
-@property (nonatomic) NSInteger exampleId;
+@interface QZUsersViewController : QZBaseViewController
 
 @end
