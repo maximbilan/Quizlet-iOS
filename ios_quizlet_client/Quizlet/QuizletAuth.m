@@ -31,6 +31,15 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
 
 @implementation QuizletAuth
 
+- (void)dealloc
+{
+    self.accessToken = nil;
+    self.tokenType = nil;
+    self.userId = nil;
+    self.authSuccess = nil;
+    self.authFailure = nil;
+}
+
 - (id)init
 {
     if (self = [super init]) {

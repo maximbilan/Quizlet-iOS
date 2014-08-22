@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class QuizletAuth;
-@class QuizletUsers;
-
 @interface Quizlet : NSObject
 
 /**
@@ -27,11 +24,6 @@
  The "redirect URI" is where our server will redirect users to after they approve (or deny) your application at the authorize endpoint.
  */
 @property (nonatomic, strong, readonly) NSString *redirectURI;
-
-/**
- User authentication object (OAuth 2.0)
- */
-@property (nonatomic, strong, readonly) QuizletAuth *auth;
 
 /**
  Shared Quizlet object.
