@@ -8,6 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+@class QuizletAuth;
+
 @interface QuizletSearch : NSObject
+
+- (void)searchSets:(NSDictionary *)dictionary
+          withAuth:(QuizletAuth *)auth
+           success:(void (^)(id responseObject))success
+           failure:(void (^)(NSError *error))failure;
+
+- (void)searchDefinitions:(NSDictionary *)dictionary
+                 withAuth:(QuizletAuth *)auth
+                  success:(void (^)(id responseObject))success
+                  failure:(void (^)(NSError *error))failure;
+
+- (void)searchGroups:(NSDictionary *)dictionary
+            withAuth:(QuizletAuth *)auth
+             success:(void (^)(id responseObject))success
+             failure:(void (^)(NSError *error))failure;
+
+- (void)searchUniversal:(NSDictionary *)dictionary
+               withAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
 
 @end
