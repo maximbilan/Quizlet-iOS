@@ -22,7 +22,19 @@
     NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
     
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request GET:urlString parameters:nil headerFields:headerFields success:success failure:failure];
+    [request GET:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
+}
+
+- (void)postRequestByUrl:(NSString *)urlString
+              parameters:(NSDictionary *)parameters
+                withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
+    
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request POST:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
 }
 
 - (void)viewSetById:(NSString *)Id withAuth:(QuizletAuth *)auth
@@ -52,7 +64,7 @@
     if (password) {
         parameters = @{ @"password": password };
     }
-    [self getRequestByUrl:urlString parameters:parameters withAuth:auth success:success failure:failure];
+    [self postRequestByUrl:urlString parameters:parameters withAuth:auth success:success failure:failure];
 }
 
 - (void)viewSetsWithAuth:(QuizletAuth *)auth
