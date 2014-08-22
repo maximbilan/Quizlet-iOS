@@ -29,49 +29,39 @@
     }
 }
 
-- (void)GETwithAuth:(QuizletAuth *)auth
-        requestType:(QuizletRequestType)type
-          urlString:(NSString *)urlString
-         parameters:(NSDictionary *)parameters
-            success:(void (^)(id responseObject))success
-            failure:(void (^)(NSError *error))failure
+- (void)requestWithAuth:(QuizletAuth *)auth
+                 method:(QuizletHTTPMethod)method
+                   type:(QuizletRequestType)type
+              urlString:(NSString *)urlString
+             parameters:(NSDictionary *)parameters
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure
 {
     NSDictionary *headerFields = nil;
     if (type == QuizletRequestUserAuthenticated) {
         headerFields = [auth headerFieldsWithAccessToken];
     }
     
-    QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request GET:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
-}
-
-- (void)POSTwithAuth:(QuizletAuth *)auth
-         requestType:(QuizletRequestType)type
-           urlString:(NSString *)urlString
-          parameters:(NSDictionary *)parameters
-             success:(void (^)(id responseObject))success
-             failure:(void (^)(NSError *error))failure
-{
-    NSDictionary *headerFields = nil;
-    if (type == QuizletRequestUserAuthenticated) {
-        headerFields = [auth headerFieldsWithAccessToken];
+    switch (method) {
+        case QuizletHTTPMethodGET:
+            [self GET:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
+            break;
+            
+        case QuizletHTTPMethodPOST:
+            [self POST:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
+            break;
+            
+        case QuizletHTTPMethodPUT:
+            [self PUT:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
+            break;
+            
+        case QuizletHTTPMethodDELETE:
+            [self DELETE:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
+            break;
+            
+        default:
+            break;
     }
-    
-    QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request POST:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
-}
-
-- (void)GET:(NSString *)urlString
- parameters:(id)parameters
-    success:(void (^)(id responseObject))success
-    failure:(void (^)(NSError *error))failure
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
 }
 
 - (void)GET:(NSString *)urlString
@@ -83,19 +73,6 @@ headerFields:(id)headerFields
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [self setHTTPHeaderFields:headerFields forOperationManager:manager];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
-}
-
-- (void)POST:(NSString *)urlString
-  parameters:(id)parameters
-     success:(void (^)(id responseObject))success
-     failure:(void (^)(NSError *error))failure
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
@@ -119,19 +96,6 @@ headerFields:(id)headerFields
 
 - (void)PUT:(NSString *)urlString
  parameters:(id)parameters
-    success:(void (^)(id responseObject))success
-    failure:(void (^)(NSError *error))failure
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager PUT:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
-}
-
-- (void)PUT:(NSString *)urlString
- parameters:(id)parameters
 headerFields:(id)headerFields
     success:(void (^)(id responseObject))success
     failure:(void (^)(NSError *error))failure
@@ -139,19 +103,6 @@ headerFields:(id)headerFields
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [self setHTTPHeaderFields:headerFields forOperationManager:manager];
     [manager PUT:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
-}
-
-- (void)DELETE:(NSString *)urlString
-    parameters:(id)parameters
-       success:(void (^)(id responseObject))success
-       failure:(void (^)(NSError *error))failure
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager DELETE:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);

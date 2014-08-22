@@ -44,7 +44,8 @@
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, Id];
     //[self getRequestByUrl:urlString parameters:nil withAuth:auth success:success failure:failure];
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request GETwithAuth:auth requestType:QuizletRequestUserAuthenticated urlString:urlString parameters:nil success:success failure:failure];
+    //[request GETwithAuth:auth requestType:QuizletRequestUserAuthenticated urlString:urlString parameters:nil success:success failure:failure];
+    [request requestWithAuth:auth method:QuizletHTTPMethodGET type:QuizletRequestUserAuthenticated urlString:urlString parameters:nil success:success failure:failure];
 }
 
 - (void)viewSetTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
