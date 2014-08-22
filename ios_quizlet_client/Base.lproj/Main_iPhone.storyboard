@@ -179,10 +179,10 @@
             </objects>
             <point key="canvasLocation" x="853" y="15"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="27Q-rz-lvh">
             <objects>
-                <viewController id="cR3-2C-yGm" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchViewControllerId" id="cR3-2C-yGm" customClass="QZSearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MHo-DL-ZdF"/>
                         <viewControllerLayoutGuide type="bottom" id="aFk-rv-vXL"/>
@@ -201,6 +201,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="logTextView" destination="ylU-du-7vl" id="bgj-vz-h3d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTF-J0-m6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

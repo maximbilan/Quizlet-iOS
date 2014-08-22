@@ -10,6 +10,7 @@
 #import "QZExamplesTableViewCell.h"
 #import "QZUsersViewController.h"
 #import "QZSetsViewController.h"
+#import "QZSearchViewController.h"
 
 #import "Quizlet.h"
 
@@ -151,6 +152,17 @@ static NSString * const QZExamplesDescrs[] = {
             QZSetsViewController *setsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"setsViewControllerId"];
             setsViewController.exampleId = indexPath.row;
             [self.navigationController pushViewController:setsViewController animated:YES];
+        }
+        break;
+            
+        case QZExamplesSearchSets:
+        case QZExamplesSearchDefinitions:
+        case QZExamplesSearchClasses:
+        case QZExamplesSearchUniversal:
+        {
+            QZSearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"searchViewControllerId"];
+            searchViewController.exampleId = indexPath.row;
+            [self.navigationController pushViewController:searchViewController animated:YES];
         }
         break;
             

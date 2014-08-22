@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QZSearchViewController : UIViewController
+#import "QZBaseViewController.h"
+
+@interface QZSearchViewController : QZBaseViewController
 
 @end

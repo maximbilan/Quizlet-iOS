@@ -7,8 +7,13 @@
 //
 
 #import "QZSearchViewController.h"
+#import "QZExamplesViewController.h"
+
+#import "Quizlet.h"
 
 @interface QZSearchViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextView *logTextView;
 
 @end
 
@@ -27,6 +32,55 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.logTextView.text = @"";
+    
+    switch (self.exampleId) {
+        case QZExamplesSearchSets:
+        {
+            [[Quizlet sharedQuizlet] searchSets:nil success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
+        case QZExamplesSearchDefinitions:
+        {
+            [[Quizlet sharedQuizlet] searchDefinitions:nil success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
+        case QZExamplesSearchClasses:
+        {
+            [[Quizlet sharedQuizlet] searchGroups:nil success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
+        case QZExamplesSearchUniversal:
+        {
+            [[Quizlet sharedQuizlet] searchUniversal:nil success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+    }
 }
 
 - (void)didReceiveMemoryWarning
