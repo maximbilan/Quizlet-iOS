@@ -36,7 +36,7 @@
  Submit a password for a password-protected set.
  */
 - (void)submitPassword:(NSString *)password
-             forSetById:(NSString *)setId
+            forSetById:(NSString *)setId
               withAuth:(QuizletAuth *)auth
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure;
@@ -45,8 +45,9 @@
  GET: /sets
  View complete details of multiple sets at once.
  */
-- (void)viewSetsWithAuth:(QuizletAuth *)auth
-                 success:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure;
+- (void)viewSetsByIds:(NSString *)ids
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure;
 
 @end

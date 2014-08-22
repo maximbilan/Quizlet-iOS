@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
@@ -26,24 +28,30 @@
     [super viewWillAppear:animated];
     
     self.logTextView.text = @"";
+    self.hintLabel.text = @"";
     
     switch (self.exampleId) {
         case QZExamplesViewSet:
         case QZExamplesViewSetTerms:
-        case QZExamplesSubmitSetPassword:
         {
             self.setIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
         }
         break;
+        case QZExamplesSubmitSetPassword:
+        {
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
+            self.passwordTextField.hidden = NO;
+        }
+        break;
         
         case QZExamplesViewSets:
         {
-            [[Quizlet sharedQuizlet] viewSets:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-            } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-            }];
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
+            self.hintLabel.hidden = NO;
+            self.hintLabel.text = @"Set ids separated by commas";
         }
         break;
         case QZExamplesAddSet:
@@ -65,6 +73,7 @@
 - (IBAction)submitButtonAction:(UIButton *)sender
 {
     [self.setIdTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
     
     if (self.setIdTextField.text.length > 0) {
         switch (self.exampleId) {
@@ -90,7 +99,17 @@
                 
             case QZExamplesSubmitSetPassword:
             {
-                [[Quizlet sharedQuizlet] submitPassword:@"123" forSetById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] submitPassword:self.passwordTextField.text forSetById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            case QZExamplesViewSets:
+            {
+                [[Quizlet sharedQuizlet] viewSetsByIds:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -104,6 +123,8 @@
         
         self.setIdTextField.hidden = YES;
         self.submitButton.hidden = YES;
+        self.passwordTextField.hidden = YES;
+        self.hintLabel.hidden = YES;
     }
 }
 

@@ -72,7 +72,7 @@
  GET: /sets
  View complete details of multiple sets at once.
  */
-- (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+- (void)viewSetsByIds:(NSString *)ids success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /users/USERNAME

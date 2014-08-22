@@ -44,7 +44,7 @@
 }
 
 - (void)submitPassword:(NSString *)password
-             forSetById:(NSString *)setId
+            forSetById:(NSString *)setId
               withAuth:(QuizletAuth *)auth
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure
@@ -64,17 +64,22 @@
                      failure:failure];
 }
 
-- (void)viewSetsWithAuth:(QuizletAuth *)auth
-                 success:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure
+- (void)viewSetsByIds:(NSString *)ids
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets", QuizletAPIBaseUrl];
+    NSDictionary *parameters = nil;
+    if (ids) {
+        parameters = @{ @"set_ids": ids };
+    }
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
                       method:QuizletHTTPMethodGET
                         type:QuizletRequestUserAuthenticated
                    urlString:urlString
-                  parameters:nil
+                  parameters:parameters
                      success:success
                      failure:failure];
 }

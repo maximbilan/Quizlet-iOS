@@ -144,9 +144,9 @@
     [self.sets submitPassword:setId forSetById:password withAuth:self.auth success:success failure:failure];
 }
 
-- (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+- (void)viewSetsByIds:(NSString *)ids success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets viewSetsWithAuth:self.auth success:success failure:failure];
+    [self.sets viewSetsByIds:ids withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Users API
