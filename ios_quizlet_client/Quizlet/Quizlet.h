@@ -74,6 +74,8 @@
  */
 - (void)viewSetsByIds:(NSString *)ids success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
+- (void)addSet:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
 /**
  GET: /users/USERNAME
  View basic user information, including their sets, favorites, last 25 sessions, etc.

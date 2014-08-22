@@ -55,6 +55,25 @@
         }
         break;
         case QZExamplesAddSet:
+        {
+            NSDictionary *dict = @{
+                                   @"title": @"set4",
+                                   @"terms": @[@"yyyyy", @"ttttt", @"kkkkk"],
+                                   @"definitions" : @[@"yy", @"tt", @"kk"],
+                                   @"lang_terms" : @"en",
+                                   @"lang_definitions" : @"en",
+                                   @"description" : @"set3",
+                                   @"allow_discussion" : @"true",
+                                   @"visibility" : @"public",
+                                   @"editable" : @"only_me"
+                                   };
+            [[Quizlet sharedQuizlet] addSet:dict success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesEditSet:
         case QZExamplesDeleteSet:
         case QZExamplesAddTermToSet:

@@ -50,4 +50,9 @@
               success:(void (^)(id responseObject))success
               failure:(void (^)(NSError *error))failure;
 
+- (void)addSet:(NSDictionary *)dictionary
+      withAuth:(QuizletAuth *)auth
+       success:(void (^)(id responseObject))success
+       failure:(void (^)(NSError *error))failure;
+
 @end

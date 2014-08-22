@@ -84,4 +84,24 @@
                      failure:failure];
 }
 
+- (void)addSet:(NSDictionary *)dictionary
+      withAuth:(QuizletAuth *)auth
+       success:(void (^)(id responseObject))success
+       failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets", QuizletAPIBaseUrl];
+    NSDictionary *parameters = nil;
+    if (dictionary) {
+        parameters = dictionary;
+    }
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodPOST
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:parameters
+                     success:success
+                     failure:failure];
+}
+
 @end

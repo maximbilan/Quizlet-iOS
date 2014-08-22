@@ -149,6 +149,11 @@
     [self.sets viewSetsByIds:ids withAuth:self.auth success:success failure:failure];
 }
 
+- (void)addSet:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets addSet:dictionary withAuth:self.auth success:success failure:failure];
+}
+
 #pragma mark - Users API
 
 - (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
