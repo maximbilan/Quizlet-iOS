@@ -11,6 +11,7 @@
 #import "QuizletAuth.h"
 #import "QuizletUsers.h"
 #import "QuizletSets.h"
+#import "QuizletSearch.h"
 
 @interface Quizlet ()
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong, readwrite) QuizletAuth *auth;
 @property (nonatomic, strong, readwrite) QuizletUsers *users;
 @property (nonatomic, strong, readwrite) QuizletSets *sets;
+@property (nonatomic, strong, readwrite) QuizletSearch *search;
 
 @end
 
@@ -46,6 +48,7 @@
     self.auth = nil;
     self.users = nil;
     self.sets = nil;
+    self.search = nil;
 }
 
 #pragma mark - Setup
@@ -58,6 +61,7 @@
     self.auth = [[QuizletAuth alloc] init];
     self.users = [[QuizletUsers alloc] init];
     self.sets = [[QuizletSets alloc] init];
+    self.search = [[QuizletSearch alloc] init];
 }
 
 #pragma mark - Authorization
@@ -125,6 +129,28 @@
                                                      withCode:code];
         }
     }
+}
+
+#pragma mark - Search API
+
+- (void)searchSets:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchSets:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)searchDefinitions:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchDefinitions:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)searchGroups:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchGroups:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)searchUniversal:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchUniversal:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Sets API

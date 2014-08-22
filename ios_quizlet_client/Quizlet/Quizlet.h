@@ -50,6 +50,14 @@
  */
 - (void)handleURL:(NSURL *)url;
 
+- (void)searchSets:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)searchDefinitions:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)searchGroups:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)searchUniversal:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
 /**
  GET: /sets/SET_ID
  View complete details (including all terms) of a single set.
