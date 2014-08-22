@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class QuizletAuth;
+
 @interface QuizletClasses : NSObject
+
+- (void)viewClassById:(NSString *)classId
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure;
+
+- (void)viewClassSetsById:(NSString *)classId
+                 withAuth:(QuizletAuth *)auth
+                  success:(void (^)(id responseObject))success
+                  failure:(void (^)(NSError *error))failure;
 
 @end
