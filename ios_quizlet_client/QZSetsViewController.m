@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
@@ -26,34 +28,107 @@
     [super viewWillAppear:animated];
     
     self.logTextView.text = @"";
+    self.hintLabel.text = @"";
     
     switch (self.exampleId) {
         case QZExamplesViewSet:
         case QZExamplesViewSetTerms:
-        case QZExamplesSubmitSetPassword:
+        case QZExamplesDeleteSet:
         {
             self.setIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
         }
         break;
+        case QZExamplesSubmitSetPassword:
+        {
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
+            self.passwordTextField.hidden = NO;
+        }
+        break;
         
         case QZExamplesViewSets:
         {
-            [[Quizlet sharedQuizlet] viewSets:^(id responseObject) {
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
+            self.hintLabel.hidden = NO;
+            self.hintLabel.text = @"Set ids separated by commas";
+        }
+        break;
+        case QZExamplesAddSet:
+        {
+            NSDictionary *dict = @{
+                                   @"title": @"set4",
+                                   @"terms": @[@"yyyyy", @"ttttt", @"kkkkk"],
+                                   @"definitions" : @[@"yy", @"tt", @"kk"],
+                                   @"lang_terms" : @"en",
+                                   @"lang_definitions" : @"en",
+                                   @"description" : @"set3",
+                                   @"allow_discussion" : @"true",
+                                   @"visibility" : @"public",
+                                   @"editable" : @"only_me"
+                                   };
+            [[Quizlet sharedQuizlet] addSet:dict success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
             }];
         }
         break;
-        case QZExamplesAddSet:
         case QZExamplesEditSet:
-        case QZExamplesDeleteSet:
+        {
+            NSDictionary *dict = @{
+                                   @"title": @"set4",
+                                   @"terms": @[@"yyyyy1", @"ttttt1", @"kkkkk1"],
+                                   @"definitions" : @[@"yy1", @"tt1", @"kk1"],
+                                   @"lang_terms" : @"en",
+                                   @"lang_definitions" : @"en",
+                                   @"description" : @"set3",
+                                   @"allow_discussion" : @"true",
+                                   @"visibility" : @"public",
+                                   @"editable" : @"only_me"
+                                   };
+            
+            [[Quizlet sharedQuizlet] editSet:dict bySetId:@"46368667" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesAddTermToSet:
+        {
+            NSDictionary *term = @{
+                                   @"term" : @"mmmmmm",
+                                   @"definition" : @"mmm"
+                                   };
+            [[Quizlet sharedQuizlet] addTerm:term toSetById:@"46367827" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesEditTermFromSet:
+        {
+            NSDictionary *term = @{
+                                   @"term" : @"lmlmlmlmlml",
+                                   @"definition" : @"lmlm"
+                                   };
+            [[Quizlet sharedQuizlet] editTerm:term fromSetById:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesDeleteTermFromSet:
         {
-        
+            [[Quizlet sharedQuizlet] deleteTermFromSetById:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
         }
         break;
             
@@ -65,6 +140,7 @@
 - (IBAction)submitButtonAction:(UIButton *)sender
 {
     [self.setIdTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
     
     if (self.setIdTextField.text.length > 0) {
         switch (self.exampleId) {
@@ -90,7 +166,27 @@
                 
             case QZExamplesSubmitSetPassword:
             {
-                [[Quizlet sharedQuizlet] submitPassword:@"123" bySetId:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] submitPassword:self.passwordTextField.text forSetById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            case QZExamplesViewSets:
+            {
+                [[Quizlet sharedQuizlet] viewSetsByIds:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            case QZExamplesDeleteSet:
+            {
+                [[Quizlet sharedQuizlet] deleteSetById:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -104,6 +200,8 @@
         
         self.setIdTextField.hidden = YES;
         self.submitButton.hidden = YES;
+        self.passwordTextField.hidden = YES;
+        self.hintLabel.hidden = YES;
     }
 }
 

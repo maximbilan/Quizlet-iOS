@@ -13,32 +13,23 @@
 
 @interface QuizletUsers ()
 
-- (void)getRequestByUrl:(NSString *)urlString
-               withAuth:(QuizletAuth *)auth
-                success:(void (^)(id responseObject))success
-                failure:(void (^)(NSError *error))failure;
-
 @end
 
 @implementation QuizletUsers
-
-- (void)getRequestByUrl:(NSString *)urlString
-               withAuth:(QuizletAuth *)auth
-                success:(void (^)(id responseObject))success
-                failure:(void (^)(NSError *error))failure
-{
-    NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
-    
-    QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request GET:urlString parameters:nil headerFields:headerFields success:success failure:failure];
-}
 
 - (void)userDetailsWithAuth:(QuizletAuth *)auth
                     success:(void (^)(id responseObject))success
                     failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@", QuizletAPIBaseUrl, auth.userId];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)setsWithAuth:(QuizletAuth *)auth
@@ -46,7 +37,14 @@
              failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/sets", QuizletAPIBaseUrl, auth.userId];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)favoritesWithAuth:(QuizletAuth *)auth
@@ -54,7 +52,14 @@
                   failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/favorites", QuizletAPIBaseUrl, auth.userId];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)classesWithAuth:(QuizletAuth *)auth
@@ -62,7 +67,14 @@
                 failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/classes", QuizletAPIBaseUrl, auth.userId];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)studiedWithAuth:(QuizletAuth *)auth
@@ -70,29 +82,44 @@
                 failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/studied", QuizletAPIBaseUrl, auth.userId];
-    [self getRequestByUrl:urlString withAuth:auth success:success failure:failure];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)markUserSetAsFavoriteById:(NSString *)setId withAuth:(QuizletAuth *)auth
                           success:(void (^)(id responseObject))success
                           failure:(void (^)(NSError *error))failure
 {
-    NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/favorites/%@", QuizletAPIBaseUrl, auth.userId, setId];
-    
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request PUT:urlString parameters:nil headerFields:headerFields success:success failure:failure];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodPUT
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)unmarkUserSetAsFavoriteById:(NSString *)setId withAuth:(QuizletAuth *)auth
                             success:(void (^)(id responseObject))success
                             failure:(void (^)(NSError *error))failure
 {
-    NSDictionary *headerFields = @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", auth.accessToken] };
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/favorites/%@", QuizletAPIBaseUrl, auth.userId, setId];
-    
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request DELETE:urlString parameters:nil headerFields:headerFields success:success failure:failure];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodDELETE
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 @end

@@ -35,20 +35,54 @@
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
  */
-- (void)submitPasswordBySetId:(NSString *)Id
-                 withPassword:(NSString *)password
-                     withAuth:(QuizletAuth *)auth
-                      success:(void (^)(id responseObject))success
-                      failure:(void (^)(NSError *error))failure;
+- (void)submitPassword:(NSString *)password
+            forSetById:(NSString *)setId
+              withAuth:(QuizletAuth *)auth
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets
  View complete details of multiple sets at once.
  */
-- (void)viewSetsWithAuth:(QuizletAuth *)auth
-                 success:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure;
+- (void)viewSetsByIds:(NSString *)ids
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure;
 
+- (void)addSet:(NSDictionary *)dictionary
+      withAuth:(QuizletAuth *)auth
+       success:(void (^)(id responseObject))success
+       failure:(void (^)(NSError *error))failure;
 
+- (void)editSet:(NSDictionary *)dictionary
+           byId:(NSString *)setId
+       withAuth:(QuizletAuth *)auth
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(NSError *error))failure;
+
+- (void)deleteSetById:(NSString *)setId
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure;
+
+- (void)addTerm:(NSDictionary *)term
+      toSetById:(NSString *)setId
+       withAuth:(QuizletAuth *)auth
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(NSError *error))failure;
+
+- (void)editTerm:(NSDictionary *)term
+     fromSetById:(NSString *)setId
+        byTermId:(NSString *)termId
+        withAuth:(QuizletAuth *)auth
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure;
+
+- (void)deleteTermFromSetById:(NSString *)setId
+                     byTermId:(NSString *)termId
+                     withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure;
 
 @end

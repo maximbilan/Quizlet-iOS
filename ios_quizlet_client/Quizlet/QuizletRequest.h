@@ -8,21 +8,35 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, QuizletHTTPMethod)
+{
+    QuizletHTTPMethodGET,
+    QuizletHTTPMethodPOST,
+    QuizletHTTPMethodPUT,
+    QuizletHTTPMethodDELETE
+};
+
+typedef NS_ENUM(NSInteger, QuizletRequestType)
+{
+    QuizletRequestPublic,
+    QuizletRequestUserAuthenticated
+};
+
+@class QuizletAuth;
+
 @interface QuizletRequest : NSObject
 
-- (void)GET:(NSString *)urlString
- parameters:(id)parameters
-    success:(void (^)(id responseObject))success
-    failure:(void (^)(NSError *error))failure;
+- (void)requestWithAuth:(QuizletAuth *)auth
+                 method:(QuizletHTTPMethod)method
+                   type:(QuizletRequestType)type
+              urlString:(NSString *)urlString
+             parameters:(NSDictionary *)parameters
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
 
 - (void)GET:(NSString *)urlString
   parameters:(id)parameters
 headerFields:(id)headerFields
-     success:(void (^)(id responseObject))success
-     failure:(void (^)(NSError *error))failure;
-
-- (void)POST:(NSString *)urlString
-  parameters:(id)parameters
      success:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure;
 
@@ -34,19 +48,9 @@ headerFields:(id)headerFields
 
 - (void)PUT:(NSString *)urlString
  parameters:(id)parameters
-    success:(void (^)(id responseObject))success
-    failure:(void (^)(NSError *error))failure;
-
-- (void)PUT:(NSString *)urlString
- parameters:(id)parameters
 headerFields:(id)headerFields
     success:(void (^)(id responseObject))success
     failure:(void (^)(NSError *error))failure;
-
-- (void)DELETE:(NSString *)urlString
-    parameters:(id)parameters
-       success:(void (^)(id responseObject))success
-       failure:(void (^)(NSError *error))failure;
 
 - (void)DELETE:(NSString *)urlString
     parameters:(id)parameters

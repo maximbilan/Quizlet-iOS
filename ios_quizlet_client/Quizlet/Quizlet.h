@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class QuizletAuth;
-@class QuizletUsers;
-
 @interface Quizlet : NSObject
 
 /**
@@ -29,11 +26,6 @@
 @property (nonatomic, strong, readonly) NSString *redirectURI;
 
 /**
- User authentication object (OAuth 2.0)
- */
-@property (nonatomic, strong, readonly) QuizletAuth *auth;
-
-/**
  Shared Quizlet object.
  */
 + (Quizlet *)sharedQuizlet;
@@ -44,14 +36,27 @@
 - (void)startWithClientID:(NSString *)clientId withSecretKey:(NSString *)secretKey withRedirectURI:(NSString *)redirectURI;
 
 /**
+ Checks if the user is authenticated
+ */
+- (BOOL)isAuthorized;
+
+/**
  Authorization to Quizlet service. Goes to browser, and after entering login and password calls the redirect URI.
  */
-- (void)authorize;
+- (void)authorize:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 /**
  You should use in app delegate after redirecting from authorization. This method request an access token from Quizlet authorization server.
  */
 - (void)handleURL:(NSURL *)url;
+
+- (void)searchSets:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)searchDefinitions:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)searchGroups:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)searchUniversal:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets/SET_ID
@@ -69,13 +74,25 @@
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
  */
-- (void)submitPassword:(NSString *)password bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+- (void)submitPassword:(NSString *)password forSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets
  View complete details of multiple sets at once.
  */
-- (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+- (void)viewSetsByIds:(NSString *)ids success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)addSet:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)editSet:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)deleteSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)addTerm:(NSDictionary *)dictionary toSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)editTerm:(NSDictionary *)term fromSetById:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)deleteTermFromSetById:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /users/USERNAME

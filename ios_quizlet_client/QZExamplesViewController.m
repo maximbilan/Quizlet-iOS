@@ -10,6 +10,7 @@
 #import "QZExamplesTableViewCell.h"
 #import "QZUsersViewController.h"
 #import "QZSetsViewController.h"
+#import "QZSearchViewController.h"
 
 #import "Quizlet.h"
 
@@ -82,6 +83,12 @@ static NSString * const QZExamplesDescrs[] = {
 };
 
 @interface QZExamplesViewController ()
+{
+    NSInteger examplesCount;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 
 @end
 
@@ -92,13 +99,16 @@ static NSString * const QZExamplesDescrs[] = {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    examplesCount = 0;
+    self.loginButton.enabled = YES;
 }
 
 #pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return QZExamplesCount;
+    return examplesCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,6 +155,17 @@ static NSString * const QZExamplesDescrs[] = {
         }
         break;
             
+        case QZExamplesSearchSets:
+        case QZExamplesSearchDefinitions:
+        case QZExamplesSearchClasses:
+        case QZExamplesSearchUniversal:
+        {
+            QZSearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"searchViewControllerId"];
+            searchViewController.exampleId = indexPath.row;
+            [self.navigationController pushViewController:searchViewController animated:YES];
+        }
+        break;
+            
         default:
             break;
     }
@@ -154,7 +175,14 @@ static NSString * const QZExamplesDescrs[] = {
 
 - (IBAction)loginButtonAction:(UIBarButtonItem *)sender
 {
-    [[Quizlet sharedQuizlet] authorize];
+    [[Quizlet sharedQuizlet] authorize:^(void) {
+        self.loginButton.enabled = NO;
+        examplesCount = QZExamplesCount;
+        [self.tableView reloadData];
+        NSLog(@"User was authorized");
+    } failure:^(NSError *error) {
+        NSLog(@"User wasn't authorized");
+    }];
 }
 
 @end

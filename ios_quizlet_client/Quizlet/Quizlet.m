@@ -11,6 +11,7 @@
 #import "QuizletAuth.h"
 #import "QuizletUsers.h"
 #import "QuizletSets.h"
+#import "QuizletSearch.h"
 
 @interface Quizlet ()
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong, readwrite) QuizletAuth *auth;
 @property (nonatomic, strong, readwrite) QuizletUsers *users;
 @property (nonatomic, strong, readwrite) QuizletSets *sets;
+@property (nonatomic, strong, readwrite) QuizletSearch *search;
 
 @end
 
@@ -46,6 +48,7 @@
     self.auth = nil;
     self.users = nil;
     self.sets = nil;
+    self.search = nil;
 }
 
 #pragma mark - Setup
@@ -58,13 +61,40 @@
     self.auth = [[QuizletAuth alloc] init];
     self.users = [[QuizletUsers alloc] init];
     self.sets = [[QuizletSets alloc] init];
+    self.search = [[QuizletSearch alloc] init];
 }
 
 #pragma mark - Authorization
 
-- (void)authorize
+- (BOOL)isAuthorized
 {
-    [self.auth redirectToAuthServerWithClientID:self.clientID];
+    return self.auth.isAuthorized;
+}
+
+- (void)authorize:(void (^)(void))success failure:(void (^)(NSError *error))failure
+{
+    self.auth.authSuccess = success;
+    self.auth.authFailure = failure;
+    
+    if (self.auth.accessToken && self.auth.userId) {
+        [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
+#ifdef QUIZLET_LOG
+            NSLog(@"%@", responseObject);
+#endif
+            self.auth.isAuthorized = YES;
+            success();
+        } failure:^(NSError *error) {
+#ifdef QUIZLET_LOG
+            NSLog(@"%@", error);
+#endif
+            self.auth.isAuthorized = NO;
+            [self.auth redirectToAuthServerWithClientID:self.clientID];
+        }];
+    }
+    else {
+        self.auth.isAuthorized = NO;
+        [self.auth redirectToAuthServerWithClientID:self.clientID];
+    }
 }
 
 - (void)handleURL:(NSURL *)url
@@ -101,6 +131,28 @@
     }
 }
 
+#pragma mark - Search API
+
+- (void)searchSets:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchSets:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)searchDefinitions:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchDefinitions:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)searchGroups:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchGroups:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)searchUniversal:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.search searchUniversal:dictionary withAuth:self.auth success:success failure:failure];
+}
+
 #pragma mark - Sets API
 
 - (void)viewSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
@@ -113,14 +165,44 @@
     [self.sets viewSetTermsById:setId withAuth:self.auth success:success failure:failure];
 }
 
-- (void)submitPassword:(NSString *)password bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+- (void)submitPassword:(NSString *)password forSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets submitPasswordBySetId:setId withPassword:password withAuth:self.auth success:success failure:failure];
+    [self.sets submitPassword:setId forSetById:password withAuth:self.auth success:success failure:failure];
 }
 
-- (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+- (void)viewSetsByIds:(NSString *)ids success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets viewSetsWithAuth:self.auth success:success failure:failure];
+    [self.sets viewSetsByIds:ids withAuth:self.auth success:success failure:failure];
+}
+
+- (void)addSet:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets addSet:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)editSet:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets editSet:dictionary byId:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)deleteSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets deleteSetById:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)addTerm:(NSDictionary *)dictionary toSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets addTerm:dictionary toSetById:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)editTerm:(NSDictionary *)term fromSetById:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets editTerm:term fromSetById:setId byTermId:termId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)deleteTermFromSetById:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets deleteTermFromSetById:setId byTermId:termId withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Users API

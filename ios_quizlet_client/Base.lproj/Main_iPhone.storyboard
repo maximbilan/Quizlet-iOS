@@ -53,6 +53,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="loginButton" destination="EaR-1W-VWM" id="fhg-r8-c7j"/>
+                        <outlet property="tableView" destination="oIB-R9-jgv" id="997-Tn-Q6h"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krr-Dz-YQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,7 +133,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="17H-3l-0nc">
-                                <rect key="frame" x="100" y="97" width="120" height="30"/>
+                                <rect key="frame" x="100" y="106" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -138,7 +142,7 @@
                                 </connections>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O1-lH-eiT">
-                                <rect key="frame" x="130" y="135" width="60" height="30"/>
+                                <rect key="frame" x="130" y="240" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,11 +151,26 @@
                                     <action selector="submitButtonAction:" destination="lwi-js-cD7" eventType="touchUpInside" id="F8R-2o-0J1"/>
                                 </connections>
                             </button>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H8V-RA-qgI">
+                                <rect key="frame" x="100" y="150" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOL-pH-Ara">
+                                <rect key="frame" x="45" y="73" width="230" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="hintLabel" destination="iOL-pH-Ara" id="b83-vc-m7a"/>
                         <outlet property="logTextView" destination="cnn-r4-sur" id="AWD-Qd-kIF"/>
+                        <outlet property="passwordTextField" destination="H8V-RA-qgI" id="WBF-Oo-HUh"/>
                         <outlet property="setIdTextField" destination="17H-3l-0nc" id="i4w-pf-dsS"/>
                         <outlet property="submitButton" destination="5O1-lH-eiT" id="ldt-qq-zCL"/>
                     </connections>
@@ -159,6 +178,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LnE-fX-IVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853" y="15"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="27Q-rz-lvh">
+            <objects>
+                <viewController storyboardIdentifier="searchViewControllerId" id="cR3-2C-yGm" customClass="QZSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MHo-DL-ZdF"/>
+                        <viewControllerLayoutGuide type="bottom" id="aFk-rv-vXL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nWI-3F-zxy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-du-7vl">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="logTextView" destination="ylU-du-7vl" id="bgj-vz-h3d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTF-J0-m6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Uy-d4-N1Q">

@@ -24,9 +24,54 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
 @property (nonatomic, strong, readwrite) NSString *tokenType;
 @property (nonatomic, strong, readwrite) NSString *userId;
 
+- (void)load;
+- (void)save;
+
 @end
 
 @implementation QuizletAuth
+
+- (void)dealloc
+{
+    self.accessToken = nil;
+    self.tokenType = nil;
+    self.userId = nil;
+    self.authSuccess = nil;
+    self.authFailure = nil;
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        [self load];
+    }
+    return self;
+}
+
+- (void)load
+{
+    self.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"QuizletAuthAccessToken"];
+    self.expiresIn = [[[NSUserDefaults standardUserDefaults] objectForKey:@"QuizletAuthExpiresIn"] doubleValue];
+    self.scope = [[[NSUserDefaults standardUserDefaults] objectForKey:@"QuizletAuthScope"] integerValue];
+    self.tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:@"QuizletAuthTokenType"];
+    self.userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"QuizletAuthUserId"];
+}
+
+- (void)save
+{
+    if (self.accessToken) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.accessToken forKey:@"QuizletAuthAccessToken"];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.expiresIn) forKey:@"QuizletAuthExpiresIn"];
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.scope) forKey:@"QuizletAuthScope"];
+    if (self.tokenType) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.tokenType forKey:@"QuizletAuthTokenType"];
+    }
+    if (self.userId) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.userId forKey:@"QuizletAuthUserId"];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID
 {
@@ -79,11 +124,22 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
                 }
             }
         }
+        
+        self.isAuthorized = YES;
+        self.authSuccess();
+        [self save];
     } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
         NSLog(@"error %@", error);
 #endif
+        self.isAuthorized = NO;
+        self.authFailure(error);
     }];
+}
+
+- (NSDictionary *)headerFieldsWithAccessToken
+{
+    return @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", self.accessToken] };
 }
 
 @end
