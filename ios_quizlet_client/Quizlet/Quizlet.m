@@ -139,9 +139,9 @@
     [self.sets viewSetTermsById:setId withAuth:self.auth success:success failure:failure];
 }
 
-- (void)submitPassword:(NSString *)password bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+- (void)submitPassword:(NSString *)password forSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets submitPasswordBySetId:setId withPassword:password withAuth:self.auth success:success failure:failure];
+    [self.sets submitPassword:setId forSetById:password withAuth:self.auth success:success failure:failure];
 }
 
 - (void)viewSets:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure

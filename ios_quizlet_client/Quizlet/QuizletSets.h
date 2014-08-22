@@ -35,11 +35,11 @@
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
  */
-- (void)submitPasswordBySetId:(NSString *)Id
-                 withPassword:(NSString *)password
-                     withAuth:(QuizletAuth *)auth
-                      success:(void (^)(id responseObject))success
-                      failure:(void (^)(NSError *error))failure;
+- (void)submitPassword:(NSString *)password
+             forSetById:(NSString *)setId
+              withAuth:(QuizletAuth *)auth
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets

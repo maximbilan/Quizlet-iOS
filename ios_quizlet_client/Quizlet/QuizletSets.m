@@ -43,13 +43,13 @@
                      failure:failure];
 }
 
-- (void)submitPasswordBySetId:(NSString *)Id
-                 withPassword:(NSString *)password
-                     withAuth:(QuizletAuth *)auth
-                      success:(void (^)(id responseObject))success
-                      failure:(void (^)(NSError *error))failure
+- (void)submitPassword:(NSString *)password
+             forSetById:(NSString *)setId
+              withAuth:(QuizletAuth *)auth
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/password", QuizletAPIBaseUrl, Id];
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/password", QuizletAPIBaseUrl, setId];
     NSDictionary *parameters = nil;
     if (password) {
         parameters = @{ @"password": password };
