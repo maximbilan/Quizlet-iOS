@@ -22,8 +22,8 @@ typedef void(^QuizletAuthCompletionFailure)(NSError *error);
 @property (nonatomic, strong, readonly) NSString *userId;
 
 @property (nonatomic, readwrite) BOOL isAuthorized;
-@property (nonatomic, weak, readwrite) QuizletAuthCompletionSuccess authSuccess;
-@property (nonatomic, weak, readwrite) QuizletAuthCompletionFailure authFailure;
+@property (nonatomic, strong, readwrite) QuizletAuthCompletionSuccess authSuccess;
+@property (nonatomic, strong, readwrite) QuizletAuthCompletionFailure authFailure;
 
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID;
 - (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code;
