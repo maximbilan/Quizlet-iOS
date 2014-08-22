@@ -209,6 +209,33 @@
             </objects>
             <point key="canvasLocation" x="1264" y="15"/>
         </scene>
+        <!--Classes View Controller-->
+        <scene sceneID="vXN-hb-zqZ">
+            <objects>
+                <viewController storyboardIdentifier="classesViewControllerId" id="q2M-Jy-CGX" customClass="QZClassesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KDE-64-JrN"/>
+                        <viewControllerLayoutGuide type="bottom" id="YEB-TE-EEX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OHg-fy-9rp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGq-TF-rdn">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YOr-8S-2WS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1679" y="15"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Uy-d4-N1Q">
             <objects>
