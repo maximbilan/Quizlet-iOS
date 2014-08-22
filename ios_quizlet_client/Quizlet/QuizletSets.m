@@ -104,4 +104,41 @@
                      failure:failure];
 }
 
+- (void)editSet:(NSDictionary *)dictionary
+           byId:(NSString *)setId
+       withAuth:(QuizletAuth *)auth
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, setId];
+    NSDictionary *parameters = nil;
+    if (dictionary) {
+        parameters = dictionary;
+    }
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodPUT
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:parameters
+                     success:success
+                     failure:failure];
+}
+
+- (void)deleteSetById:(NSString *)setId
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, setId];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodDELETE
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
+}
+
 @end

@@ -33,6 +33,7 @@
     switch (self.exampleId) {
         case QZExamplesViewSet:
         case QZExamplesViewSetTerms:
+        case QZExamplesDeleteSet:
         {
             self.setIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
@@ -75,7 +76,26 @@
         }
         break;
         case QZExamplesEditSet:
-        case QZExamplesDeleteSet:
+        {
+            NSDictionary *dict = @{
+                                   @"title": @"set4",
+                                   @"terms": @[@"yyyyy1", @"ttttt1", @"kkkkk1"],
+                                   @"definitions" : @[@"yy1", @"tt1", @"kk1"],
+                                   @"lang_terms" : @"en",
+                                   @"lang_definitions" : @"en",
+                                   @"description" : @"set3",
+                                   @"allow_discussion" : @"true",
+                                   @"visibility" : @"public",
+                                   @"editable" : @"only_me"
+                                   };
+            
+            [[Quizlet sharedQuizlet] editSet:dict bySetId:@"46368667" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesAddTermToSet:
         case QZExamplesEditTermFromSet:
         case QZExamplesDeleteTermFromSet:
@@ -129,6 +149,16 @@
             case QZExamplesViewSets:
             {
                 [[Quizlet sharedQuizlet] viewSetsByIds:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            case QZExamplesDeleteSet:
+            {
+                [[Quizlet sharedQuizlet] deleteSetById:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];

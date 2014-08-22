@@ -76,6 +76,10 @@
 
 - (void)addSet:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
+- (void)editSet:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)deleteSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
 /**
  GET: /users/USERNAME
  View basic user information, including their sets, favorites, last 25 sessions, etc.

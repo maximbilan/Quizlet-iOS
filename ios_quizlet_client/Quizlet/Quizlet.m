@@ -154,6 +154,16 @@
     [self.sets addSet:dictionary withAuth:self.auth success:success failure:failure];
 }
 
+- (void)editSet:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets editSet:dictionary byId:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)deleteSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets deleteSetById:setId withAuth:self.auth success:success failure:failure];
+}
+
 #pragma mark - Users API
 
 - (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
