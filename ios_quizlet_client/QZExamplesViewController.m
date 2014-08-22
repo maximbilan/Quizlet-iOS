@@ -11,6 +11,7 @@
 #import "QZUsersViewController.h"
 #import "QZSetsViewController.h"
 #import "QZSearchViewController.h"
+#import "QZClassesViewController.h"
 
 #import "Quizlet.h"
 
@@ -124,6 +125,22 @@ static NSString * const QZExamplesDescrs[] = {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
+        case QZExamplesViewClass:
+        case QZExamplesViewClassSets:
+        case QZExamplesAddClass:
+        case QZExamplesEditClass:
+        case QZExamplesDeleteClass:
+        case QZExamplesAddSetToClass:
+        case QZExamplesRemoveSetFromClass:
+        case QZExamplesJoinClass:
+        case QZExamplesLeaveClass:
+        {
+            QZClassesViewController *classesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"classesViewControllerId"];
+            classesViewController.exampleId = indexPath.row;
+            [self.navigationController pushViewController:classesViewController animated:YES];
+        }
+        break;
+            
         case QZExamplesUserDetails:
         case QZExamplesUserSets:
         case QZExamplesUserFavorites:
