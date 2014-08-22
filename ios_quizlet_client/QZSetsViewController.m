@@ -97,10 +97,38 @@
         }
         break;
         case QZExamplesAddTermToSet:
+        {
+            NSDictionary *term = @{
+                                   @"term" : @"mmmmmm",
+                                   @"definition" : @"mmm"
+                                   };
+            [[Quizlet sharedQuizlet] addTerm:term toSetById:@"46367827" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesEditTermFromSet:
+        {
+            NSDictionary *term = @{
+                                   @"term" : @"lmlmlmlmlml",
+                                   @"definition" : @"lmlm"
+                                   };
+            [[Quizlet sharedQuizlet] editTerm:term fromSetById:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
         case QZExamplesDeleteTermFromSet:
         {
-        
+            [[Quizlet sharedQuizlet] deleteTermFromSetById:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
         }
         break;
             

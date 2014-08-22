@@ -141,4 +141,64 @@
                      failure:failure];
 }
 
+- (void)addTerm:(NSDictionary *)term
+      toSetById:(NSString *)setId
+       withAuth:(QuizletAuth *)auth
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms", QuizletAPIBaseUrl, setId];
+    NSDictionary *parameters = nil;
+    if (term) {
+        parameters = term;
+    }
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodPOST
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:parameters
+                     success:success
+                     failure:failure];
+}
+
+- (void)editTerm:(NSDictionary *)term
+     fromSetById:(NSString *)setId
+        byTermId:(NSString *)termId
+        withAuth:(QuizletAuth *)auth
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms/%@", QuizletAPIBaseUrl, setId, termId];
+    NSDictionary *parameters = nil;
+    if (term) {
+        parameters = term;
+    }
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodPUT
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:parameters
+                     success:success
+                     failure:failure];
+}
+
+- (void)deleteTermFromSetById:(NSString *)setId
+                     byTermId:(NSString *)termId
+                     withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms/%@", QuizletAPIBaseUrl, setId, termId];
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodDELETE
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
+}
+
 @end

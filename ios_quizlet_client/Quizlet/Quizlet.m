@@ -164,6 +164,21 @@
     [self.sets deleteSetById:setId withAuth:self.auth success:success failure:failure];
 }
 
+- (void)addTerm:(NSDictionary *)dictionary toSetById:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets addTerm:dictionary toSetById:setId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)editTerm:(NSDictionary *)term fromSetById:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets editTerm:term fromSetById:setId byTermId:termId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)deleteTermFromSetById:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.sets deleteTermFromSetById:setId byTermId:termId withAuth:self.auth success:success failure:failure];
+}
+
 #pragma mark - Users API
 
 - (void)userDetails:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure

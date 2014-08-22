@@ -66,4 +66,23 @@
               success:(void (^)(id responseObject))success
               failure:(void (^)(NSError *error))failure;
 
+- (void)addTerm:(NSDictionary *)term
+      toSetById:(NSString *)setId
+       withAuth:(QuizletAuth *)auth
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(NSError *error))failure;
+
+- (void)editTerm:(NSDictionary *)term
+     fromSetById:(NSString *)setId
+        byTermId:(NSString *)termId
+        withAuth:(QuizletAuth *)auth
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure;
+
+- (void)deleteTermFromSetById:(NSString *)setId
+                     byTermId:(NSString *)termId
+                     withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure;
+
 @end
