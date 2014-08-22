@@ -21,4 +21,6 @@
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID;
 - (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code;
 
+- (NSDictionary *)headerFieldsWithAccessToken;
+
 @end

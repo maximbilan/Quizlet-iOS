@@ -7,6 +7,7 @@
 //
 
 #import "QuizletRequest.h"
+#import "QuizletAuth.h"
 
 #import "AFNetworking.h"
 
@@ -26,6 +27,38 @@
             [operationManager.requestSerializer setValue:object forHTTPHeaderField:key];
         }];
     }
+}
+
+- (void)GETwithAuth:(QuizletAuth *)auth
+        requestType:(QuizletRequestType)type
+          urlString:(NSString *)urlString
+         parameters:(NSDictionary *)parameters
+            success:(void (^)(id responseObject))success
+            failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *headerFields = nil;
+    if (type == QuizletRequestUserAuthenticated) {
+        headerFields = [auth headerFieldsWithAccessToken];
+    }
+    
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request GET:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
+}
+
+- (void)POSTwithAuth:(QuizletAuth *)auth
+         requestType:(QuizletRequestType)type
+           urlString:(NSString *)urlString
+          parameters:(NSDictionary *)parameters
+             success:(void (^)(id responseObject))success
+             failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *headerFields = nil;
+    if (type == QuizletRequestUserAuthenticated) {
+        headerFields = [auth headerFieldsWithAccessToken];
+    }
+    
+    QuizletRequest *request = [[QuizletRequest alloc] init];
+    [request POST:urlString parameters:parameters headerFields:headerFields success:success failure:failure];
 }
 
 - (void)GET:(NSString *)urlString

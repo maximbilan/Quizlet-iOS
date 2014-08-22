@@ -8,7 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, QuizletRequestType)
+{
+    QuizletRequestPublic,
+    QuizletRequestUserAuthenticated
+};
+
+@class QuizletAuth;
+
 @interface QuizletRequest : NSObject
+
+- (void)GETwithAuth:(QuizletAuth *)auth
+        requestType:(QuizletRequestType)type
+          urlString:(NSString *)urlString
+         parameters:(NSDictionary *)parameters
+            success:(void (^)(id responseObject))success
+            failure:(void (^)(NSError *error))failure;
+
+- (void)POSTwithAuth:(QuizletAuth *)auth
+         requestType:(QuizletRequestType)type
+           urlString:(NSString *)urlString
+          parameters:(NSDictionary *)parameters
+             success:(void (^)(id responseObject))success
+             failure:(void (^)(NSError *error))failure;
 
 - (void)GET:(NSString *)urlString
  parameters:(id)parameters

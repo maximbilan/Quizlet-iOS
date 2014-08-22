@@ -86,4 +86,9 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
     }];
 }
 
+- (NSDictionary *)headerFieldsWithAccessToken
+{
+    return @{ @"Authorization" : [NSString stringWithFormat:@"Bearer %@", self.accessToken] };
+}
+
 @end
