@@ -154,7 +154,11 @@ static NSString * const QZExamplesDescrs[] = {
 
 - (IBAction)loginButtonAction:(UIBarButtonItem *)sender
 {
-    [[Quizlet sharedQuizlet] authorize];
+    [[Quizlet sharedQuizlet] authorize:^(void) {
+        NSLog(@"User was authorized");
+    } failure:^(NSError *error) {
+        NSLog(@"User wasn't authorized");
+    }];
 }
 
 @end

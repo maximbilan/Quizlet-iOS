@@ -44,9 +44,14 @@
 - (void)startWithClientID:(NSString *)clientId withSecretKey:(NSString *)secretKey withRedirectURI:(NSString *)redirectURI;
 
 /**
+ Checks if the user is authenticated
+ */
+- (BOOL)isAuthorized;
+
+/**
  Authorization to Quizlet service. Goes to browser, and after entering login and password calls the redirect URI.
  */
-- (void)authorize;
+- (void)authorize:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 /**
  You should use in app delegate after redirecting from authorization. This method request an access token from Quizlet authorization server.

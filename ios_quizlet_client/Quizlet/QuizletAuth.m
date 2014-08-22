@@ -116,11 +116,15 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
             }
         }
         
+        self.isAuthorized = YES;
+        self.authSuccess();
         [self save];
     } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
         NSLog(@"error %@", error);
 #endif
+        self.isAuthorized = NO;
+        self.authFailure(error);
     }];
 }
 

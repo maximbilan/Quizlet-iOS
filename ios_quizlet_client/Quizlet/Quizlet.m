@@ -62,21 +62,33 @@
 
 #pragma mark - Authorization
 
-- (void)authorize
+- (BOOL)isAuthorized
 {
+    return self.auth.isAuthorized;
+}
+
+- (void)authorize:(void (^)(void))success failure:(void (^)(NSError *error))failure
+{
+    self.auth.authSuccess = success;
+    self.auth.authFailure = failure;
+    
     if (self.auth.accessToken && self.auth.userId) {
         [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
 #ifdef QUIZLET_LOG
             NSLog(@"%@", responseObject);
 #endif
+            self.auth.isAuthorized = YES;
+            success();
         } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
             NSLog(@"%@", error);
 #endif
+            self.auth.isAuthorized = NO;
             [self.auth redirectToAuthServerWithClientID:self.clientID];
         }];
     }
     else {
+        self.auth.isAuthorized = NO;
         [self.auth redirectToAuthServerWithClientID:self.clientID];
     }
 }
