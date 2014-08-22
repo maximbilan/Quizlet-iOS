@@ -19,7 +19,13 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, Id];
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request requestWithAuth:auth method:QuizletHTTPMethodGET type:QuizletRequestUserAuthenticated urlString:urlString parameters:nil success:success failure:failure];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)viewSetTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
@@ -28,7 +34,13 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms", QuizletAPIBaseUrl, Id];
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request requestWithAuth:auth method:QuizletHTTPMethodGET type:QuizletRequestUserAuthenticated urlString:urlString parameters:nil success:success failure:failure];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 - (void)submitPasswordBySetId:(NSString *)Id
@@ -43,7 +55,13 @@
         parameters = @{ @"password": password };
     }
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request requestWithAuth:auth method:QuizletHTTPMethodPOST type:QuizletRequestUserAuthenticated urlString:urlString parameters:parameters success:success failure:failure];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodPOST
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:parameters
+                     success:success
+                     failure:failure];
 }
 
 - (void)viewSetsWithAuth:(QuizletAuth *)auth
@@ -52,7 +70,13 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets", QuizletAPIBaseUrl];
     QuizletRequest *request = [[QuizletRequest alloc] init];
-    [request requestWithAuth:auth method:QuizletHTTPMethodGET type:QuizletRequestUserAuthenticated urlString:urlString parameters:nil success:success failure:failure];
+    [request requestWithAuth:auth
+                      method:QuizletHTTPMethodGET
+                        type:QuizletRequestUserAuthenticated
+                   urlString:urlString
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 @end
