@@ -64,7 +64,21 @@
 
 - (void)authorize
 {
-    [self.auth redirectToAuthServerWithClientID:self.clientID];
+    if (self.auth.accessToken && self.auth.userId) {
+        [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
+#ifdef QUIZLET_LOG
+            NSLog(@"%@", responseObject);
+#endif
+        } failure:^(NSError *error) {
+#ifdef QUIZLET_LOG
+            NSLog(@"%@", error);
+#endif
+            [self.auth redirectToAuthServerWithClientID:self.clientID];
+        }];
+    }
+    else {
+        [self.auth redirectToAuthServerWithClientID:self.clientID];
+    }
 }
 
 - (void)handleURL:(NSURL *)url
