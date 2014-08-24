@@ -22,4 +22,42 @@
                   success:(void (^)(id responseObject))success
                   failure:(void (^)(NSError *error))failure;
 
+- (void)addClass:(NSDictionary *)dictionary
+        withAuth:(QuizletAuth *)auth
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure;
+
+- (void)editClass:(NSDictionary *)dictionary
+        byClassId:(NSString *)classId
+         withAuth:(QuizletAuth *)auth
+          success:(void (^)(id responseObject))success
+          failure:(void (^)(NSError *error))failure;
+
+- (void)deleteClassById:(NSString *)classId
+               withAuth:(QuizletAuth *)auth
+                success:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
+
+- (void)addSetBySetId:(NSString *)setId
+           forClassId:(NSString *)classId
+             withAuth:(QuizletAuth *)auth
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure;
+
+- (void)deleteSetBySetId:(NSString *)setid
+      fromClassByClassId:(NSString *)classId
+                withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
+
+- (void)joinClassByClassId:(NSString *)classId
+                  withAuth:(QuizletAuth *)auth
+                   success:(void (^)(id responseObject))success
+                   failure:(void (^)(NSError *error))failure;
+
+- (void)leaveClassByClassId:(NSString *)classId
+                   withAuth:(QuizletAuth *)auth
+                    success:(void (^)(id responseObject))success
+                    failure:(void (^)(NSError *error))failure;
+
 @end

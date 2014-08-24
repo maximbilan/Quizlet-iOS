@@ -28,7 +28,9 @@
     switch (self.exampleId) {
         case QZExamplesSearchSets:
         {
-            [[Quizlet sharedQuizlet] searchSets:nil success:^(id responseObject) {
+            NSDictionary *parameters = @{@"creator": @"putinhuylo"};
+            
+            [[Quizlet sharedQuizlet] searchSets:parameters success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
