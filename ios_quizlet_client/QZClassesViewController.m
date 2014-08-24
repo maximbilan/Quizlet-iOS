@@ -94,6 +94,46 @@
         }
         break;
             
+        case QZExamplesAddSetToClass:
+        {
+            [[Quizlet sharedQuizlet] addSetBySetId:@"415" forClassId:@"1080268" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
+        case QZExamplesRemoveSetFromClass:
+        {
+            [[Quizlet sharedQuizlet] deleteSetBySetId:@"415" fromClassByClassId:@"1080268" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
+        case QZExamplesJoinClass:
+        {
+            [[Quizlet sharedQuizlet] joinClassByClassId:@"5" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
+        case QZExamplesLeaveClass:
+        {
+            [[Quizlet sharedQuizlet] leaveClassByClassId:@"5" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
         default:
             break;
     }

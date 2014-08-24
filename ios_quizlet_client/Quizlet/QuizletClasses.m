@@ -125,7 +125,7 @@
                  success:(void (^)(id responseObject))success
                  failure:(void (^)(NSError *error))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@/sets/%@", QuizletAPIBaseUrl, setid, classId];
+    NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@/sets/%@", QuizletAPIBaseUrl, classId, setid];
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
                       method:QuizletHTTPMethodDELETE
