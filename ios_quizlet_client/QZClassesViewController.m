@@ -49,27 +49,48 @@
     
     switch (self.exampleId) {
         case QZExamplesViewClass:
-        {
-//            [[Quizlet sharedQuizlet] addSet:dict success:^(id responseObject) {
-//                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-//            } failure:^(NSError *error) {
-//                self.logTextView.text = [error description];
-//            }];
-        }
-        break;
-        
         case QZExamplesViewClassSets:
         {
-            
+            self.setIdTextField.hidden = NO;
+            self.submitButton.hidden = NO;
         }
         break;
             
         case QZExamplesAddClass:
+        {
+            NSDictionary *dictionary = @{
+                                         @"name": @"Class 1",
+                                         @"description" : @"Class 1"
+                                        };
+            [[Quizlet sharedQuizlet] addClass:dictionary success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
         case QZExamplesEditClass:
+        {
+            NSDictionary *dictionary = @{
+                                         @"name": @"Class 2",
+                                         @"description" : @"Class 2"
+                                         };
+            [[Quizlet sharedQuizlet] editClass:dictionary byClassId:@"1080268" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
+        }
+        break;
+            
         case QZExamplesDeleteClass:
         {
-            self.setIdTextField.hidden = NO;
-            self.submitButton.hidden = NO;
+            [[Quizlet sharedQuizlet] deleteClassById:@"1080268" success:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+            } failure:^(NSError *error) {
+                self.logTextView.text = [error description];
+            }];
         }
         break;
             
@@ -101,7 +122,25 @@
     
     if (self.setIdTextField.text.length > 0) {
         switch (self.exampleId) {
-            
+            case QZExamplesViewClass:
+            {
+                [[Quizlet sharedQuizlet] viewClassById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
+                
+            case QZExamplesViewClassSets:
+            {
+                [[Quizlet sharedQuizlet] viewClassSetsById:self.setIdTextField.text success:^(id responseObject) {
+                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                } failure:^(NSError *error) {
+                    self.logTextView.text = [error description];
+                }];
+            }
+            break;
                 
             default:
                 break;
