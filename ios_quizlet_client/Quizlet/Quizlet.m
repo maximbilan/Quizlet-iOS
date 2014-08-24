@@ -12,6 +12,7 @@
 #import "QuizletUsers.h"
 #import "QuizletSets.h"
 #import "QuizletSearch.h"
+#import "QuizletClasses.h"
 
 @interface Quizlet ()
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong, readwrite) QuizletUsers *users;
 @property (nonatomic, strong, readwrite) QuizletSets *sets;
 @property (nonatomic, strong, readwrite) QuizletSearch *search;
+@property (nonatomic, strong, readwrite) QuizletClasses *classes;
 
 @end
 
@@ -49,6 +51,7 @@
     self.users = nil;
     self.sets = nil;
     self.search = nil;
+    self.classes = nil;
 }
 
 #pragma mark - Setup
@@ -62,6 +65,7 @@
     self.users = [[QuizletUsers alloc] init];
     self.sets = [[QuizletSets alloc] init];
     self.search = [[QuizletSearch alloc] init];
+    self.classes = [[QuizletClasses alloc] init];
 }
 
 #pragma mark - Authorization
@@ -129,6 +133,53 @@
                                                      withCode:code];
         }
     }
+}
+
+#pragma mark - Classes API
+
+- (void)viewClassById:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes viewClassById:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)viewClassSetsById:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes viewClassSetsById:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)addClass:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes addClass:dictionary withAuth:self.auth success:success failure:failure];
+}
+
+- (void)editClass:(NSDictionary *)dictionary byClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes editClass:dictionary byClassId:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)deleteClassById:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes deleteClassById:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)addSetBySetId:(NSString *)setId forClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes addSetBySetId:setId forClassId:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)deleteSetBySetId:(NSString *)setid fromClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes deleteSetBySetId:setid fromClassByClassId:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)joinClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes joinClassByClassId:classId withAuth:self.auth success:success failure:failure];
+}
+
+- (void)leaveClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.classes leaveClassByClassId:classId withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Search API
