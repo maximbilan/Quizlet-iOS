@@ -50,6 +50,24 @@
  */
 - (void)handleURL:(NSURL *)url;
 
+- (void)viewClassById:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)viewClassSetsById:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)addClass:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)editClass:(NSDictionary *)dictionary byClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)deleteClassById:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)addSetBySetId:(NSString *)setId forClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)deleteSetBySetId:(NSString *)setid fromClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)joinClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+- (void)leaveClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
 - (void)searchSets:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 - (void)searchDefinitions:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
