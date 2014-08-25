@@ -60,16 +60,18 @@
  PUT: /users/USERNAME/favorites/SET_ID
  Mark a set as a favorite.
  */
-- (void)markUserSetAsFavoriteById:(NSString *)setId withAuth:(QuizletAuth *)auth
-                          success:(void (^)(id responseObject))success
-                          failure:(void (^)(NSError *error))failure;
+- (void)markUserSetAsFavoriteBySetId:(NSString *)setId
+                            withAuth:(QuizletAuth *)auth
+                             success:(void (^)(id responseObject))success
+                             failure:(void (^)(NSError *error))failure;
 
 /**
  DELETE: /users/USERNAME/favorites/SET_ID
  Unmark a set as a favorite.
  */
-- (void)unmarkUserSetAsFavoriteById:(NSString *)setId withAuth:(QuizletAuth *)auth
-                            success:(void (^)(id responseObject))success
-                            failure:(void (^)(NSError *error))failure;
+- (void)unmarkUserSetAsFavoriteBySetId:(NSString *)setId
+                              withAuth:(QuizletAuth *)auth
+                               success:(void (^)(id responseObject))success
+                               failure:(void (^)(NSError *error))failure;
 
 @end

@@ -13,11 +13,12 @@
 
 @implementation QuizletSets
 
-- (void)viewSetById:(NSString *)Id withAuth:(QuizletAuth *)auth
-            success:(void (^)(id responseObject))success
-            failure:(void (^)(NSError *error))failure
+- (void)viewSetBySetId:(NSString *)setId
+              withAuth:(QuizletAuth *)auth
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, Id];
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, setId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
                       method:QuizletHTTPMethodGET
@@ -28,11 +29,12 @@
                      failure:failure];
 }
 
-- (void)viewSetTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
-                 success:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure
+- (void)viewSetTermsBySetId:(NSString *)setId
+                   withAuth:(QuizletAuth *)auth
+                    success:(void (^)(id responseObject))success
+                    failure:(void (^)(NSError *error))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms", QuizletAPIBaseUrl, Id];
+    NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms", QuizletAPIBaseUrl, setId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
                       method:QuizletHTTPMethodGET
@@ -44,7 +46,7 @@
 }
 
 - (void)submitPassword:(NSString *)password
-            forSetById:(NSString *)setId
+         forSetBySetId:(NSString *)setId
               withAuth:(QuizletAuth *)auth
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure
@@ -64,15 +66,15 @@
                      failure:failure];
 }
 
-- (void)viewSetsByIds:(NSString *)ids
-             withAuth:(QuizletAuth *)auth
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure
+- (void)viewSetsBySetIds:(NSString *)setIds
+                withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets", QuizletAPIBaseUrl];
     NSDictionary *parameters = nil;
-    if (ids) {
-        parameters = @{ @"set_ids": ids };
+    if (setIds) {
+        parameters = @{ @"set_ids": setIds };
     }
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
@@ -84,10 +86,10 @@
                      failure:failure];
 }
 
-- (void)addSet:(NSDictionary *)dictionary
-      withAuth:(QuizletAuth *)auth
-       success:(void (^)(id responseObject))success
-       failure:(void (^)(NSError *error))failure
+- (void)addSetFromDictionary:(NSDictionary *)dictionary
+                    withAuth:(QuizletAuth *)auth
+                     success:(void (^)(id responseObject))success
+                     failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets", QuizletAPIBaseUrl];
     NSDictionary *parameters = nil;
@@ -104,11 +106,11 @@
                      failure:failure];
 }
 
-- (void)editSet:(NSDictionary *)dictionary
-           byId:(NSString *)setId
-       withAuth:(QuizletAuth *)auth
-        success:(void (^)(id responseObject))success
-        failure:(void (^)(NSError *error))failure
+- (void)editSetFromDictionary:(NSDictionary *)dictionary
+                      bySetId:(NSString *)setId
+                     withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, setId];
     NSDictionary *parameters = nil;
@@ -125,10 +127,10 @@
                      failure:failure];
 }
 
-- (void)deleteSetById:(NSString *)setId
-             withAuth:(QuizletAuth *)auth
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure
+- (void)deleteSetBySetId:(NSString *)setId
+                withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@", QuizletAPIBaseUrl, setId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -141,16 +143,16 @@
                      failure:failure];
 }
 
-- (void)addTerm:(NSDictionary *)term
-      toSetById:(NSString *)setId
-       withAuth:(QuizletAuth *)auth
-        success:(void (^)(id responseObject))success
-        failure:(void (^)(NSError *error))failure
+- (void)addTermFromDictionary:(NSDictionary *)dictionary
+                 toSetBySetId:(NSString *)setId
+                     withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms", QuizletAPIBaseUrl, setId];
     NSDictionary *parameters = nil;
-    if (term) {
-        parameters = term;
+    if (dictionary) {
+        parameters = dictionary;
     }
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
@@ -162,17 +164,17 @@
                      failure:failure];
 }
 
-- (void)editTerm:(NSDictionary *)term
-     fromSetById:(NSString *)setId
-        byTermId:(NSString *)termId
-        withAuth:(QuizletAuth *)auth
-         success:(void (^)(id responseObject))success
-         failure:(void (^)(NSError *error))failure
+- (void)editTermFromDictionary:(NSDictionary *)dictionary
+                fromSetBySetId:(NSString *)setId
+                      byTermId:(NSString *)termId
+                      withAuth:(QuizletAuth *)auth
+                       success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms/%@", QuizletAPIBaseUrl, setId, termId];
     NSDictionary *parameters = nil;
-    if (term) {
-        parameters = term;
+    if (dictionary) {
+        parameters = dictionary;
     }
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
@@ -184,11 +186,11 @@
                      failure:failure];
 }
 
-- (void)deleteTermFromSetById:(NSString *)setId
-                     byTermId:(NSString *)termId
-                     withAuth:(QuizletAuth *)auth
-                      success:(void (^)(id responseObject))success
-                      failure:(void (^)(NSError *error))failure
+- (void)deleteTermFromSetBySetId:(NSString *)setId
+                        byTermId:(NSString *)termId
+                        withAuth:(QuizletAuth *)auth
+                         success:(void (^)(id responseObject))success
+                         failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/sets/%@/terms/%@", QuizletAPIBaseUrl, setId, termId];
     QuizletRequest *request = [[QuizletRequest alloc] init];

@@ -139,27 +139,27 @@
 
 - (void)viewClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.classes viewClassById:classId withAuth:self.auth success:success failure:failure];
+    [self.classes viewClassByClassId:classId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)viewClassSetsByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.classes viewClassSetsById:classId withAuth:self.auth success:success failure:failure];
+    [self.classes viewClassSetsByClassId:classId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)addClassFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.classes addClass:dictionary withAuth:self.auth success:success failure:failure];
+    [self.classes addClassFromDictionary:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 - (void)editClassWithDictionary:(NSDictionary *)dictionary byClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.classes editClass:dictionary byClassId:classId withAuth:self.auth success:success failure:failure];
+    [self.classes editClassWithDictionary:dictionary byClassId:classId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)deleteClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.classes deleteClassById:classId withAuth:self.auth success:success failure:failure];
+    [self.classes deleteClassByClassId:classId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)addSetBySetId:(NSString *)setId forClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
@@ -186,74 +186,74 @@
 
 - (void)searchSetsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.search searchSets:dictionary withAuth:self.auth success:success failure:failure];
+    [self.search searchSetsWithParameters:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 - (void)searchDefinitionsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.search searchDefinitions:dictionary withAuth:self.auth success:success failure:failure];
+    [self.search searchDefinitionsWithParameters:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 - (void)searchGroupsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.search searchGroups:dictionary withAuth:self.auth success:success failure:failure];
+    [self.search searchGroupsWithParameters:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 - (void)searchUniversalWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.search searchUniversal:dictionary withAuth:self.auth success:success failure:failure];
+    [self.search searchUniversalWithParameters:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Sets API
 
 - (void)viewSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets viewSetById:setId withAuth:self.auth success:success failure:failure];
+    [self.sets viewSetBySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)viewSetTermsBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets viewSetTermsById:setId withAuth:self.auth success:success failure:failure];
+    [self.sets viewSetTermsBySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)submitPassword:(NSString *)password forSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets submitPassword:setId forSetById:password withAuth:self.auth success:success failure:failure];
+    [self.sets submitPassword:setId forSetBySetId:password withAuth:self.auth success:success failure:failure];
 }
 
 - (void)viewSetsBySetIds:(NSString *)setIds success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets viewSetsByIds:setIds withAuth:self.auth success:success failure:failure];
+    [self.sets viewSetsBySetIds:setIds withAuth:self.auth success:success failure:failure];
 }
 
 - (void)addSetFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets addSet:dictionary withAuth:self.auth success:success failure:failure];
+    [self.sets addSetFromDictionary:dictionary withAuth:self.auth success:success failure:failure];
 }
 
 - (void)editSetWithDictionary:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets editSet:dictionary byId:setId withAuth:self.auth success:success failure:failure];
+    [self.sets editSetFromDictionary:dictionary bySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)deleteSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets deleteSetById:setId withAuth:self.auth success:success failure:failure];
+    [self.sets deleteSetBySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)addTermFromDictionary:(NSDictionary *)dictionary toSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets addTerm:dictionary toSetById:setId withAuth:self.auth success:success failure:failure];
+    [self.sets addTermFromDictionary:dictionary toSetBySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)editTermWithDictionary:(NSDictionary *)dictionary fromSetBySetId:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets editTerm:dictionary fromSetById:setId byTermId:termId withAuth:self.auth success:success failure:failure];
+    [self.sets editTermFromDictionary:dictionary fromSetBySetId:setId byTermId:termId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)deleteTermFromSetBySetId:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.sets deleteTermFromSetById:setId byTermId:termId withAuth:self.auth success:success failure:failure];
+    [self.sets deleteTermFromSetBySetId:setId byTermId:termId withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Users API
@@ -285,12 +285,12 @@
 
 - (void)markUserSetAsFavoriteBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.users markUserSetAsFavoriteById:setId withAuth:self.auth success:success failure:failure];
+    [self.users markUserSetAsFavoriteBySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 - (void)unmarkUserSetAsFavoriteBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.users unmarkUserSetAsFavoriteById:setId withAuth:self.auth success:success failure:failure];
+    [self.users unmarkUserSetAsFavoriteBySetId:setId withAuth:self.auth success:success failure:failure];
 }
 
 @end

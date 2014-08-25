@@ -10,33 +10,36 @@
 
 @class QuizletAuth;
 
+/**
+ Quizlet Classes API
+ */
 @interface QuizletClasses : NSObject
 
-- (void)viewClassById:(NSString *)classId
-             withAuth:(QuizletAuth *)auth
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure;
+- (void)viewClassByClassId:(NSString *)classId
+                  withAuth:(QuizletAuth *)auth
+                   success:(void (^)(id responseObject))success
+                   failure:(void (^)(NSError *error))failure;
 
-- (void)viewClassSetsById:(NSString *)classId
-                 withAuth:(QuizletAuth *)auth
-                  success:(void (^)(id responseObject))success
-                  failure:(void (^)(NSError *error))failure;
+- (void)viewClassSetsByClassId:(NSString *)classId
+                      withAuth:(QuizletAuth *)auth
+                       success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure;
 
-- (void)addClass:(NSDictionary *)dictionary
-        withAuth:(QuizletAuth *)auth
-         success:(void (^)(id responseObject))success
-         failure:(void (^)(NSError *error))failure;
+- (void)addClassFromDictionary:(NSDictionary *)dictionary
+                      withAuth:(QuizletAuth *)auth
+                       success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure;
 
-- (void)editClass:(NSDictionary *)dictionary
-        byClassId:(NSString *)classId
-         withAuth:(QuizletAuth *)auth
-          success:(void (^)(id responseObject))success
-          failure:(void (^)(NSError *error))failure;
+- (void)editClassWithDictionary:(NSDictionary *)dictionary
+                      byClassId:(NSString *)classId
+                       withAuth:(QuizletAuth *)auth
+                        success:(void (^)(id responseObject))success
+                        failure:(void (^)(NSError *error))failure;
 
-- (void)deleteClassById:(NSString *)classId
-               withAuth:(QuizletAuth *)auth
-                success:(void (^)(id responseObject))success
-                failure:(void (^)(NSError *error))failure;
+- (void)deleteClassByClassId:(NSString *)classId
+                    withAuth:(QuizletAuth *)auth
+                     success:(void (^)(id responseObject))success
+                     failure:(void (^)(NSError *error))failure;
 
 - (void)addSetBySetId:(NSString *)setId
            forClassId:(NSString *)classId
@@ -44,7 +47,7 @@
               success:(void (^)(id responseObject))success
               failure:(void (^)(NSError *error))failure;
 
-- (void)deleteSetBySetId:(NSString *)setid
+- (void)deleteSetBySetId:(NSString *)setId
       fromClassByClassId:(NSString *)classId
                 withAuth:(QuizletAuth *)auth
                  success:(void (^)(id responseObject))success
