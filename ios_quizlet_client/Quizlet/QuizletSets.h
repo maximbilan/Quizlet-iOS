@@ -36,6 +36,9 @@
 /**
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
+ 
+ Parameters:
+ password
  */
 - (void)submitPassword:(NSString *)password
          forSetBySetId:(NSString *)setId
@@ -52,28 +55,89 @@
                  success:(void (^)(id responseObject))success
                  failure:(void (^)(NSError *error))failure;
 
+/**
+ POST: /sets
+ Add a new set
+ 
+ Parameters:
+ title
+ terms (array)
+ definitions (array)
+ images(array)
+ lang_terms
+ lang_definitions
+ description
+ subjects (array)
+ allow_discussion
+ visibility
+ editable
+ groups (array)
+ password
+ */
 - (void)addSetFromDictionary:(NSDictionary *)dictionary
                     withAuth:(QuizletAuth *)auth
                      success:(void (^)(id responseObject))success
                      failure:(void (^)(NSError *error))failure;
 
+/**
+ PUT: /sets/SET_ID
+ Edit an existing set
+ 
+ Parameters:
+ title
+ terms (array)
+ definitions (array)
+ images[+]
+ lang_terms
+ lang_definitions
+ description
+ subjects (array)
+ allow_discussion
+ visibility
+ editable
+ groups (array)
+ password
+ term_ids (array)
+ */
 - (void)editSetFromDictionary:(NSDictionary *)dictionary
                       bySetId:(NSString *)setId
                      withAuth:(QuizletAuth *)auth
                       success:(void (^)(id responseObject))success
                       failure:(void (^)(NSError *error))failure;
 
+/**
+ DELETE: /sets/SET_ID
+ Delete an existing set
+ */
 - (void)deleteSetBySetId:(NSString *)setId
                 withAuth:(QuizletAuth *)auth
                  success:(void (^)(id responseObject))success
                  failure:(void (^)(NSError *error))failure;
 
+/**
+ POST: /sets/SET_ID/terms
+ Add a single term to a set
+ 
+ Parameters:
+ term
+ definition
+ position
+ */
 - (void)addTermFromDictionary:(NSDictionary *)dictionary
                  toSetBySetId:(NSString *)setId
                      withAuth:(QuizletAuth *)auth
                       success:(void (^)(id responseObject))success
                       failure:(void (^)(NSError *error))failure;
 
+/**
+ PUT: /sets/SET_ID/terms/TERM_ID
+ Edit a single term within a set
+ 
+ Parameters:
+ term
+ definition
+ image
+ */
 - (void)editTermFromDictionary:(NSDictionary *)dictionary
                 fromSetBySetId:(NSString *)setId
                       byTermId:(NSString *)termId
@@ -81,6 +145,10 @@
                        success:(void (^)(id responseObject))success
                        failure:(void (^)(NSError *error))failure;
 
+/**
+ DELETE: /sets/SET_ID/terms/TERM_ID
+ Delete a single term within a set
+ */
 - (void)deleteTermFromSetBySetId:(NSString *)setId
                         byTermId:(NSString *)termId
                         withAuth:(QuizletAuth *)auth
