@@ -19,24 +19,29 @@
  GET: /sets/SET_ID
  View complete details (including all terms) of a single set.
  */
-- (void)viewSetById:(NSString *)Id withAuth:(QuizletAuth *)auth
-            success:(void (^)(id responseObject))success
-            failure:(void (^)(NSError *error))failure;
+- (void)viewSetBySetId:(NSString *)setId
+              withAuth:(QuizletAuth *)auth
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets/SET_ID/terms
  View just the terms in a single set.
  */
-- (void)viewSetTermsById:(NSString *)Id withAuth:(QuizletAuth *)auth
-                 success:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure;
+- (void)viewSetTermsBySetId:(NSString *)setId
+                   withAuth:(QuizletAuth *)auth
+                    success:(void (^)(id responseObject))success
+                    failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
+ 
+ Parameters:
+ password
  */
 - (void)submitPassword:(NSString *)password
-            forSetById:(NSString *)setId
+         forSetBySetId:(NSString *)setId
               withAuth:(QuizletAuth *)auth
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure;
@@ -45,44 +50,109 @@
  GET: /sets
  View complete details of multiple sets at once.
  */
-- (void)viewSetsByIds:(NSString *)ids
-             withAuth:(QuizletAuth *)auth
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure;
+- (void)viewSetsBySetIds:(NSString *)setIds
+                withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
 
-- (void)addSet:(NSDictionary *)dictionary
-      withAuth:(QuizletAuth *)auth
-       success:(void (^)(id responseObject))success
-       failure:(void (^)(NSError *error))failure;
+/**
+ POST: /sets
+ Add a new set
+ 
+ Parameters:
+ title
+ terms (array)
+ definitions (array)
+ images(array)
+ lang_terms
+ lang_definitions
+ description
+ subjects (array)
+ allow_discussion
+ visibility
+ editable
+ groups (array)
+ password
+ */
+- (void)addSetFromDictionary:(NSDictionary *)dictionary
+                    withAuth:(QuizletAuth *)auth
+                     success:(void (^)(id responseObject))success
+                     failure:(void (^)(NSError *error))failure;
 
-- (void)editSet:(NSDictionary *)dictionary
-           byId:(NSString *)setId
-       withAuth:(QuizletAuth *)auth
-        success:(void (^)(id responseObject))success
-        failure:(void (^)(NSError *error))failure;
-
-- (void)deleteSetById:(NSString *)setId
-             withAuth:(QuizletAuth *)auth
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure;
-
-- (void)addTerm:(NSDictionary *)term
-      toSetById:(NSString *)setId
-       withAuth:(QuizletAuth *)auth
-        success:(void (^)(id responseObject))success
-        failure:(void (^)(NSError *error))failure;
-
-- (void)editTerm:(NSDictionary *)term
-     fromSetById:(NSString *)setId
-        byTermId:(NSString *)termId
-        withAuth:(QuizletAuth *)auth
-         success:(void (^)(id responseObject))success
-         failure:(void (^)(NSError *error))failure;
-
-- (void)deleteTermFromSetById:(NSString *)setId
-                     byTermId:(NSString *)termId
+/**
+ PUT: /sets/SET_ID
+ Edit an existing set
+ 
+ Parameters:
+ title
+ terms (array)
+ definitions (array)
+ images[+]
+ lang_terms
+ lang_definitions
+ description
+ subjects (array)
+ allow_discussion
+ visibility
+ editable
+ groups (array)
+ password
+ term_ids (array)
+ */
+- (void)editSetFromDictionary:(NSDictionary *)dictionary
+                      bySetId:(NSString *)setId
                      withAuth:(QuizletAuth *)auth
                       success:(void (^)(id responseObject))success
                       failure:(void (^)(NSError *error))failure;
+
+/**
+ DELETE: /sets/SET_ID
+ Delete an existing set
+ */
+- (void)deleteSetBySetId:(NSString *)setId
+                withAuth:(QuizletAuth *)auth
+                 success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
+
+/**
+ POST: /sets/SET_ID/terms
+ Add a single term to a set
+ 
+ Parameters:
+ term
+ definition
+ position
+ */
+- (void)addTermFromDictionary:(NSDictionary *)dictionary
+                 toSetBySetId:(NSString *)setId
+                     withAuth:(QuizletAuth *)auth
+                      success:(void (^)(id responseObject))success
+                      failure:(void (^)(NSError *error))failure;
+
+/**
+ PUT: /sets/SET_ID/terms/TERM_ID
+ Edit a single term within a set
+ 
+ Parameters:
+ term
+ definition
+ image
+ */
+- (void)editTermFromDictionary:(NSDictionary *)dictionary
+                fromSetBySetId:(NSString *)setId
+                      byTermId:(NSString *)termId
+                      withAuth:(QuizletAuth *)auth
+                       success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure;
+
+/**
+ DELETE: /sets/SET_ID/terms/TERM_ID
+ Delete a single term within a set
+ */
+- (void)deleteTermFromSetBySetId:(NSString *)setId
+                        byTermId:(NSString *)termId
+                        withAuth:(QuizletAuth *)auth
+                         success:(void (^)(id responseObject))success
+                         failure:(void (^)(NSError *error))failure;
 
 @end

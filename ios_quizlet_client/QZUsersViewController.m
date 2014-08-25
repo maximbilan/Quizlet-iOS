@@ -103,7 +103,7 @@
         switch (self.exampleId) {
             case QZExamplesMarkSetAsFavorite:
             {
-                [[Quizlet sharedQuizlet] markUserSetAsFavoriteById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] markUserSetAsFavoriteBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -113,7 +113,7 @@
             
             case QZExamplesUnmarkSetAsFavorite:
             {
-                [[Quizlet sharedQuizlet] unmarkUserSetAsFavoriteById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] unmarkUserSetAsFavoriteBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];

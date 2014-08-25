@@ -13,10 +13,10 @@
 
 @implementation QuizletSearch
 
-- (void)searchSets:(NSDictionary *)dictionary
-          withAuth:(QuizletAuth *)auth
-           success:(void (^)(id responseObject))success
-           failure:(void (^)(NSError *error))failure
+- (void)searchSetsWithParameters:(NSDictionary *)dictionary
+                        withAuth:(QuizletAuth *)auth
+                         success:(void (^)(id responseObject))success
+                         failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/search/sets", QuizletAPIBaseUrl];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -29,10 +29,10 @@
                      failure:failure];
 }
 
-- (void)searchDefinitions:(NSDictionary *)dictionary
-                 withAuth:(QuizletAuth *)auth
-                  success:(void (^)(id responseObject))success
-                  failure:(void (^)(NSError *error))failure
+- (void)searchDefinitionsWithParameters:(NSDictionary *)dictionary
+                               withAuth:(QuizletAuth *)auth
+                                success:(void (^)(id responseObject))success
+                                failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/search/definitions", QuizletAPIBaseUrl];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -45,10 +45,10 @@
                      failure:failure];
 }
 
-- (void)searchGroups:(NSDictionary *)dictionary
-            withAuth:(QuizletAuth *)auth
-             success:(void (^)(id responseObject))success
-             failure:(void (^)(NSError *error))failure
+- (void)searchGroupsWithParameters:(NSDictionary *)dictionary
+                          withAuth:(QuizletAuth *)auth
+                           success:(void (^)(id responseObject))success
+                           failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/search/groups", QuizletAPIBaseUrl];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -61,10 +61,10 @@
                      failure:failure];
 }
 
-- (void)searchUniversal:(NSDictionary *)dictionary
-               withAuth:(QuizletAuth *)auth
-                success:(void (^)(id responseObject))success
-                failure:(void (^)(NSError *error))failure
+- (void)searchUniversalWithParameters:(NSDictionary *)dictionary
+                             withAuth:(QuizletAuth *)auth
+                              success:(void (^)(id responseObject))success
+                              failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/search/universal", QuizletAPIBaseUrl];
     QuizletRequest *request = [[QuizletRequest alloc] init];

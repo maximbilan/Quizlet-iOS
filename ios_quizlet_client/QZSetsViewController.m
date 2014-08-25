@@ -68,7 +68,7 @@
                                    @"visibility" : @"public",
                                    @"editable" : @"only_me"
                                    };
-            [[Quizlet sharedQuizlet] addSet:dict success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] addSetFromDictionary:dict success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -89,7 +89,7 @@
                                    @"editable" : @"only_me"
                                    };
             
-            [[Quizlet sharedQuizlet] editSet:dict bySetId:@"46368667" success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] editSetWithDictionary:dict bySetId:@"46368667" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -102,7 +102,7 @@
                                    @"term" : @"mmmmmm",
                                    @"definition" : @"mmm"
                                    };
-            [[Quizlet sharedQuizlet] addTerm:term toSetById:@"46367827" success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] addTermFromDictionary:term toSetBySetId:@"46367827" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -115,7 +115,7 @@
                                    @"term" : @"lmlmlmlmlml",
                                    @"definition" : @"lmlm"
                                    };
-            [[Quizlet sharedQuizlet] editTerm:term fromSetById:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] editTermWithDictionary:term fromSetBySetId:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -124,7 +124,7 @@
         break;
         case QZExamplesDeleteTermFromSet:
         {
-            [[Quizlet sharedQuizlet] deleteTermFromSetById:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] deleteTermFromSetBySetId:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -146,7 +146,7 @@
         switch (self.exampleId) {
             case QZExamplesViewSet:
             {
-                [[Quizlet sharedQuizlet] viewSetById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewSetBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -156,7 +156,7 @@
             
             case QZExamplesViewSetTerms:
             {
-                [[Quizlet sharedQuizlet] viewSetTermsById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewSetTermsBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -166,7 +166,7 @@
                 
             case QZExamplesSubmitSetPassword:
             {
-                [[Quizlet sharedQuizlet] submitPassword:self.passwordTextField.text forSetById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] submitPassword:self.passwordTextField.text forSetBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -176,7 +176,7 @@
                 
             case QZExamplesViewSets:
             {
-                [[Quizlet sharedQuizlet] viewSetsByIds:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewSetsBySetIds:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -186,7 +186,7 @@
                 
             case QZExamplesDeleteSet:
             {
-                [[Quizlet sharedQuizlet] deleteSetById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] deleteSetBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];

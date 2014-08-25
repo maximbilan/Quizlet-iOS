@@ -92,9 +92,10 @@
                      failure:failure];
 }
 
-- (void)markUserSetAsFavoriteById:(NSString *)setId withAuth:(QuizletAuth *)auth
-                          success:(void (^)(id responseObject))success
-                          failure:(void (^)(NSError *error))failure
+- (void)markUserSetAsFavoriteBySetId:(NSString *)setId
+                            withAuth:(QuizletAuth *)auth
+                             success:(void (^)(id responseObject))success
+                             failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/favorites/%@", QuizletAPIBaseUrl, auth.userId, setId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -107,9 +108,10 @@
                      failure:failure];
 }
 
-- (void)unmarkUserSetAsFavoriteById:(NSString *)setId withAuth:(QuizletAuth *)auth
-                            success:(void (^)(id responseObject))success
-                            failure:(void (^)(NSError *error))failure
+- (void)unmarkUserSetAsFavoriteBySetId:(NSString *)setId
+                              withAuth:(QuizletAuth *)auth
+                               success:(void (^)(id responseObject))success
+                               failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/users/%@/favorites/%@", QuizletAPIBaseUrl, auth.userId, setId];
     QuizletRequest *request = [[QuizletRequest alloc] init];

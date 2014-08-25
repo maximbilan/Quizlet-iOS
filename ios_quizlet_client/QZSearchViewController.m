@@ -30,7 +30,7 @@
         {
             NSDictionary *parameters = @{@"creator": @"putinhuylo"};
             
-            [[Quizlet sharedQuizlet] searchSets:parameters success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] searchSetsWithParameters:parameters success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -40,7 +40,7 @@
             
         case QZExamplesSearchDefinitions:
         {
-            [[Quizlet sharedQuizlet] searchDefinitions:nil success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] searchDefinitionsWithParameters:nil success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -50,7 +50,7 @@
             
         case QZExamplesSearchClasses:
         {
-            [[Quizlet sharedQuizlet] searchGroups:nil success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] searchGroupsWithParameters:nil success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -60,7 +60,7 @@
             
         case QZExamplesSearchUniversal:
         {
-            [[Quizlet sharedQuizlet] searchUniversal:nil success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] searchUniversalWithParameters:nil success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];

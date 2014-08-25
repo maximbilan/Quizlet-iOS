@@ -13,10 +13,10 @@
 
 @implementation QuizletClasses
 
-- (void)viewClassById:(NSString *)classId
-             withAuth:(QuizletAuth *)auth
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure
+- (void)viewClassByClassId:(NSString *)classId
+                  withAuth:(QuizletAuth *)auth
+                   success:(void (^)(id responseObject))success
+                   failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@", QuizletAPIBaseUrl, classId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -29,10 +29,10 @@
                      failure:failure];
 }
 
-- (void)viewClassSetsById:(NSString *)classId
-                 withAuth:(QuizletAuth *)auth
-                  success:(void (^)(id responseObject))success
-                  failure:(void (^)(NSError *error))failure
+- (void)viewClassSetsByClassId:(NSString *)classId
+                      withAuth:(QuizletAuth *)auth
+                       success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@/sets", QuizletAPIBaseUrl, classId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -45,10 +45,10 @@
                      failure:failure];
 }
 
-- (void)addClass:(NSDictionary *)dictionary
-        withAuth:(QuizletAuth *)auth
-         success:(void (^)(id responseObject))success
-         failure:(void (^)(NSError *error))failure
+- (void)addClassFromDictionary:(NSDictionary *)dictionary
+                      withAuth:(QuizletAuth *)auth
+                       success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/classes", QuizletAPIBaseUrl];
     NSDictionary *parameters = nil;
@@ -65,11 +65,11 @@
                      failure:failure];
 }
 
-- (void)editClass:(NSDictionary *)dictionary
-        byClassId:(NSString *)classId
-         withAuth:(QuizletAuth *)auth
-          success:(void (^)(id responseObject))success
-          failure:(void (^)(NSError *error))failure
+- (void)editClassWithDictionary:(NSDictionary *)dictionary
+                      byClassId:(NSString *)classId
+                       withAuth:(QuizletAuth *)auth
+                        success:(void (^)(id responseObject))success
+                        failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@", QuizletAPIBaseUrl, classId];
     NSDictionary *parameters = nil;
@@ -86,10 +86,10 @@
                      failure:failure];
 }
 
-- (void)deleteClassById:(NSString *)classId
-               withAuth:(QuizletAuth *)auth
-                success:(void (^)(id responseObject))success
-                failure:(void (^)(NSError *error))failure
+- (void)deleteClassByClassId:(NSString *)classId
+                    withAuth:(QuizletAuth *)auth
+                     success:(void (^)(id responseObject))success
+                     failure:(void (^)(NSError *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@", QuizletAPIBaseUrl, classId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
@@ -119,13 +119,13 @@
                      failure:failure];
 }
 
-- (void)deleteSetBySetId:(NSString *)setid
+- (void)deleteSetBySetId:(NSString *)setId
       fromClassByClassId:(NSString *)classId
                 withAuth:(QuizletAuth *)auth
                  success:(void (^)(id responseObject))success
                  failure:(void (^)(NSError *error))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@/sets/%@", QuizletAPIBaseUrl, classId, setid];
+    NSString *urlString = [NSString stringWithFormat:@"%@/classes/%@/sets/%@", QuizletAPIBaseUrl, classId, setId];
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request requestWithAuth:auth
                       method:QuizletHTTPMethodDELETE
