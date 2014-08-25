@@ -42,7 +42,7 @@
                                          @"name": @"Class 1",
                                          @"description" : @"Class 1"
                                         };
-            [[Quizlet sharedQuizlet] addClass:dictionary success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] addClassFromDictionary:dictionary success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -56,7 +56,7 @@
                                          @"name": @"Class 2",
                                          @"description" : @"Class 2"
                                          };
-            [[Quizlet sharedQuizlet] editClass:dictionary byClassId:@"1080268" success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] editClassWithDictionary:dictionary byClassId:@"1080268" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -66,7 +66,7 @@
             
         case QZExamplesDeleteClass:
         {
-            [[Quizlet sharedQuizlet] deleteClassById:@"1080268" success:^(id responseObject) {
+            [[Quizlet sharedQuizlet] deleteClassByClassId:@"1080268" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
@@ -127,7 +127,7 @@
         switch (self.exampleId) {
             case QZExamplesViewClass:
             {
-                [[Quizlet sharedQuizlet] viewClassById:self.classIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewClassByClassId:self.classIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -137,7 +137,7 @@
                 
             case QZExamplesViewClassSets:
             {
-                [[Quizlet sharedQuizlet] viewClassSetsById:self.classIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewClassSetsByClassId:self.classIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
