@@ -251,8 +251,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="classIdTextField" destination="UVP-qy-PHZ" id="8gL-Ep-xR9"/>
                         <outlet property="logTextView" destination="jGq-TF-rdn" id="w4k-KU-WVF"/>
-                        <outlet property="setIdTextField" destination="UVP-qy-PHZ" id="0Co-Ky-1Dt"/>
                         <outlet property="submitButton" destination="biA-o8-Ho4" id="Fhp-F3-pfi"/>
                     </connections>
                 </viewController>

@@ -14,32 +14,12 @@
 @interface QZClassesViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
-@property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
+@property (weak, nonatomic) IBOutlet UITextField *classIdTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
 @implementation QZClassesViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-//QZExamplesAddSetToClass,
-//QZExamplesRemoveSetFromClass,
-//QZExamplesJoinClass,
-//QZExamplesLeaveClass,
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -51,7 +31,7 @@
         case QZExamplesViewClass:
         case QZExamplesViewClassSets:
         {
-            self.setIdTextField.hidden = NO;
+            self.classIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
         }
         break;
@@ -139,32 +119,15 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)submitButtonAction:(UIButton *)sender
 {
-    [self.setIdTextField resignFirstResponder];
+    [self.classIdTextField resignFirstResponder];
     
-    if (self.setIdTextField.text.length > 0) {
+    if (self.classIdTextField.text.length > 0) {
         switch (self.exampleId) {
             case QZExamplesViewClass:
             {
-                [[Quizlet sharedQuizlet] viewClassById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewClassById:self.classIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -174,7 +137,7 @@
                 
             case QZExamplesViewClassSets:
             {
-                [[Quizlet sharedQuizlet] viewClassSetsById:self.setIdTextField.text success:^(id responseObject) {
+                [[Quizlet sharedQuizlet] viewClassSetsById:self.classIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
@@ -186,7 +149,7 @@
                 break;
         }
         
-        self.setIdTextField.hidden = YES;
+        self.classIdTextField.hidden = YES;
         self.submitButton.hidden = YES;
     }
 }
