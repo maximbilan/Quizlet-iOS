@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.
+ */
 @interface Quizlet : NSObject
 
 /**
@@ -36,7 +39,7 @@
 - (void)startWithClientID:(NSString *)clientId withSecretKey:(NSString *)secretKey withRedirectURI:(NSString *)redirectURI;
 
 /**
- Checks if the user is authenticated
+ Checks if the user is authenticated?
  */
 - (BOOL)isAuthorized;
 
@@ -51,67 +54,118 @@
 - (void)handleURL:(NSURL *)url;
 
 /**
- 
+ GET: /classes/CLASS_ID
+ View a single class.
  */
 - (void)viewClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ GET: /classes/CLASS_ID/sets
+ View full details of all sets in a class.
  */
 - (void)viewClassSetsByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ POST: /classes
+ Add a new class.
  
+ Parameters:
+ name
+ description
+ allow_discussion
+ admin_only
  */
 - (void)addClassFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ PUT: /classes/CLASS_ID
+ Edit a class.
  
+ Parameters:
+ name
+ description
+ allow_discussion
+ admin_only
  */
 - (void)editClassWithDictionary:(NSDictionary *)dictionary byClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ DELETE: /classes/CLASS_ID
+ Delete a class.
  */
 - (void)deleteClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ PUT: /classes/CLASS_ID/sets/SET_ID
+ Add a set to a class.
  */
 - (void)addSetBySetId:(NSString *)setId forClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ DELETE: /classes/CLASS_ID/sets/SET_ID
+ Remove a set from a class.
  */
 - (void)deleteSetBySetId:(NSString *)setId fromClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ PUT: /classes/CLASS_ID/members/USERNAME
+ Join (or apply to join) a class.
  */
 - (void)joinClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ DELETE: /classes/CLASS_ID/members/USERNAME
+ Leave a class.
  */
 - (void)leaveClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ GET: /search/sets
+ Search for sets by title, description or term. Returns limited information.
  
+ Parameters:
+ q
+ term
+ creator
+ images_only
+ autocomplete
+ modified_since
+ sort
+ page
+ per_page
  */
 - (void)searchSetsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ GET: /search/definitions
+ Search for definitions.
  
+ Parameters:
+ q
+ type
+ limit
  */
 - (void)searchDefinitionsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ GET: /search/classes
+ Search for classes by their title and description.
  
+ Parameters:
+ q
+ page
+ per_page
  */
 - (void)searchGroupsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ GET: /search/universal
+ Search for classes, users, and sets all together
  
+ Parameters:
+ q
+ page
+ per_page
  */
 - (void)searchUniversalWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -130,6 +184,9 @@
 /**
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
+ 
+ Parameters:
+ password
  */
 - (void)submitPassword:(NSString *)password forSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -140,32 +197,79 @@
 - (void)viewSetsBySetIds:(NSString *)setIds success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ POST: /sets
+ Add a new set
  
+ Parameters:
+ title
+ terms (array)
+ definitions (array)
+ images(array)
+ lang_terms
+ lang_definitions
+ description
+ subjects (array)
+ allow_discussion
+ visibility
+ editable
+ groups (array)
+ password
  */
 - (void)addSetFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ PUT: /sets/SET_ID
+ Edit an existing set
  
+ Parameters:
+ title
+ terms (array)
+ definitions (array)
+ images[+]
+ lang_terms
+ lang_definitions
+ description
+ subjects (array)
+ allow_discussion
+ visibility
+ editable
+ groups (array)
+ password
+ term_ids (array)
  */
 - (void)editSetWithDictionary:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ DELETE: /sets/SET_ID
+ Delete an existing set
  */
 - (void)deleteSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ POST: /sets/SET_ID/terms
+ Add a single term to a set
  
+ Parameters:
+ term
+ definition
+ position
  */
 - (void)addTermFromDictionary:(NSDictionary *)dictionary toSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ PUT: /sets/SET_ID/terms/TERM_ID
+ Edit a single term within a set
  
+ Parameters:
+ term
+ definition
+ image
  */
 - (void)editTermWithDictionary:(NSDictionary *)dictionary fromSetBySetId:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
- 
+ DELETE: /sets/SET_ID/terms/TERM_ID
+ Delete a single term within a set
  */
 - (void)deleteTermFromSetBySetId:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
