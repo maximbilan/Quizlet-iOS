@@ -101,7 +101,7 @@
     }
 }
 
-- (void)handleURL:(NSURL *)url
+- (BOOL)handleURL:(NSURL *)url
 {
     NSString *res = [url resourceSpecifier];
     
@@ -131,8 +131,11 @@
             [self.auth requestTokenFromAuthServerWithClientID:self.clientID
                                                 withSecretKey:self.secretKey
                                                      withCode:code];
+            return YES;
         }
     }
+    
+    return NO;
 }
 
 #pragma mark - Classes API
