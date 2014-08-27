@@ -44,6 +44,16 @@
 - (BOOL)isAuthorized;
 
 /**
+ Checks if the user has free account type
+ */
+- (BOOL)isFreeAccountType;
+
+/**
+ Checks if the user has plus account type
+ */
+- (BOOL)isPlusAccountType;
+
+/**
  Authorization to Quizlet service. Goes to browser, and after entering login and password calls the redirect URI. Auth 2.0.
  */
 - (void)authorize:(void (^)(void))success failure:(void (^)(NSError *error))failure;

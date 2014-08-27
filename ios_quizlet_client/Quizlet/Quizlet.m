@@ -85,6 +85,10 @@
 #ifdef QUIZLET_LOG
             NSLog(@"%@", responseObject);
 #endif
+            NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+            if (responseDictionary) {
+                [self.auth determineAccoutTypeFromString:responseDictionary[@"account_type"]];
+            }
             self.auth.isAuthorized = YES;
             success();
         } failure:^(NSError *error) {
@@ -99,6 +103,16 @@
         self.auth.isAuthorized = NO;
         [self.auth redirectToAuthServerWithClientID:self.clientID];
     }
+}
+
+- (BOOL)isFreeAccountType
+{
+    return (self.auth.accountType == QuizletAccountFree);
+}
+
+- (BOOL)isPlusAccountType
+{
+    return (self.auth.accountType == QuizletAccountPlus);
 }
 
 - (void)handleURL:(NSURL *)url

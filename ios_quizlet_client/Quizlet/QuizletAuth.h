@@ -10,6 +10,12 @@
 
 #import "QuizletScope.h"
 
+typedef NS_ENUM(NSInteger, QuizletAccountType)
+{
+    QuizletAccountFree,
+    QuizletAccountPlus
+};
+
 typedef void(^QuizletAuthCompletionSuccess)(void);
 typedef void(^QuizletAuthCompletionFailure)(NSError *error);
 
@@ -21,12 +27,15 @@ typedef void(^QuizletAuthCompletionFailure)(NSError *error);
 @property (nonatomic, strong, readonly) NSString *tokenType;
 @property (nonatomic, strong, readonly) NSString *userId;
 
+@property (nonatomic, readonly) QuizletAccountType accountType;
 @property (nonatomic, readwrite) BOOL isAuthorized;
 @property (nonatomic, strong, readwrite) QuizletAuthCompletionSuccess authSuccess;
 @property (nonatomic, strong, readwrite) QuizletAuthCompletionFailure authFailure;
 
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID;
 - (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code;
+
+- (void)determineAccoutTypeFromString:(NSString *)string;
 
 - (NSDictionary *)headerFieldsWithAccessToken;
 
