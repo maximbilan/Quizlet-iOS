@@ -7,6 +7,7 @@
 //
 
 #import "QuizletRequest.h"
+#import "QuizletConfig.h"
 #import "QuizletAuth.h"
 
 #import "AFNetworking.h"
@@ -74,8 +75,14 @@ headerFields:(id)headerFields
     [self setHTTPHeaderFields:headerFields forOperationManager:manager];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", responseObject);
+#endif
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", operation.responseObject);
+#endif
     }];
 }
 
@@ -89,8 +96,14 @@ headerFields:(id)headerFields
     [self setHTTPHeaderFields:headerFields forOperationManager:manager];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", responseObject);
+#endif
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", operation.responseObject);
+#endif
     }];
 }
 
@@ -104,8 +117,14 @@ headerFields:(id)headerFields
     [self setHTTPHeaderFields:headerFields forOperationManager:manager];
     [manager PUT:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", responseObject);
+#endif
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", operation.responseObject);
+#endif
     }];
 }
 
@@ -119,8 +138,14 @@ headerFields:(id)headerFields
     [self setHTTPHeaderFields:headerFields forOperationManager:manager];
     [manager DELETE:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", responseObject);
+#endif
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", operation.responseObject);
+#endif
     }];
 }
 

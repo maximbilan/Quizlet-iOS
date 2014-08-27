@@ -9,6 +9,7 @@
 #import "QuizletConfig.h"
 #import "QuizletAuth.h"
 #import "QuizletRequest.h"
+#import "QuizletUsers.h"
 
 static NSString * const QuizletAuthBaseUrl = @"https://quizlet.com/authorize";
 static NSString * const QuizletAuthTokenUrl = @"https://api.quizlet.com/oauth/token";
@@ -23,6 +24,8 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
 @property (nonatomic, readwrite) QuizletScope scope;
 @property (nonatomic, strong, readwrite) NSString *tokenType;
 @property (nonatomic, strong, readwrite) NSString *userId;
+
+@property (nonatomic, readwrite) QuizletAccountType accountType;
 
 - (void)load;
 - (void)save;
@@ -43,6 +46,7 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
 - (id)init
 {
     if (self = [super init]) {
+        self.accountType = -1;
         [self load];
     }
     return self;
@@ -127,8 +131,26 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
         }
         
         self.isAuthorized = YES;
-        self.authSuccess();
         [self save];
+        
+        QuizletUsers *users = [[QuizletUsers alloc] init];
+        [users userDetailsWithAuth:self success:^(id responseObject) {
+#ifdef QUIZLET_LOG
+            NSLog(@"%@", responseObject);
+#endif
+            NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+            if (responseDictionary) {
+                [self determineAccoutTypeFromString:responseDictionary[@"account_type"]];
+            };
+            
+            self.authSuccess();
+        } failure:^(NSError *error) {
+#ifdef QUIZLET_LOG
+            NSLog(@"%@", error);
+#endif
+            self.authSuccess();
+        }];
+        
     } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
         NSLog(@"error %@", error);
@@ -136,6 +158,18 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
         self.isAuthorized = NO;
         self.authFailure(error);
     }];
+}
+
+- (void)determineAccoutTypeFromString:(NSString *)string
+{
+    if (string && string.length > 0) {
+        if ([string isEqualToString:@"free"]) {
+            self.accountType = QuizletAccountFree;
+        }
+        else if ([string isEqualToString:@"plus"]) {
+            self.accountType = QuizletAccountPlus;
+        }
+    }
 }
 
 - (NSDictionary *)headerFieldsWithAccessToken

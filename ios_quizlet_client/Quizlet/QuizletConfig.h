@@ -8,4 +8,8 @@
 
 #define QUIZLET_LOG
 
+#ifdef QUIZLET_LOG
+#define QUIZLET_RESPONSE_LOG
+#endif
+
 static NSString * const QuizletAPIBaseUrl = @"https://api.quizlet.com/2.0";
