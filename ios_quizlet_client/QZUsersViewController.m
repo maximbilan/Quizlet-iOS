@@ -10,6 +10,7 @@
 #import "QZExamplesViewController.h"
 
 #import "Quizlet.h"
+#import "QuizletImages.h"
 
 @interface QZUsersViewController ()
 

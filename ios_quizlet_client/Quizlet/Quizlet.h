@@ -130,6 +130,10 @@
 - (void)leaveClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
+ */
+- (void)uploadImageFromURL:(NSURL *)url success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
  GET: /search/sets
  Search for sets by title, description or term. Returns limited information.
  
