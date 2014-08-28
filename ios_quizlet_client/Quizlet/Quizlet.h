@@ -210,20 +210,36 @@
  POST: /sets
  Add a new set
  
- Parameters:
- title
- terms (array)
- definitions (array)
- images(array)
- lang_terms
- lang_definitions
- description
- subjects (array)
- allow_discussion
- visibility
- editable
- groups (array)
- password
+ Required Parameters
+ 
+ Parameter          Type	Description
+ title              string	The title of the set
+ terms[]            array	The text of a new term. Specify as many terms[] parameters as needed.
+ definitions[]      array	The text of a new definition. The number of definitions[] must match that of terms[].
+ lang_terms         string	Language of the terms.
+ lang_definitions	string	Language of the definitions.
+ 
+ Optional Parameters
+ 
+ Parameter          Type    Description	Default
+ images[]           array	The identifier of the image for a term. If present, the number of images[] must match that of terms[].
+                            Specify empty identifiers for terms that have no image. You get image identifiers when you upload images.	-
+ description        string	A text description of the set.	-
+ subjects[]         array	Deprecated. An array which will be ignored.	-
+ allow_discussion	boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this set	1
+ visibility         "public", 
+                    "only_me",
+                    "classes",
+                    "password"	Define who is allowed to view/use this set.
+ If set to classes, the parameter classes becomes mandatory.
+ If set to password, the parameter password becomes mandatory.
+ "public"
+ editable	"only_me", "classes", "password"	Define who is allowed to edit this set.
+ If set to classes, the parameter classes becomes mandatory.
+ If set to password, the parameter password becomes mandatory.
+ "only_me"
+ classes[]          array Only required when visibility="classes" or editable="classes". An array of class IDs (integers) that this set is visible and/or editable for.	-
+ password           string Only required when visibility="password" or editable="password". The password required to view and/or edit this set.
  */
 - (void)addSetFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
