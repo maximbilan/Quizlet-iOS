@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class QuizletAuth;
+
 @interface QuizletImages : NSObject
+
+- (void)uploadImageFromURL:(NSURL *)url
+                  withAuth:(QuizletAuth *)auth
+                   success:(void (^)(id responseObject))success
+                   failure:(void (^)(NSError *error))failure;
 
 @end

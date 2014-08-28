@@ -8,15 +8,18 @@
 
 #import "QZAppDelegate.h"
 #import "Quizlet.h"
-#import "AFNetworking.h"
+#import "AFNetworkActivityLogger.h"
 
 @implementation QZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+    
     [[Quizlet sharedQuizlet] startWithClientID:@"E3Ww84Uwp2"
                                  withSecretKey:@"4677En2h5bPUd5j6HmjNn5"
-                               withRedirectURI:@"maximbilan:/after_oauth"];
+                               withRedirectURI:@"bitsboard:/after_oauth"];
     
     return YES;
 }
@@ -56,7 +59,7 @@
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
     
-    if ([[url scheme] isEqualToString:@"maximbilan"]) {
+    if ([[url scheme] isEqualToString:@"bitsboard"]) {
         [[Quizlet sharedQuizlet] handleURL:url];
     }
     

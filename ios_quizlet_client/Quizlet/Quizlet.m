@@ -13,6 +13,7 @@
 #import "QuizletSets.h"
 #import "QuizletSearch.h"
 #import "QuizletClasses.h"
+#import "QuizletImages.h"
 
 @interface Quizlet ()
 
@@ -24,6 +25,7 @@
 @property (nonatomic, strong, readwrite) QuizletSets *sets;
 @property (nonatomic, strong, readwrite) QuizletSearch *search;
 @property (nonatomic, strong, readwrite) QuizletClasses *classes;
+@property (nonatomic, strong, readwrite) QuizletImages *images;
 
 @end
 
@@ -52,6 +54,7 @@
     self.sets = nil;
     self.search = nil;
     self.classes = nil;
+    self.images = nil;
 }
 
 #pragma mark - Setup
@@ -66,6 +69,7 @@
     self.sets = [[QuizletSets alloc] init];
     self.search = [[QuizletSearch alloc] init];
     self.classes = [[QuizletClasses alloc] init];
+    self.images = [[QuizletImages alloc] init];
 }
 
 #pragma mark - Authorization
@@ -194,6 +198,13 @@
 - (void)leaveClassByClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     [self.classes leaveClassByClassId:classId withAuth:self.auth success:success failure:failure];
+}
+
+#pragma mark - Images API
+
+- (void)uploadImageFromURL:(NSURL *)url success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.images uploadImageFromURL:url withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Search API
