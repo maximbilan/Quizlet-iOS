@@ -21,6 +21,7 @@
 		6DA62BF119AF71230068D567 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA62BF019AF71230068D567 /* AFNetworkActivityLogger.m */; };
 		7A80A10994A74AAABBD1F323 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FF9D1886F4066A8E08E69 /* libPods.a */; };
 		9437A27219A261CA0071E1C1 /* QuizletUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437A27119A261CA0071E1C1 /* QuizletUsers.m */; };
+		9460C8E719AFBB3300ADBA74 /* QZImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9460C8E619AFBB3300ADBA74 /* QZImagesViewController.m */; };
 		946AFA0719A6609B0024A009 /* QZSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AFA0619A6609B0024A009 /* QZSetsViewController.m */; };
 		946AFA0A19A67AB60024A009 /* QZBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AFA0919A67AB60024A009 /* QZBaseViewController.m */; };
 		947571FC19A7B28400A73663 /* QZClassesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947571FB19A7B28400A73663 /* QZClassesViewController.m */; };
@@ -66,6 +67,8 @@
 		9437A27019A261CA0071E1C1 /* QuizletUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletUsers.h; path = Quizlet/QuizletUsers.h; sourceTree = "<group>"; };
 		9437A27119A261CA0071E1C1 /* QuizletUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuizletUsers.m; path = Quizlet/QuizletUsers.m; sourceTree = "<group>"; };
 		9437A27419A278510071E1C1 /* QuizletConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuizletConfig.h; path = Quizlet/QuizletConfig.h; sourceTree = "<group>"; };
+		9460C8E519AFBB3300ADBA74 /* QZImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZImagesViewController.h; sourceTree = "<group>"; };
+		9460C8E619AFBB3300ADBA74 /* QZImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZImagesViewController.m; sourceTree = "<group>"; };
 		946AFA0519A6609B0024A009 /* QZSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZSetsViewController.h; sourceTree = "<group>"; };
 		946AFA0619A6609B0024A009 /* QZSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZSetsViewController.m; sourceTree = "<group>"; };
 		946AFA0819A67AB60024A009 /* QZBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZBaseViewController.h; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				6D35BBC419A79170008999F4 /* QZSearchViewController.m */,
 				947571FA19A7B28400A73663 /* QZClassesViewController.h */,
 				947571FB19A7B28400A73663 /* QZClassesViewController.m */,
+				9460C8E519AFBB3300ADBA74 /* QZImagesViewController.h */,
+				9460C8E619AFBB3300ADBA74 /* QZImagesViewController.m */,
 			);
 			name = Example;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				94ECE91619A103E900E2641B /* Quizlet.m in Sources */,
 				6D54A0DD19A4E4A3009D9E95 /* QZExamplesTableViewCell.m in Sources */,
 				6D425ECA19A33F0E0060E543 /* QuizletImages.m in Sources */,
+				9460C8E719AFBB3300ADBA74 /* QZImagesViewController.m in Sources */,
 				6D425ECD19A33F250060E543 /* QuizletSearch.m in Sources */,
 				6D771B4119A22AC30085A2BE /* QuizletSets.m in Sources */,
 			);

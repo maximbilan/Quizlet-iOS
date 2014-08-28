@@ -33,16 +33,10 @@
     switch (self.exampleId) {
         case QZExamplesUserDetails:
         {
-//            [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
-//                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-//            } failure:^(NSError *error) {
-//                self.logTextView.text = [error description];
-//            }];
-            
-            [[Quizlet sharedQuizlet] uploadImageFromURL:[NSURL URLWithString:@"image1.jpg"] success:^(id responseObject) {
-                
+            [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
+                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
             } failure:^(NSError *error) {
-                
+                self.logTextView.text = [error description];
             }];
         }
         break;

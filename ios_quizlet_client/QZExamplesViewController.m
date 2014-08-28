@@ -12,6 +12,7 @@
 #import "QZSetsViewController.h"
 #import "QZSearchViewController.h"
 #import "QZClassesViewController.h"
+#import "QZImagesViewController.h"
 
 #import "Quizlet.h"
 
@@ -141,6 +142,13 @@ static NSString * const QZExamplesDescrs[] = {
         }
         break;
             
+        case QZExamplesUploadImage:
+        {
+            QZImagesViewController *imagesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"imagesViewControllerId"];
+            [self.navigationController pushViewController:imagesViewController animated:YES];
+        }
+        break;
+        
         case QZExamplesUserDetails:
         case QZExamplesUserSets:
         case QZExamplesUserFavorites:
