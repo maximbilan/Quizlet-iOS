@@ -107,6 +107,38 @@ headerFields:(id)headerFields
     }];
 }
 
+- (void)POSTmultiPart:(NSString *)urlString
+           parameters:(id)parameters
+         headerFields:(id)headerFields
+         formDataName:(NSString *)formDataName
+             formData:(NSArray *)formDataArray
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [self setHTTPHeaderFields:headerFields forOperationManager:manager];
+    [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        if (formDataArray.count > 0 && formDataName) {
+            for (id obj in formDataArray) {
+                if ([obj isKindOfClass:[NSURL class]]) {
+                    [formData appendPartWithFileURL:(NSURL *)obj name:formDataName error:nil];
+                }
+                else if ([obj isKindOfClass:[NSData class]]) {
+                    [formData appendPartWithFormData:(NSData *)obj name:formDataName];
+                }
+            }
+        }
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", responseObject);
+#endif
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+#ifdef QUIZLET_RESPONSE_LOG
+        NSLog(@"%@", operation.responseObject);
+#endif
+    }];
+}
+
 - (void)PUT:(NSString *)urlString
  parameters:(id)parameters
 headerFields:(id)headerFields

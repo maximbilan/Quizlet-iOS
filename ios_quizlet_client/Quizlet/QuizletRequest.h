@@ -46,6 +46,14 @@ headerFields:(id)headerFields
      success:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure;
 
+- (void)POSTmultiPart:(NSString *)urlString
+           parameters:(id)parameters
+         headerFields:(id)headerFields
+         formDataName:(NSString *)formDataName
+             formData:(NSArray *)formDataArray
+              success:(void (^)(id responseObject))success
+              failure:(void (^)(NSError *error))failure;
+
 - (void)PUT:(NSString *)urlString
  parameters:(id)parameters
 headerFields:(id)headerFields
