@@ -31,7 +31,7 @@
         }];
     }
     
-    NSArray *formData = @[url];
+    NSArray *formData = @[url, url, url];
     NSString *urlString = [NSString stringWithFormat:@"%@/images", QuizletAPIBaseUrl];
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request POSTmultiPart:urlString
