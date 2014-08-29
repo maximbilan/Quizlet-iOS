@@ -129,10 +129,12 @@ headerFields:(id)headerFields
             }
         }
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(responseObject);
 #ifdef QUIZLET_RESPONSE_LOG
         NSLog(@"%@", responseObject);
 #endif
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
 #ifdef QUIZLET_RESPONSE_LOG
         NSLog(@"%@", operation.responseObject);
 #endif
