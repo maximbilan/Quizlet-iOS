@@ -10,8 +10,18 @@
 
 @class QuizletAuth;
 
+/**
+ Quizlet Images API
+ */
 @interface QuizletImages : NSObject
 
+/**
+ POST: /images
+ Upload one or more images
+ 
+ Parameter      Type	Description
+ imageData[]	array	An array of one or more images.
+ */
 - (void)uploadImageFromURL:(NSURL *)url
                   withAuth:(QuizletAuth *)auth
                    success:(void (^)(id responseObject))success
