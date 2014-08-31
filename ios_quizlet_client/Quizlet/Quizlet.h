@@ -79,11 +79,25 @@
  POST: /classes
  Add a new class.
  
- Parameters:
- name
- description
- allow_discussion
- admin_only
+ Required Parameters
+ Parameter          Type	Description
+ ---------------------------------------
+ name               string	The name of the class
+ description        string	A description of what the class is about and who it's for.
+ school_id          integer	The id of the school to which this class belongs. Either this must be specified, or new_school_name, city, state, and country must be specified in the case of a new school
+ new_school_name	string	The name of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ city               string	The city of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ state              string	The 2 digit state code of the school to which this class belongs. This is only required for US schools
+ country            string	The country of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ 
+ Optional Parameters
+ Parameter              Type            Description                                                                 Default
+ ---------------------------------------------------------------------------------------------------------------------------
+ allow_discussion       boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this class.	1
+ allow_member_add_sets	boolean         Deprecated
+ is_public              boolean         Deprecated
+ password               boolean         Deprecated
+ 
  */
 - (void)addClassFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -91,11 +105,20 @@
  PUT: /classes/CLASS_ID
  Edit a class.
  
- Parameters:
- name
- description
- allow_discussion
- admin_only
+ Required Parameters
+ ---------------------
+ There are no specific required parameters - but if you do not send any parameters at all, the response will be 400-level error (as there is nothing to update).
+ 
+ Optional Parameters
+ Parameter              Type            Description
+ ---------------------------------------------------
+ name                   string          The name of the class.
+ description            string          Block of text describing the class.
+ allow_discussion       boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this class.
+ admin_only             boolean	0 or 1. Flag of whether non-admin users are allowed to invite other members and add sets to this class.
+ allow_member_add_sets	boolean         Deprecated
+ is_public              boolean         Deprecated
+ password               boolean         Deprecated
  */
 - (void)editClassWithDictionary:(NSDictionary *)dictionary byClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -142,16 +165,23 @@
  GET: /search/sets
  Search for sets by title, description or term. Returns limited information.
  
- Parameters:
- q
- term
- creator
- images_only
- autocomplete
- modified_since
- sort
- page
- per_page
+ Optional Parameters
+ ---------------------
+ While all of the parameters below are optional, at least one of q, term or creator must be provided.
+ Parameters specified are used as an "AND" operation, e.g. "q=spanish&term=silla" will return spanish sets that contain the term "silla."
+ 0 or 1. When 1, returns results with partial matching for autocompleting.
+ 
+ Parameter      Type            Description                                                                             Default
+ ---------------------------------------------------------------------------------------------------------------------------------
+ q              string          Returns sets with titles and/or subjects that match your query.                         -
+ term           string          Return sets that have the specified term in them.                                       -
+ creator        string          Returns sets created by the specified Quizlet user.                                     -
+ images_only	boolean	0 or 1. When 1, limits results to sets with images only.                                        0
+ autocomplete	boolean	0
+ modified_since	timestamp       Limits results to sets that have been modified since the specified Unix timestamp.      -
+ sort           string          Deprecated. The field to sort by. This will cause bad results and should never be used	-
+ page           integer         The page of the result set to display.                                                  1
+ per_page       integer         The number of sets to display per page (must be between 1 and 50).                      30
  */
 - (void)searchSetsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -159,10 +189,16 @@
  GET: /search/definitions
  Search for definitions.
  
- Parameters:
- q
- type
- limit
+ Required Parameters
+ Parameter	Type	Description
+ -----------------------------------
+ q          string	The search query (case-insensitive).
+ 
+ Optional Parameters
+ Parameter	Type	Description                                                                                                                                                                     Default
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ type       string	One of "all", "user", "official" "user".
+ limit      integer	Number of definitions to limit of each type. For example, if type is set to "all" and limit is set to 2, you will get 2 user and 2 official definitions (for a total of 4).     10
  */
 - (void)searchDefinitionsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -170,10 +206,16 @@
  GET: /search/classes
  Search for classes by their title and description.
  
- Parameters:
- q
- page
- per_page
+ Required Parameters
+ Parameter	Type	Description
+ --------------------------------
+ q          string	The search query (case-insensitive).
+ 
+ Optional Parameters
+ Parameter	Type	Description                                                             Default
+ -----------------------------------------------------------------------------------------------------
+ page       integer	The page of the result set to display.                                  1
+ per_page	integer	The number of classes to display per page (must be between 1 and 50).	30
  */
 - (void)searchGroupsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -181,10 +223,16 @@
  GET: /search/universal
  Search for classes, users, and sets all together
  
- Parameters:
- q
- page
- per_page
+ Required Parameters
+ Parameter	Type	Description
+ --------------------------------
+ q          string	The search query (case-insensitive).
+ 
+ Optional Parameters
+ Parameter	Type	Description                                                             Default
+ -----------------------------------------------------------------------------------------------------
+ page       integer	The page of the result set to display.                                  1
+ per_page	integer	The number of results to display per page (must be between 1 and 50).	30
  */
 - (void)searchUniversalWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -204,8 +252,10 @@
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
  
- Parameters:
- password
+ Required Parameters
+ Parameter	Type	Description
+ --------------------------------
+ password	string	The password for the set
  */
 - (void)submitPassword:(NSString *)password forSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
