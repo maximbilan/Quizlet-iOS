@@ -61,7 +61,7 @@
 /**
  You should use in app delegate after redirecting from authorization. This method request an access token from Quizlet authorization server.
  */
-- (BOOL)handleURL:(NSURL *)url;
+- (void)handleURL:(NSURL *)url;
 
 /**
  GET: /classes/CLASS_ID
@@ -79,11 +79,24 @@
  POST: /classes
  Add a new class.
  
- Parameters:
- name
- description
- allow_discussion
- admin_only
+ Required Parameters
+ Parameter          Type	Description
+ ---------------------------------------
+ name               string	The name of the class
+ description        string	A description of what the class is about and who it's for.
+ school_id          integer	The id of the school to which this class belongs. Either this must be specified, or new_school_name, city, state, and country must be specified in the case of a new school
+ new_school_name	string	The name of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ city               string	The city of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ state              string	The 2 digit state code of the school to which this class belongs. This is only required for US schools
+ country            string	The country of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ 
+ Optional Parameters
+ Parameter              Type            Description                                                                 Default
+ ---------------------------------------------------------------------------------------------------------------------------
+ allow_discussion       boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this class.	1
+ allow_member_add_sets	boolean         Deprecated
+ is_public              boolean         Deprecated
+ password               boolean         Deprecated
  */
 - (void)addClassFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -91,11 +104,20 @@
  PUT: /classes/CLASS_ID
  Edit a class.
  
- Parameters:
- name
- description
- allow_discussion
- admin_only
+ Required Parameters
+ ---------------------
+ There are no specific required parameters - but if you do not send any parameters at all, the response will be 400-level error (as there is nothing to update).
+ 
+ Optional Parameters
+ Parameter              Type            Description
+ ---------------------------------------------------
+ name                   string          The name of the class.
+ description            string          Block of text describing the class.
+ allow_discussion       boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this class.
+ admin_only             boolean	0 or 1. Flag of whether non-admin users are allowed to invite other members and add sets to this class.
+ allow_member_add_sets	boolean         Deprecated
+ is_public              boolean         Deprecated
+ password               boolean         Deprecated
  */
 - (void)editClassWithDictionary:(NSDictionary *)dictionary byClassId:(NSString *)classId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -142,16 +164,23 @@
  GET: /search/sets
  Search for sets by title, description or term. Returns limited information.
  
- Parameters:
- q
- term
- creator
- images_only
- autocomplete
- modified_since
- sort
- page
- per_page
+ Optional Parameters
+ ---------------------
+ While all of the parameters below are optional, at least one of q, term or creator must be provided.
+ Parameters specified are used as an "AND" operation, e.g. "q=spanish&term=silla" will return spanish sets that contain the term "silla."
+ 0 or 1. When 1, returns results with partial matching for autocompleting.
+ 
+ Parameter      Type            Description                                                                             Default
+ ---------------------------------------------------------------------------------------------------------------------------------
+ q              string          Returns sets with titles and/or subjects that match your query.                         -
+ term           string          Return sets that have the specified term in them.                                       -
+ creator        string          Returns sets created by the specified Quizlet user.                                     -
+ images_only	boolean	0 or 1. When 1, limits results to sets with images only.                                        0
+ autocomplete	boolean	0
+ modified_since	timestamp       Limits results to sets that have been modified since the specified Unix timestamp.      -
+ sort           string          Deprecated. The field to sort by. This will cause bad results and should never be used	-
+ page           integer         The page of the result set to display.                                                  1
+ per_page       integer         The number of sets to display per page (must be between 1 and 50).                      30
  */
 - (void)searchSetsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -159,10 +188,16 @@
  GET: /search/definitions
  Search for definitions.
  
- Parameters:
- q
- type
- limit
+ Required Parameters
+ Parameter	Type	Description
+ -----------------------------------
+ q          string	The search query (case-insensitive).
+ 
+ Optional Parameters
+ Parameter	Type	Description                                                                                                                                                                     Default
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ type       string	One of "all", "user", "official" "user".
+ limit      integer	Number of definitions to limit of each type. For example, if type is set to "all" and limit is set to 2, you will get 2 user and 2 official definitions (for a total of 4).     10
  */
 - (void)searchDefinitionsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -170,10 +205,16 @@
  GET: /search/classes
  Search for classes by their title and description.
  
- Parameters:
- q
- page
- per_page
+ Required Parameters
+ Parameter	Type	Description
+ --------------------------------
+ q          string	The search query (case-insensitive).
+ 
+ Optional Parameters
+ Parameter	Type	Description                                                             Default
+ -----------------------------------------------------------------------------------------------------
+ page       integer	The page of the result set to display.                                  1
+ per_page	integer	The number of classes to display per page (must be between 1 and 50).	30
  */
 - (void)searchGroupsWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -181,10 +222,16 @@
  GET: /search/universal
  Search for classes, users, and sets all together
  
- Parameters:
- q
- page
- per_page
+ Required Parameters
+ Parameter	Type	Description
+ --------------------------------
+ q          string	The search query (case-insensitive).
+ 
+ Optional Parameters
+ Parameter	Type	Description                                                             Default
+ -----------------------------------------------------------------------------------------------------
+ page       integer	The page of the result set to display.                                  1
+ per_page	integer	The number of results to display per page (must be between 1 and 50).	30
  */
 - (void)searchUniversalWithParameters:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -204,8 +251,10 @@
  GET: /sets/SET_ID/password
  Submit a password for a password-protected set.
  
- Parameters:
- password
+ Required Parameters
+ Parameter	Type	Description
+ --------------------------------
+ password	string	The password for the set
  */
 - (void)submitPassword:(NSString *)password forSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -220,35 +269,33 @@
  Add a new set
  
  Required Parameters
- 
  Parameter          Type	Description
+ -----------------------------------
  title              string	The title of the set
  terms[]            array	The text of a new term. Specify as many terms[] parameters as needed.
  definitions[]      array	The text of a new definition. The number of definitions[] must match that of terms[].
- lang_terms         string	Language of the terms.
- lang_definitions	string	Language of the definitions.
+ lang_terms         string	Language of the terms. See the list of possible languages.
+ lang_definitions	string	Language of the definitions. See the list of possible languages.
  
  Optional Parameters
- 
- Parameter          Type    Description	Default
- images[]           array	The identifier of the image for a term. If present, the number of images[] must match that of terms[].
-                            Specify empty identifiers for terms that have no image. You get image identifiers when you upload images.	-
- description        string	A text description of the set.	-
- subjects[]         array	Deprecated. An array which will be ignored.	-
+ Parameter          Type            Description                                                                                                 Default
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------
+ images[]           array           The identifier of the image for a term. If present, the number of images[] must match that of terms[].      -
+                                    Specify empty identifiers for terms that have no image. You get image identifiers when you upload images.
+ description        string          A text description of the set.                                                                              -
+ subjects[]         array           Deprecated. An array which will be ignored.                                                                 -
  allow_discussion	boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this set	1
- visibility         "public", 
-                    "only_me",
-                    "classes",
-                    "password"	Define who is allowed to view/use this set.
- If set to classes, the parameter classes becomes mandatory.
- If set to password, the parameter password becomes mandatory.
- "public"
- editable	"only_me", "classes", "password"	Define who is allowed to edit this set.
- If set to classes, the parameter classes becomes mandatory.
- If set to password, the parameter password becomes mandatory.
- "only_me"
- classes[]          array Only required when visibility="classes" or editable="classes". An array of class IDs (integers) that this set is visible and/or editable for.	-
- password           string Only required when visibility="password" or editable="password". The password required to view and/or edit this set.
+ visibility         "public",       Define who is allowed to view/use this set.                                                                 "public"
+                    "only_me",      If set to classes, the parameter classes becomes mandatory.
+                    "classes",      If set to password, the parameter password becomes mandatory.
+                    "password"
+ editable           "only_me",      Define who is allowed to edit this set.                                                                     "only_me"
+                    "classes",      If set to classes, the parameter classes becomes mandatory.
+                    "password"      If set to password, the parameter password becomes mandatory.
+ classes[]          array           Only required when visibility="classes" or editable="classes".                                              -
+                                    An array of class IDs (integers) that this set is visible and/or editable for.
+ password           string          Only required when visibility="password" or editable="password".                                            -
+                                    The password required to view and/or edit this set.
  */
 - (void)addSetFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -256,21 +303,40 @@
  PUT: /sets/SET_ID
  Edit an existing set
  
- Parameters:
- title
- terms (array)
- definitions (array)
- images[+]
- lang_terms
- lang_definitions
- description
- subjects (array)
- allow_discussion
- visibility
- editable
- groups (array)
- password
- term_ids (array)
+ Required Parameters
+ ----------------------
+ There are no specific required parameters - but if you do not send any parameters at all, the response will be 400-level error (as there is nothing to update).
+ 
+ Optional Parameters
+ Parameter          Type            Description
+ --------------------------------------------------
+ title              string          The title of the set.
+ description        string          A text description of the set.
+ term_ids[]         array           The array of term ids. For new terms, use a zero value (e.g. "term_ids[]=0").
+                                    For already-existing terms, use the term id from the term you're editing (e.g. "term_ids[]=818192").
+                                    If you don't want to replace all the terms at once, then use editing terms instead.
+ terms[]            array           A replacement array of terms. If you don't want to replace all the terms at once, then use editing terms instead.
+ definitions[]      array           A replacement array of definitions.
+                                    If present, the length of this array must match the terms array.
+                                    If you don't want to replace all the definitions at once, then use editing terms instead.
+ images[]           array           A replacement array of image identifiers.
+                                    If present, the length of this array must match the terms array.
+                                    See the notes above for details about replacing images. If you don't want to replace all the images at once, then use editing terms instead.
+ subjects[]         array           Deprecated. An array which will be ignored.
+ allow_discussion	boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this set.
+ visibility         "public",       Define who is allowed to view/use this set.
+                    "only_me",      If set to classes, the parameter classes becomes mandatory.
+                    "classes",      If set to password, the parameter password becomes mandatory.
+                    "password"
+ editable           "only_me",      Define who is allowed to edit this set.
+                    "classes",      If set to classes, the parameter classes becomes mandatory.
+                    "password"      If set to password, the parameter password becomes mandatory.
+ classes[]          array           Only required when visibility="classes" or editable="classes".
+                                    An array of class IDs (integers) that this set is visible and/or editable for.
+ password           string          Only required when visibility="password" or editable="password".
+                                    The password required to view and/or edit this set.
+ lang_terms         string          Language of the terms. See the list of possible languages.
+ lang_definitions	string          Language of the definitions. See the list of possible languages.
  */
 - (void)editSetWithDictionary:(NSDictionary *)dictionary bySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -284,10 +350,12 @@
  POST: /sets/SET_ID/terms
  Add a single term to a set
  
- Parameters:
- term
- definition
- position
+ Required Parameters
+ Parameter	Type	Description
+ ---------------------------------
+ term       string	The actual term (front side of card).
+ definition	string	The definition of the term.
+ image      string	The identifier of the image for the term. You get image identifiers when you upload images.
  */
 - (void)addTermFromDictionary:(NSDictionary *)dictionary toSetBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
@@ -295,10 +363,12 @@
  PUT: /sets/SET_ID/terms/TERM_ID
  Edit a single term within a set
  
- Parameters:
- term
- definition
- image
+ Required Parameters
+ Parameter	Type	Description
+ ---------------------------------
+ term       string	The actual term (front side of card).
+ definition	string	The definition of the term.
+ image      string	The identifier of the image for the term. You get image identifiers when you upload images.
  */
 - (void)editTermWithDictionary:(NSDictionary *)dictionary fromSetBySetId:(NSString *)setId byTermId:(NSString *)termId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
