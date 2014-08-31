@@ -37,11 +37,24 @@
  POST: /classes
  Add a new class.
  
- Parameters:
- name
- description
- allow_discussion
- admin_only
+ Required Parameters
+ Parameter          Type	Description
+ ---------------------------------------
+ name               string	The name of the class
+ description        string	A description of what the class is about and who it's for.
+ school_id          integer	The id of the school to which this class belongs. Either this must be specified, or new_school_name, city, state, and country must be specified in the case of a new school
+ new_school_name	string	The name of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ city               string	The city of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ state              string	The 2 digit state code of the school to which this class belongs. This is only required for US schools
+ country            string	The country of the school to which this class belongs. Either this must be specified, or school_id must be specified if the school already exists
+ 
+ Optional Parameters
+ Parameter              Type            Description                                                                 Default
+ ---------------------------------------------------------------------------------------------------------------------------
+ allow_discussion       boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this class.	1
+ allow_member_add_sets	boolean         Deprecated
+ is_public              boolean         Deprecated
+ password               boolean         Deprecated
  */
 - (void)addClassFromDictionary:(NSDictionary *)dictionary
                       withAuth:(QuizletAuth *)auth
@@ -52,11 +65,20 @@
  PUT: /classes/CLASS_ID
  Edit a class.
  
- Parameters:
- name
- description
- allow_discussion
- admin_only
+ Required Parameters
+ ---------------------
+ There are no specific required parameters - but if you do not send any parameters at all, the response will be 400-level error (as there is nothing to update).
+ 
+ Optional Parameters
+ Parameter              Type            Description
+ ---------------------------------------------------
+ name                   string          The name of the class.
+ description            string          Block of text describing the class.
+ allow_discussion       boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this class.
+ admin_only             boolean	0 or 1. Flag of whether non-admin users are allowed to invite other members and add sets to this class.
+ allow_member_add_sets	boolean         Deprecated
+ is_public              boolean         Deprecated
+ password               boolean         Deprecated
  */
 - (void)editClassWithDictionary:(NSDictionary *)dictionary
                       byClassId:(NSString *)classId

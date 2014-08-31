@@ -97,7 +97,6 @@
  allow_member_add_sets	boolean         Deprecated
  is_public              boolean         Deprecated
  password               boolean         Deprecated
- 
  */
 - (void)addClassFromDictionary:(NSDictionary *)dictionary success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
