@@ -61,7 +61,7 @@
 /**
  You should use in app delegate after redirecting from authorization. This method request an access token from Quizlet authorization server.
  */
-- (void)handleURL:(NSURL *)url;
+- (BOOL)handleURL:(NSURL *)url;
 
 /**
  GET: /classes/CLASS_ID
