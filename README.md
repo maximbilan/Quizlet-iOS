@@ -7,5 +7,4 @@ iOS client for working with Quizlet API 2.0
 Working with Classes, Searching, Sets, Users API.<br>
 Not completed with Images API.<br>
 <br>
-<br>
 Example interface only for iPhone.
