@@ -2,6 +2,10 @@ ios_quizlet_client
 ==================
 
 iOS client for working with Quizlet API 2.0
-
-It's not completed version for now.<br>
-Working in progress.
+<br>
+<br>
+Working with Classes, Searching, Sets, Users API.<br>
+Not completed with Images API.<br>
+<br>
+<br>
+Example interface only for iPhone.
