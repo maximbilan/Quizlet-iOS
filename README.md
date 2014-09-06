@@ -35,6 +35,8 @@ QuizletUsers.h
 QuizletUsers.m
 </pre>
 
+This framework requires AFNetworking 2.0. You can easily use other libraries, AFNetwoking used only in QuizletRequest class. And I think it's not a big problem will change code of http requests.
+
 
 <br>
 Working with Classes, Searching, Sets, Users API.<br>
