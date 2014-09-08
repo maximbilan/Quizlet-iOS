@@ -1,7 +1,7 @@
 iOS Quizlet Client
 ==================
 
-iOS client for working with Quizlet API 2.0<br>
+<b>iOS client for working with Quizlet API 2.0</b><br>
 <br>
 The Quizlet API lets developers interested in building study tools to interact with Quizlet's vast content database of over 1640 million flashcards. The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.
 <br>
@@ -9,7 +9,7 @@ The Quizlet API lets developers interested in building study tools to interact w
 I provide simple iOS example, which contains all possible requests to Quizlet API.
 Example for now not completed, working in progress. Now we have only iPhone interface, and there aren't all user interface for requests.
 
-How to use this framework:
+<b>How to use this framework:</b>
 
 First of all, you sholud copy Quizlet folder to your project.
 
