@@ -47,9 +47,6 @@ For setup the library you should call in your AppDelegate class in the didFinish
     
     return YES;
 }
-
-
-
 </pre>
 And in the method openURL:
 
@@ -64,8 +61,14 @@ And in the method openURL:
 }
 </pre>
 
-And after that user can be authorized.
-
+And after that user can be authorized. Using the following method:
+<pre>
+[[Quizlet sharedQuizlet] authorize:^(void) {
+    NSLog(@"User was authorized");
+} failure:^(NSError *error) {
+    NSLog(@"User wasn't authorized");
+}];
+</pre>
 
 <br>
 Working with Classes, Searching, Sets, Users API.<br>
