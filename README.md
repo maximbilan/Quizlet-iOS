@@ -11,7 +11,8 @@ Example for now not completed, working in progress. Now we have only iPhone inte
 
 <b>How to use this framework:</b>
 
-First of all, you sholud copy Quizlet folder to your project.
+First of all, you should copy Quizlet folder to your project.<br>
+List of needed files:
 
 <pre>
 Quizlet.h
