@@ -70,8 +70,5 @@ And after that user can be authorized. Using the following method:
 }];
 </pre>
 
-<br>
-Working with Classes, Searching, Sets, Users API.<br>
-Not completed with Images API.<br>
-<br>
-Example interface only for iPhone.
+And now you can call Quizlets requests.
+
