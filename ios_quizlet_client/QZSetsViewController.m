@@ -9,9 +9,14 @@
 #import "QZSetsViewController.h"
 #import "QZExamplesViewController.h"
 
+#import "WaitSpinner.h"
+
 #import "Quizlet.h"
 
 @interface QZSetsViewController ()
+{
+    WaitSpinner *waitSpinner;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
@@ -22,6 +27,13 @@
 @end
 
 @implementation QZSetsViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    waitSpinner = [[WaitSpinner alloc] init];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -57,6 +69,8 @@
         break;
         case QZExamplesAddSet:
         {
+            [waitSpinner showInView:self.view];
+            
             NSDictionary *dict = @{
                                    @"title": @"set4",
                                    @"terms": @[@"yyyyy", @"ttttt", @"kkkkk"],
@@ -70,13 +84,17 @@
                                    };
             [[Quizlet sharedQuizlet] addSetFromDictionary:dict success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
         case QZExamplesEditSet:
         {
+            [waitSpinner showInView:self.view];
+            
             NSDictionary *dict = @{
                                    @"title": @"set4",
                                    @"terms": @[@"yyyyy1", @"ttttt1", @"kkkkk1"],
@@ -91,43 +109,57 @@
             
             [[Quizlet sharedQuizlet] editSetWithDictionary:dict bySetId:@"46368667" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
         case QZExamplesAddTermToSet:
         {
+            [waitSpinner showInView:self.view];
+            
             NSDictionary *term = @{
                                    @"term" : @"mmmmmm",
                                    @"definition" : @"mmm"
                                    };
             [[Quizlet sharedQuizlet] addTermFromDictionary:term toSetBySetId:@"46367827" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
         case QZExamplesEditTermFromSet:
         {
+            [waitSpinner showInView:self.view];
+            
             NSDictionary *term = @{
                                    @"term" : @"lmlmlmlmlml",
                                    @"definition" : @"lmlm"
                                    };
             [[Quizlet sharedQuizlet] editTermWithDictionary:term fromSetBySetId:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
         case QZExamplesDeleteTermFromSet:
         {
+            [waitSpinner showInView:self.view];
+            
             [[Quizlet sharedQuizlet] deleteTermFromSetBySetId:@"46367827" byTermId:@"1617289394" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -143,13 +175,18 @@
     [self.passwordTextField resignFirstResponder];
     
     if (self.setIdTextField.text.length > 0) {
+        
+        [waitSpinner showInView:self.view];
+        
         switch (self.exampleId) {
             case QZExamplesViewSet:
             {
                 [[Quizlet sharedQuizlet] viewSetBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
@@ -158,8 +195,10 @@
             {
                 [[Quizlet sharedQuizlet] viewSetTermsBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
@@ -168,8 +207,10 @@
             {
                 [[Quizlet sharedQuizlet] submitPassword:self.passwordTextField.text forSetBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
@@ -178,8 +219,10 @@
             {
                 [[Quizlet sharedQuizlet] viewSetsBySetIds:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
@@ -188,8 +231,10 @@
             {
                 [[Quizlet sharedQuizlet] deleteSetBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
