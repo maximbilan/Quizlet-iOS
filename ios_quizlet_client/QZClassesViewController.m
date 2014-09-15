@@ -9,9 +9,14 @@
 #import "QZClassesViewController.h"
 #import "QZExamplesViewController.h"
 
+#import "WaitSpinner.h"
+
 #import "Quizlet.h"
 
 @interface QZClassesViewController ()
+{
+    WaitSpinner *waitSpinner;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *classIdTextField;
@@ -21,16 +26,26 @@
 
 @implementation QZClassesViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    waitSpinner = [[WaitSpinner alloc] init];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     self.logTextView.text = @"";
     
+    [waitSpinner showInView:self.view];
+    
     switch (self.exampleId) {
         case QZExamplesViewClass:
         case QZExamplesViewClassSets:
         {
+            [waitSpinner hide];
             self.classIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
         }
@@ -44,8 +59,10 @@
                                         };
             [[Quizlet sharedQuizlet] addClassFromDictionary:dictionary success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -58,8 +75,10 @@
                                          };
             [[Quizlet sharedQuizlet] editClassWithDictionary:dictionary byClassId:@"1080268" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -68,8 +87,10 @@
         {
             [[Quizlet sharedQuizlet] deleteClassByClassId:@"1080268" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -78,8 +99,10 @@
         {
             [[Quizlet sharedQuizlet] addSetBySetId:@"415" forClassId:@"1080268" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -88,8 +111,10 @@
         {
             [[Quizlet sharedQuizlet] deleteSetBySetId:@"415" fromClassByClassId:@"1080268" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -98,8 +123,10 @@
         {
             [[Quizlet sharedQuizlet] joinClassByClassId:@"5" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -108,8 +135,10 @@
         {
             [[Quizlet sharedQuizlet] leaveClassByClassId:@"5" success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -124,13 +153,18 @@
     [self.classIdTextField resignFirstResponder];
     
     if (self.classIdTextField.text.length > 0) {
+        
+        [waitSpinner showInView:self.view];
+        
         switch (self.exampleId) {
             case QZExamplesViewClass:
             {
                 [[Quizlet sharedQuizlet] viewClassByClassId:self.classIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
@@ -139,8 +173,10 @@
             {
                 [[Quizlet sharedQuizlet] viewClassSetsByClassId:self.classIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
