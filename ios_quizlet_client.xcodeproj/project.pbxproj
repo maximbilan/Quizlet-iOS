@@ -24,6 +24,7 @@
 		946AFA0719A6609B0024A009 /* QZSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AFA0619A6609B0024A009 /* QZSetsViewController.m */; };
 		946AFA0A19A67AB60024A009 /* QZBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AFA0919A67AB60024A009 /* QZBaseViewController.m */; };
 		947571FC19A7B28400A73663 /* QZClassesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947571FB19A7B28400A73663 /* QZClassesViewController.m */; };
+		9487F94D19C7618D007595B8 /* WaitSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9487F94C19C7618D007595B8 /* WaitSpinner.m */; };
 		94ECE8D819A0D5FD00E2641B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D719A0D5FD00E2641B /* Foundation.framework */; };
 		94ECE8DA19A0D5FD00E2641B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */; };
 		94ECE8DC19A0D5FD00E2641B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8DB19A0D5FD00E2641B /* UIKit.framework */; };
@@ -73,6 +74,8 @@
 		946AFA0919A67AB60024A009 /* QZBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZBaseViewController.m; sourceTree = "<group>"; };
 		947571FA19A7B28400A73663 /* QZClassesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZClassesViewController.h; sourceTree = "<group>"; };
 		947571FB19A7B28400A73663 /* QZClassesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZClassesViewController.m; sourceTree = "<group>"; };
+		9487F94B19C7618D007595B8 /* WaitSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitSpinner.h; sourceTree = "<group>"; };
+		9487F94C19C7618D007595B8 /* WaitSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitSpinner.m; sourceTree = "<group>"; };
 		94ECE8D419A0D5FD00E2641B /* ios_quizlet_client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_quizlet_client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ECE8D719A0D5FD00E2641B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -150,6 +153,15 @@
 				94ECE8EC19A0D5FD00E2641B /* Main_iPad.storyboard */,
 			);
 			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		9487F94A19C7618D007595B8 /* WaitSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				9487F94B19C7618D007595B8 /* WaitSpinner.h */,
+				9487F94C19C7618D007595B8 /* WaitSpinner.m */,
+			);
+			path = WaitSpinner;
 			sourceTree = "<group>";
 		};
 		94ECE8CB19A0D5FD00E2641B = {
@@ -235,6 +247,7 @@
 		94FBF57F19B237A600FEE083 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				9487F94A19C7618D007595B8 /* WaitSpinner */,
 				94FBF58019B237A600FEE083 /* AFNetworkActivityLogger */,
 			);
 			path = External;
@@ -352,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9487F94D19C7618D007595B8 /* WaitSpinner.m in Sources */,
 				946AFA0719A6609B0024A009 /* QZSetsViewController.m in Sources */,
 				6D771B3E19A22A840085A2BE /* QuizletAuth.m in Sources */,
 				946AFA0A19A67AB60024A009 /* QZBaseViewController.m in Sources */,

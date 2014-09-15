@@ -9,10 +9,15 @@
 #import "QZUsersViewController.h"
 #import "QZExamplesViewController.h"
 
+#import "WaitSpinner.h"
+
 #import "Quizlet.h"
 #import "QuizletImages.h"
 
 @interface QZUsersViewController ()
+{
+    WaitSpinner *waitSpinner;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
@@ -24,19 +29,30 @@
 
 #pragma mark - View Controller Methods
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    waitSpinner = [[WaitSpinner alloc] init];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     self.logTextView.text = @"";
     
+    [waitSpinner showInView:self.view];
+    
     switch (self.exampleId) {
         case QZExamplesUserDetails:
         {
             [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -45,8 +61,10 @@
         {
             [[Quizlet sharedQuizlet] userSets:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -55,8 +73,10 @@
         {
             [[Quizlet sharedQuizlet] userFavorites:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -65,8 +85,10 @@
         {
             [[Quizlet sharedQuizlet] userClasses:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -75,8 +97,10 @@
         {
             [[Quizlet sharedQuizlet] userStudied:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -106,8 +130,10 @@
             {
                 [[Quizlet sharedQuizlet] markUserSetAsFavoriteBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
@@ -116,8 +142,10 @@
             {
                 [[Quizlet sharedQuizlet] unmarkUserSetAsFavoriteBySetId:self.setIdTextField.text success:^(id responseObject) {
                     self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [waitSpinner hide];
                 } failure:^(NSError *error) {
                     self.logTextView.text = [error description];
+                    [waitSpinner hide];
                 }];
             }
             break;
