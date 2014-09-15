@@ -19,7 +19,7 @@
     
     [[Quizlet sharedQuizlet] startWithClientID:@"E3Ww84Uwp2"
                                  withSecretKey:@"4677En2h5bPUd5j6HmjNn5"
-                               withRedirectURI:@"bitsboard:/after_oauth"];
+                               withRedirectURI:@"maximbilan:/after_oauth"];
     
     return YES;
 }
@@ -59,7 +59,7 @@
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
     
-    if ([[url scheme] isEqualToString:@"bitsboard"]) {
+    if ([[url scheme] isEqualToString:@"maximbilan"]) {
         [[Quizlet sharedQuizlet] handleURL:url];
     }
     

@@ -26,10 +26,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>bitsboard.ios_quizlet_client</string>
+			<string>maximbilan.ios_quizlet_client</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>bitsboard</string>
+				<string>maximbilan</string>
 			</array>
 		</dict>
 	</array>
