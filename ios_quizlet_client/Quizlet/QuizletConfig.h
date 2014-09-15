@@ -14,4 +14,6 @@
 #define QUIZLET_RESPONSE_LOG
 #endif
 
+#define USE_AFNETWORKACTIVITYLOGGER
+
 static NSString * const QuizletAPIBaseUrl = @"https://api.quizlet.com/2.0";

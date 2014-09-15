@@ -8,14 +8,19 @@
 
 #import "QZAppDelegate.h"
 #import "Quizlet.h"
+
+#ifdef USE_AFNETWORKACTIVITYLOGGER
 #import "AFNetworkActivityLogger.h"
+#endif
 
 @implementation QZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifdef USE_AFNETWORKACTIVITYLOGGER
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+#endif
     
     [[Quizlet sharedQuizlet] startWithClientID:@"E3Ww84Uwp2"
                                  withSecretKey:@"4677En2h5bPUd5j6HmjNn5"
