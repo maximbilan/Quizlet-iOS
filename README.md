@@ -7,7 +7,7 @@ The Quizlet API lets developers interested in building study tools to interact w
 <br>
 
 I provide simple iOS example, which contains all possible requests to Quizlet API.
-Example for now not completed, working in progress. Now we have only iPhone interface, and there aren't all user interface for requests.
+We have iPhone and iPad interfaces.
 
 <b>How to use this framework:</b>
 
@@ -434,7 +434,5 @@ This library provides methods for all possible endpoints of Quizlet API (https:/
 </pre>
 
 Unfortunately, the method loadImageFromURL is not working correctly. And for now I can't contact Quizlet API's developers for solving this issue. I hope in the future I can fix the issue.<br>
-<br>
-Also I've plans for revising iOS interface example, and iPad version.<br>
 <br>
 Any feedback, comments, I am ready to listen. Feel free. Happy coding!
