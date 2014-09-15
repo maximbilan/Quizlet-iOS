@@ -9,9 +9,14 @@
 #import "QZSearchViewController.h"
 #import "QZExamplesViewController.h"
 
+#import "WaitSpinner.h"
+
 #import "Quizlet.h"
 
 @interface QZSearchViewController ()
+{
+    WaitSpinner *waitSpinner;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 
@@ -19,11 +24,20 @@
 
 @implementation QZSearchViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    waitSpinner = [[WaitSpinner alloc] init];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     self.logTextView.text = @"";
+    
+    [waitSpinner showInView:self.view];
     
     switch (self.exampleId) {
         case QZExamplesSearchSets:
@@ -32,8 +46,10 @@
             
             [[Quizlet sharedQuizlet] searchSetsWithParameters:parameters success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -42,8 +58,10 @@
         {
             [[Quizlet sharedQuizlet] searchDefinitionsWithParameters:nil success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -52,8 +70,10 @@
         {
             [[Quizlet sharedQuizlet] searchGroupsWithParameters:nil success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
@@ -62,8 +82,10 @@
         {
             [[Quizlet sharedQuizlet] searchUniversalWithParameters:nil success:^(id responseObject) {
                 self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
+                [waitSpinner hide];
             }];
         }
         break;
