@@ -26,6 +26,8 @@
 
 @implementation QZClassesViewController
 
+#pragma mark - View Controller Methods
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -147,6 +149,8 @@
             break;
     }
 }
+
+#pragma mark - Actions
 
 - (IBAction)submitButtonAction:(UIButton *)sender
 {

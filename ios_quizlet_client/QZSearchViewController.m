@@ -24,6 +24,8 @@
 
 @implementation QZSearchViewController
 
+#pragma mark - View Controller Methods
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -18,6 +18,8 @@
 
 @implementation QZImagesViewController
 
+#pragma mark - View Controller Methods
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
