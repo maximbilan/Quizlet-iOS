@@ -108,6 +108,7 @@
         case QZExamplesMarkSetAsFavorite:
         case QZExamplesUnmarkSetAsFavorite:
         {
+            [waitSpinner hide];
             self.setIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
         }
@@ -125,6 +126,9 @@
     [self.setIdTextField resignFirstResponder];
     
     if (self.setIdTextField.text.length > 0) {
+        
+        [waitSpinner showInView:self.view];
+        
         switch (self.exampleId) {
             case QZExamplesMarkSetAsFavorite:
             {
