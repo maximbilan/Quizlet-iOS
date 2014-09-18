@@ -39,6 +39,6 @@ typedef void(^QuizletAuthCompletionFailure)(NSError *error);
 
 - (void)determineAccoutTypeFromString:(NSString *)string;
 
-- (NSDictionary *)headerFieldsWithAccessToken;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *headerFieldsWithAccessToken;
 
 @end

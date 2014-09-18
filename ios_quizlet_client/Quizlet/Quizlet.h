@@ -43,17 +43,17 @@
 /**
  Checks if the user is authenticated?
  */
-- (BOOL)isAuthorized;
+@property (NS_NONATOMIC_IOSONLY, getter=isAuthorized, readonly) BOOL authorized;
 
 /**
  Checks if the user has free account type
  */
-- (BOOL)isFreeAccountType;
+@property (NS_NONATOMIC_IOSONLY, getter=isFreeAccountType, readonly) BOOL freeAccountType;
 
 /**
  Checks if the user has plus account type
  */
-- (BOOL)isPlusAccountType;
+@property (NS_NONATOMIC_IOSONLY, getter=isPlusAccountType, readonly) BOOL plusAccountType;
 
 /**
  Authorization to Quizlet service. Goes to browser, and after entering login and password calls the redirect URI. Auth 2.0.
