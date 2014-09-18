@@ -45,7 +45,7 @@ static NSString * const QuizletAuthGrantType = @"authorization_code";
     self.authFailure = nil;
 }
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init]) {
         self.accountType = -1;
