@@ -76,21 +76,21 @@
  Parameter          Type            Description                                                                                                 Default
  -----------------------------------------------------------------------------------------------------------------------------------------------------------
  images[]           array           The identifier of the image for a term. If present, the number of images[] must match that of terms[].      -
- Specify empty identifiers for terms that have no image. You get image identifiers when you upload images.
+                                    Specify empty identifiers for terms that have no image. You get image identifiers when you upload images.
  description        string          A text description of the set.                                                                              -
  subjects[]         array           Deprecated. An array which will be ignored.                                                                 -
  allow_discussion	boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this set	1
  visibility         "public",       Define who is allowed to view/use this set.                                                                 "public"
- "only_me",      If set to classes, the parameter classes becomes mandatory.
- "classes",      If set to password, the parameter password becomes mandatory.
- "password"
+                    "only_me",      If set to classes, the parameter classes becomes mandatory.
+                    "classes",      If set to password, the parameter password becomes mandatory.
+                    "password"
  editable           "only_me",      Define who is allowed to edit this set.                                                                     "only_me"
- "classes",      If set to classes, the parameter classes becomes mandatory.
- "password"      If set to password, the parameter password becomes mandatory.
+                    "classes",      If set to classes, the parameter classes becomes mandatory.
+                    "password"      If set to password, the parameter password becomes mandatory.
  classes[]          array           Only required when visibility="classes" or editable="classes".                                              -
- An array of class IDs (integers) that this set is visible and/or editable for.
+                                    An array of class IDs (integers) that this set is visible and/or editable for.
  password           string          Only required when visibility="password" or editable="password".                                            -
- The password required to view and/or edit this set.
+                                    The password required to view and/or edit this set.
  */
 - (void)addSetFromDictionary:(NSDictionary *)dictionary
                     withAuth:(QuizletAuth *)auth
@@ -111,28 +111,28 @@
  title              string          The title of the set.
  description        string          A text description of the set.
  term_ids[]         array           The array of term ids. For new terms, use a zero value (e.g. "term_ids[]=0").
- For already-existing terms, use the term id from the term you're editing (e.g. "term_ids[]=818192").
- If you don't want to replace all the terms at once, then use editing terms instead.
+                                    For already-existing terms, use the term id from the term you're editing (e.g. "term_ids[]=818192").
+                                    If you don't want to replace all the terms at once, then use editing terms instead.
  terms[]            array           A replacement array of terms. If you don't want to replace all the terms at once, then use editing terms instead.
  definitions[]      array           A replacement array of definitions.
- If present, the length of this array must match the terms array.
- If you don't want to replace all the definitions at once, then use editing terms instead.
+                                    If present, the length of this array must match the terms array.
+                                    If you don't want to replace all the definitions at once, then use editing terms instead.
  images[]           array           A replacement array of image identifiers.
- If present, the length of this array must match the terms array.
- See the notes above for details about replacing images. If you don't want to replace all the images at once, then use editing terms instead.
+                                    If present, the length of this array must match the terms array.
+                                    See the notes above for details about replacing images. If you don't want to replace all the images at once, then use editing terms instead.
  subjects[]         array           Deprecated. An array which will be ignored.
  allow_discussion	boolean	0 or 1. Flag of whether users are allowed to use the discussion box on this set.
  visibility         "public",       Define who is allowed to view/use this set.
- "only_me",      If set to classes, the parameter classes becomes mandatory.
- "classes",      If set to password, the parameter password becomes mandatory.
- "password"
+                    "only_me",      If set to classes, the parameter classes becomes mandatory.
+                    "classes",      If set to password, the parameter password becomes mandatory.
+                    "password"
  editable           "only_me",      Define who is allowed to edit this set.
- "classes",      If set to classes, the parameter classes becomes mandatory.
- "password"      If set to password, the parameter password becomes mandatory.
+                    "classes",      If set to classes, the parameter classes becomes mandatory.
+                    "password"      If set to password, the parameter password becomes mandatory.
  classes[]          array           Only required when visibility="classes" or editable="classes".
- An array of class IDs (integers) that this set is visible and/or editable for.
+                                    An array of class IDs (integers) that this set is visible and/or editable for.
  password           string          Only required when visibility="password" or editable="password".
- The password required to view and/or edit this set.
+                                    The password required to view and/or edit this set.
  lang_terms         string          Language of the terms. See the list of possible languages.
  lang_definitions	string          Language of the definitions. See the list of possible languages.
  */
