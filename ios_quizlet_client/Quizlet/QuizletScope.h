@@ -15,4 +15,4 @@ typedef NS_ENUM(NSInteger, QuizletScope)
     QuizletScopeWriteGroup
 };
 
-static NSString * const QuizletScopeValues[] = { @"read", @"write_set", @"write_group"};
+static NSString * const QuizletScopeValues[] = { @"read", @"write_set", @"write_group" };

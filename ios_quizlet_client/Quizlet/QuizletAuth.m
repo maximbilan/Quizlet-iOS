@@ -13,11 +13,11 @@
 #import "QuizletRequest.h"
 #import "QuizletUsers.h"
 
-static NSString * const QuizletAuthBaseUrl = @"https://quizlet.com/authorize";
-static NSString * const QuizletAuthTokenUrl = @"https://api.quizlet.com/oauth/token";
-static NSString * const QuizletAuthParams = @"response_type=%@&client_id=%@&scope=%@&state=%@";
+static NSString * const QuizletAuthBaseUrl      = @"https://quizlet.com/authorize";
+static NSString * const QuizletAuthTokenUrl     = @"https://api.quizlet.com/oauth/token";
+static NSString * const QuizletAuthParams       = @"response_type=%@&client_id=%@&scope=%@&state=%@";
 static NSString * const QuizletAuthResponseType = @"code";
-static NSString * const QuizletAuthGrantType = @"authorization_code";
+static NSString * const QuizletAuthGrantType    = @"authorization_code";
 
 @interface QuizletAuth ()
 

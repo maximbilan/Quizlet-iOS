@@ -54,10 +54,10 @@
  q          string	The search query (case-insensitive).
  
  Optional Parameters
- Parameter	Type	Description                                                                                                                                                                     Default
- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Parameter	Type	Description                                                                                                                                                                   Default
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  type       string	One of "all", "user", "official" "user".
- limit      integer	Number of definitions to limit of each type. For example, if type is set to "all" and limit is set to 2, you will get 2 user and 2 official definitions (for a total of 4).     10
+ limit      integer	Number of definitions to limit of each type. For example, if type is set to "all" and limit is set to 2, you will get 2 user and 2 official definitions (for a total of 4).   10
  */
 - (void)searchDefinitionsWithParameters:(NSDictionary *)dictionary
                                withAuth:(QuizletAuth *)auth
