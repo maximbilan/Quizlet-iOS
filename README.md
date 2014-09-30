@@ -11,7 +11,7 @@ We have iPhone and iPad interfaces.
 
 <b>How to use this framework:</b>
 
-First of all, you should copy Quizlet folder to your project.<br>
+First of all, you should copy 'Quizlet' folder from 'Sources' to your project.<br>
 List of needed files:
 
 <pre>
