@@ -16,6 +16,8 @@
 
 #import "Quizlet.h"
 
+#define PRINT_ACCESS_TOKEN
+
 static NSString * const QZExamplesTitles[] = {
     @"GET /classes/CLASS_ID",
     @"GET /classes/CLASS_ID/sets",
@@ -205,6 +207,9 @@ static NSString * const QZExamplesDescrs[] = {
         examplesCount = QZExamplesCount;
         [self.tableView reloadData];
         NSLog(@"User was authorized");
+#ifdef PRINT_ACCESS_TOKEN
+        NSLog(@"Access token: %@", [[Quizlet sharedQuizlet] accessToken]);
+#endif
     } failure:^(NSError *error) {
         NSLog(@"User wasn't authorized");
     }];

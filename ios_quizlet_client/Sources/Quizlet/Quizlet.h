@@ -56,6 +56,11 @@
 @property (NS_NONATOMIC_IOSONLY, getter=isPlusAccountType, readonly) BOOL plusAccountType;
 
 /**
+ Returns current access token
+ */
+- (NSString *)accessToken;
+
+/**
  Authorization to Quizlet service. Goes to browser, and after entering login and password calls the redirect URI. Auth 2.0.
  */
 - (void)authorize:(void (^)(void))success failure:(void (^)(NSError *error))failure;

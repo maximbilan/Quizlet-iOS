@@ -121,6 +121,11 @@
     return (self.auth.accountType == QuizletAccountPlus);
 }
 
+- (NSString *)accessToken
+{
+    return self.auth.accessToken;
+}
+
 - (BOOL)handleURL:(NSURL *)url
 {
     NSString *res = [url resourceSpecifier];
