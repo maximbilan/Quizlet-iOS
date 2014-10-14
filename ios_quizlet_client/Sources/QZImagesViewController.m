@@ -26,7 +26,15 @@
     
     self.logTextView.text = @"";
     
-    [[Quizlet sharedQuizlet] uploadImageFromURL:[NSURL URLWithString:@"image1.jpg"] success:^(id responseObject) {
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"image1" ofType:@"jpg"];
+    NSURL *url = [NSURL URLWithString:imagePath];
+    
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:imagePath];
+    
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithContentsOfFile:[url absoluteString]];
+    
+    [[Quizlet sharedQuizlet] uploadImageFromURL:fileURL success:^(id responseObject) {
         self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
     } failure:^(NSError *error) {
         self.logTextView.text = [error description];

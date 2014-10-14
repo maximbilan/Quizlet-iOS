@@ -123,7 +123,9 @@ headerFields:(id)headerFields
         if (formDataArray.count > 0 && formDataName) {
             for (id obj in formDataArray) {
                 if ([obj isKindOfClass:[NSURL class]]) {
-                    [formData appendPartWithFileURL:(NSURL *)obj name:formDataName error:nil];
+                    NSError *error = nil;
+                    [formData appendPartWithFileURL:(NSURL *)obj name:formDataName error:&error];
+                    NSLog(@"error %@", error);
                 }
                 else if ([obj isKindOfClass:[NSData class]]) {
                     [formData appendPartWithFormData:(NSData *)obj name:formDataName];
