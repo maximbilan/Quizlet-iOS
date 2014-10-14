@@ -433,6 +433,5 @@ This library provides methods for all possible endpoints of Quizlet API (https:/
 - (void)unmarkUserSetAsFavoriteBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 </pre>
 
-Unfortunately, the method loadImageFromURL is not working correctly. And for now I can't contact Quizlet API's developers for solving this issue. I hope in the future I can fix the issue.<br>
 <br>
 Any feedback, comments, I am ready to listen. Feel free. Happy coding!
