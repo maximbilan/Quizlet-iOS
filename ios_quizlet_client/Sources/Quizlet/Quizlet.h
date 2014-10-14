@@ -160,12 +160,15 @@
 
 /**
  POST: /images
- Upload one or more images
- 
- Parameter      Type	Description
- imageData[]	array	An array of one or more images.
+ Upload one image.
  */
 - (void)uploadImageFromURL:(NSURL *)url success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
+/**
+ POST: /images
+ Upload an array of images.
+ */
+- (void)uploadImageFromURLs:(NSArray *)urls success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /**
  GET: /search/sets

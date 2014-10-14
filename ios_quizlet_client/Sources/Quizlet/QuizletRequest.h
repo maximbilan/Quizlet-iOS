@@ -36,6 +36,15 @@ typedef NS_ENUM(NSInteger, QuizletRequestType)
                 success:(void (^)(id responseObject))success
                 failure:(void (^)(NSError *error))failure;
 
+- (void)multiPartRequestWithAuth:(QuizletAuth *)auth
+                            type:(QuizletRequestType)type
+                       urlString:(NSString *)urlString
+                      parameters:(NSDictionary *)parameters
+                    formDataName:(NSString *)formDataName
+                        formData:(NSArray *)formDataArray
+                         success:(void (^)(id responseObject))success
+                         failure:(void (^)(NSError *error))failure;
+
 - (void)GET:(NSString *)urlString
   parameters:(id)parameters
 headerFields:(id)headerFields

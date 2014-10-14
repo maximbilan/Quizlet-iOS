@@ -27,14 +27,9 @@
     self.logTextView.text = @"";
     
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"image1" ofType:@"jpg"];
-    NSURL *url = [NSURL URLWithString:imagePath];
+    NSURL *url = [[NSURL alloc] initFileURLWithPath:imagePath];
     
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:imagePath];
-    
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [UIImage imageWithContentsOfFile:[url absoluteString]];
-    
-    [[Quizlet sharedQuizlet] uploadImageFromURL:fileURL success:^(id responseObject) {
+    [[Quizlet sharedQuizlet] uploadImageFromURLs:@[url, url] success:^(id responseObject) {
         self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
     } failure:^(NSError *error) {
         self.logTextView.text = [error description];

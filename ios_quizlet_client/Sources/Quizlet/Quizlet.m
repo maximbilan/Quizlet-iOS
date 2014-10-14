@@ -214,7 +214,12 @@
 
 - (void)uploadImageFromURL:(NSURL *)url success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [self.images uploadImageFromURL:url withAuth:self.auth success:success failure:failure];
+    [self.images uploadImageFromURLs:@[url] withAuth:self.auth success:success failure:failure];
+}
+
+- (void)uploadImageFromURLs:(NSArray *)urls success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    [self.images uploadImageFromURLs:urls withAuth:self.auth success:success failure:failure];
 }
 
 #pragma mark - Search API
