@@ -10,7 +10,12 @@
 
 #import "Quizlet.h"
 
+#import "WaitSpinner.h"
+
 @interface QZImagesViewController ()
+{
+    WaitSpinner *waitSpinner;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 
@@ -20,19 +25,30 @@
 
 #pragma mark - View Controller Methods
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    waitSpinner = [[WaitSpinner alloc] init];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     self.logTextView.text = @"";
     
+    [waitSpinner showInView:self.view];
+    
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"image1" ofType:@"jpg"];
     NSURL *url = [[NSURL alloc] initFileURLWithPath:imagePath];
     
     [[Quizlet sharedQuizlet] uploadImageFromURLs:@[url, url] success:^(id responseObject) {
         self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+        [waitSpinner hide];
     } failure:^(NSError *error) {
         self.logTextView.text = [error description];
+        [waitSpinner hide];
     }];
 }
 
