@@ -67,6 +67,25 @@
     }
 }
 
+- (void)multiPartRequestWithAuth:(QuizletAuth *)auth
+                            type:(QuizletRequestType)type
+                       urlString:(NSString *)urlString
+                      parameters:(NSDictionary *)parameters
+                    formDataName:(NSString *)formDataName
+                        formData:(NSArray *)formDataArray
+                         success:(void (^)(id responseObject))success
+                         failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *headerFields = nil;
+    if (type == QuizletRequestUserAuthenticated) {
+        headerFields = [auth headerFieldsWithAccessToken];
+    }
+    
+    [self POSTmultiPart:urlString parameters:parameters headerFields:headerFields
+           formDataName:formDataName formData:formDataArray
+                success:success failure:failure];
+}
+
 - (void)GET:(NSString *)urlString
  parameters:(id)parameters
 headerFields:(id)headerFields
@@ -123,7 +142,11 @@ headerFields:(id)headerFields
         if (formDataArray.count > 0 && formDataName) {
             for (id obj in formDataArray) {
                 if ([obj isKindOfClass:[NSURL class]]) {
-                    [formData appendPartWithFileURL:(NSURL *)obj name:formDataName error:nil];
+                    NSError *error = nil;
+                    [formData appendPartWithFileURL:(NSURL *)obj name:formDataName error:&error];
+                    if (error) {
+                        NSLog(@"error %@", error);
+                    }
                 }
                 else if ([obj isKindOfClass:[NSData class]]) {
                     [formData appendPartWithFormData:(NSData *)obj name:formDataName];

@@ -24,9 +24,9 @@
  Parameter      Type	Description
  imageData[]	array	An array of one or more images.
  */
-- (void)uploadImageFromURL:(NSURL *)url
-                  withAuth:(QuizletAuth *)auth
-                   success:(void (^)(id responseObject))success
-                   failure:(void (^)(NSError *error))failure;
+- (void)uploadImageFromURLs:(NSArray *)urls
+                   withAuth:(QuizletAuth *)auth
+                    success:(void (^)(id responseObject))success
+                    failure:(void (^)(NSError *error))failure;
 
 @end
