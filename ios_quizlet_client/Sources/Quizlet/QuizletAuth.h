@@ -15,7 +15,9 @@
 typedef NS_ENUM(NSInteger, QuizletAccountType)
 {
     QuizletAccountFree,
-    QuizletAccountPlus
+    QuizletAccountPlus,
+    QuizletAccountTeacher,
+    QuizletAccountUnknown
 };
 
 typedef void(^QuizletAuthCompletionSuccess)(void);

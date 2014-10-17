@@ -121,6 +121,11 @@
     return (self.auth.accountType == QuizletAccountPlus);
 }
 
+- (BOOL)isTeacherAccountType
+{
+    return (self.auth.accountType == QuizletAccountTeacher);
+}
+
 - (NSString *)accessToken
 {
     return self.auth.accessToken;

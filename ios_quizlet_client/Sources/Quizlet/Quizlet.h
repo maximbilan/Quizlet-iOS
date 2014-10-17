@@ -56,6 +56,11 @@
 @property (NS_NONATOMIC_IOSONLY, getter=isPlusAccountType, readonly) BOOL plusAccountType;
 
 /**
+ Checks if the user has teacher account type
+ */
+@property (NS_NONATOMIC_IOSONLY, getter=isTeacherAccountType, readonly) BOOL teacherAccountType;
+
+/**
  Returns current access token
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *accessToken;

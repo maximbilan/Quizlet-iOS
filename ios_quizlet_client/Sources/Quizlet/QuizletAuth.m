@@ -171,6 +171,12 @@ static NSString * const QuizletAuthGrantType    = @"authorization_code";
         else if ([string isEqualToString:@"plus"]) {
             self.accountType = QuizletAccountPlus;
         }
+        else if ([string isEqualToString:@"teacher"]) {
+            self.accountType = QuizletAccountTeacher;
+        }
+        else {
+            self.accountType = QuizletAccountUnknown;
+        }
     }
 }
 
