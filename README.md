@@ -39,7 +39,7 @@ QuizletUsers.m
 This framework requires AFNetworking 2.0. You can easily use other libraries, AFNetwoking used only in QuizletRequest class. And I think it's not a big problem will change code of http requests.
 <br>
 <br>
-Or using CocoaPods, add the next string to your the podfile:
+Or using CocoaPods, add the next string to your podfile:
 <pre>
 pod 'Quizlet-iOS'
 </pre>
