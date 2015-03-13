@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6DA62BED19AF5F510068D567 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DA62BEC19AF5F510068D567 /* image1.jpg */; };
 		7A80A10994A74AAABBD1F323 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FF9D1886F4066A8E08E69 /* libPods.a */; };
-		944CFB1219DB058900870E02 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFAE819DB058900870E02 /* AFNetworkActivityLogger.m */; };
 		944CFB1419DB058900870E02 /* Quizlet.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFAEE19DB058900870E02 /* Quizlet.m */; };
 		944CFB1519DB058900870E02 /* QuizletAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFAF019DB058900870E02 /* QuizletAuth.m */; };
 		944CFB1619DB058900870E02 /* QuizletClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFAF219DB058900870E02 /* QuizletClasses.m */; };
@@ -42,8 +41,6 @@
 		6DA62BEC19AF5F510068D567 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image1.jpg; path = Assets/image1.jpg; sourceTree = "<group>"; };
 		730FF9D1886F4066A8E08E69 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80E8E443B0EBD66BCC1BBAB8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		944CFAE719DB058900870E02 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
-		944CFAE819DB058900870E02 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		944CFAED19DB058900870E02 /* Quizlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quizlet.h; sourceTree = "<group>"; };
 		944CFAEE19DB058900870E02 /* Quizlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quizlet.m; sourceTree = "<group>"; };
 		944CFAEF19DB058900870E02 /* QuizletAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizletAuth.h; sourceTree = "<group>"; };
@@ -140,7 +137,6 @@
 		944CFAE419DB058900870E02 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				944CFAE519DB058900870E02 /* External */,
 				944CFAEC19DB058900870E02 /* Quizlet */,
 				944CFB0019DB058900870E02 /* QZAppDelegate.h */,
 				944CFB0119DB058900870E02 /* QZAppDelegate.m */,
@@ -162,23 +158,6 @@
 				944CFB1119DB058900870E02 /* QZUsersViewController.m */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		944CFAE519DB058900870E02 /* External */ = {
-			isa = PBXGroup;
-			children = (
-				944CFAE619DB058900870E02 /* AFNetworkActivityLogger */,
-			);
-			path = External;
-			sourceTree = "<group>";
-		};
-		944CFAE619DB058900870E02 /* AFNetworkActivityLogger */ = {
-			isa = PBXGroup;
-			children = (
-				944CFAE719DB058900870E02 /* AFNetworkActivityLogger.h */,
-				944CFAE819DB058900870E02 /* AFNetworkActivityLogger.m */,
-			);
-			path = AFNetworkActivityLogger;
 			sourceTree = "<group>";
 		};
 		944CFAEC19DB058900870E02 /* Quizlet */ = {
@@ -368,7 +347,6 @@
 				944CFB1819DB058900870E02 /* QuizletRequest.m in Sources */,
 				944CFB1E19DB058900870E02 /* QZClassesViewController.m in Sources */,
 				944CFB1F19DB058900870E02 /* QZExamplesTableViewCell.m in Sources */,
-				944CFB1219DB058900870E02 /* AFNetworkActivityLogger.m in Sources */,
 				944CFB1919DB058900870E02 /* QuizletSearch.m in Sources */,
 				944CFB1D19DB058900870E02 /* QZBaseViewController.m in Sources */,
 				944CFB2419DB058900870E02 /* QZUsersViewController.m in Sources */,
