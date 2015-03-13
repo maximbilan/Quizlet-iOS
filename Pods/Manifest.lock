@@ -1,4 +1,7 @@
 PODS:
+  - AFNetworkActivityLogger (2.0.4):
+    - AFNetworking/NSURLConnection (~> 2.0)
+    - AFNetworking/NSURLSession (~> 2.0)
   - AFNetworking (2.5.1):
     - AFNetworking/NSURLConnection (= 2.5.1)
     - AFNetworking/NSURLSession (= 2.5.1)
@@ -23,10 +26,12 @@ PODS:
   - WaitSpinner (0.1.1)
 
 DEPENDENCIES:
+  - AFNetworkActivityLogger
   - AFNetworking
   - WaitSpinner
 
 SPEC CHECKSUMS:
+  AFNetworkActivityLogger: cdaa92ea0d544835babe0ba097e7806182d8f837
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   WaitSpinner: e362ac153248d01699a67faa25a6e6b817ce8f88
 

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "417CD81FC4AE14407E1701A0"
-               BuildableName = "libPods-WaitSpinner.a"
-               BlueprintName = "Pods-WaitSpinner"
+               BlueprintIdentifier = "7BADBEDEEC023215C0D7FD95"
+               BuildableName = "libPods-AFNetworkActivityLogger.a"
+               BlueprintName = "Pods-AFNetworkActivityLogger"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
