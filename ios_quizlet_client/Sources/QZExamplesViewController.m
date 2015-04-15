@@ -91,7 +91,6 @@ static NSString * const QZExamplesDescrs[] = {
     NSInteger examplesCount;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 
 @end
