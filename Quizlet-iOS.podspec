@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Quizlet-iOS"
-  s.version      = "0.2"
+  s.version      = "0.3"
   s.summary      = "iOS client for working with Quizlet API 2.0"
   s.description  = "iOS client for working with Quizlet API 2.0
 
@@ -9,7 +9,7 @@ The Quizlet API lets developers interested in building study tools to interact w
   s.license      = { :type => "MIT" }
   s.author             = { "Maxim Bilan" => "maximb.mail@gmail.com" }
   s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/maximbilan/ios_quizlet_client.git", :tag => "v0.2" }
+  s.source       = { :git => "https://github.com/maximbilan/ios_quizlet_client.git", :tag => "v0.3" }
   s.source_files  = "Classes", "ios_quizlet_client/Sources/Quizlet/**/*.{h,m}"
   s.dependency "AFNetworking", "~> 2.0"
   s.requires_arc = true
