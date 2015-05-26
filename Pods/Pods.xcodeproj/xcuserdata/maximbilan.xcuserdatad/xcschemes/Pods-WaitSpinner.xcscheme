@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FC2AED274A0BEDB25628092"
+               BlueprintIdentifier = "231356D8FE9D0047540B62A5"
                BuildableName = "libPods-WaitSpinner.a"
                BlueprintName = "Pods-WaitSpinner"
                ReferencedContainer = "container:Pods.xcodeproj">
