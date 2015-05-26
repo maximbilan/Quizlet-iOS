@@ -439,3 +439,7 @@ This library provides methods for all possible endpoints of Quizlet API (https:/
 - (void)unmarkUserSetAsFavoriteBySetId:(NSString *)setId success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 </pre>
 Any feedback, comments, I am ready to listen. Feel free. Happy coding!
+
+## License
+
+iOS Quizlet Client is available under the MIT license. See the LICENSE file for more info.
