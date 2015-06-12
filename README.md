@@ -5,9 +5,7 @@ iOS Quizlet Client
 [![License](https://img.shields.io/cocoapods/l/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/ios_quizlet_client)
 [![Platform](https://img.shields.io/cocoapods/p/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/ios_quizlet_client)
 
-<b>iOS client for working with Quizlet API 2.0</b><br>
-<br>
-The Quizlet API lets developers interested in building study tools to interact with Quizlet's vast content database of over 1640 million flashcards. The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.
+iOS client for working with Quizlet API 2.0. The Quizlet API lets developers interested in building study tools to interact with Quizlet's vast content database of over 1640 million flashcards. The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.
 <br>
 
 I provide simple iOS example, which contains all possible requests to Quizlet API.
@@ -15,10 +13,9 @@ We have iPhone and iPad interfaces.
 
 ## Installation
 
-<b>Manual:</b>
+<b>Manual:</b><br><br>
 Copy 'Quizlet' folder from 'Sources' to your project.<br>
 List of needed files:
-
 <pre>
 Quizlet.h
 Quilzet.m
