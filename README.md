@@ -13,9 +13,10 @@ The Quizlet API lets developers interested in building study tools to interact w
 I provide simple iOS example, which contains all possible requests to Quizlet API.
 We have iPhone and iPad interfaces.
 
-<b>How to use this framework:</b>
+## Installation
 
-First of all, you should copy 'Quizlet' folder from 'Sources' to your project.<br>
+<b>Manual:</b>
+Copy 'Quizlet' folder from 'Sources' to your project.<br>
 List of needed files:
 
 <pre>
@@ -43,10 +44,12 @@ QuizletUsers.m
 This framework requires AFNetworking 2.0. You can easily use other libraries, AFNetwoking used only in QuizletRequest class. And I think it's not a big problem will change code of http requests.
 <br>
 <br>
-Or using CocoaPods, add the next string to your podfile:
+<b>Cocoapods:</b>
 <pre>
 pod 'Quizlet-iOS'
 </pre>
+
+## How to use:
 
 For setup the library you should call in your AppDelegate class in the didFinishLaunchingWithOptions method the following code:
 <pre>
