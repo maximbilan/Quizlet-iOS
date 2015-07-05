@@ -37,7 +37,7 @@ QuizletUsers.h
 QuizletUsers.m
 </pre>
 
-This framework requires <b>AFNetworking 2.0<b>. You can easily use other libraries, <b>AFNetwoking</b> used only in <i>QuizletRequest</i> class. And I think it's not a big problem will change code of http requests.
+This framework requires <b>AFNetworking 2.0</b>. You can easily use other libraries, <b>AFNetwoking</b> used only in <i>QuizletRequest</i> class. And I think it's not a big problem will change code of http requests.
 <br>
 <br>
 <b>Cocoapods:</b>
