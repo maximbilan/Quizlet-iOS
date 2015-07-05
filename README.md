@@ -45,9 +45,9 @@ This framework requires AFNetworking 2.0. You can easily use other libraries, AF
 pod 'Quizlet-iOS'
 </pre>
 
-## How to use:
+## How to use
 
-For setup the library you should call in your AppDelegate class in the didFinishLaunchingWithOptions method the following code:
+For setup the library you should call in your <i>AppDelegate</i> class in the <i>didFinishLaunchingWithOptions</i> method the following code:
 <pre>
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -58,7 +58,7 @@ For setup the library you should call in your AppDelegate class in the didFinish
     return YES;
 }
 </pre>
-And in the method openURL:
+And in the method <i>openURL</i>:
 
 <pre>
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
