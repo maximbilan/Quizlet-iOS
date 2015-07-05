@@ -9,7 +9,6 @@ iOS client for working with Quizlet API 2.0. The Quizlet API lets developers int
 <br>
 
 I provide simple iOS example, which contains all possible requests to Quizlet API.
-We have iPhone and iPad interfaces.
 
 ## Installation
 
