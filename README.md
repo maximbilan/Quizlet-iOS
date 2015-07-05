@@ -13,7 +13,7 @@ I provide simple iOS example, which contains all possible requests to Quizlet AP
 ## Installation
 
 <b>Manual:</b><br><br>
-Copy 'Quizlet' folder from 'Sources' to your project.<br>
+Copy '<i>Quizlet</i>' folder from '<i>Sources</i>' to your project.<br>
 List of needed files:
 <pre>
 Quizlet.h
@@ -80,7 +80,7 @@ And after that user can be authorized. Using the following method:
 }];
 </pre>
 
-And now you can call Quizlets requests.<br>
+And now you can call Quizlet's requests.<br>
 This library provides methods for all possible endpoints of Quizlet API (https://quizlet.com/api/2.0/docs/api_list):
 
 <pre>
