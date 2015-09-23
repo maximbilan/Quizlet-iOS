@@ -26,6 +26,7 @@
 		944CFB2219DB058900870E02 /* QZSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFB0D19DB058900870E02 /* QZSearchViewController.m */; };
 		944CFB2319DB058900870E02 /* QZSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFB0F19DB058900870E02 /* QZSetsViewController.m */; };
 		944CFB2419DB058900870E02 /* QZUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944CFB1119DB058900870E02 /* QZUsersViewController.m */; };
+		947EB7E41BB31F8E005D8679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 947EB7E31BB31F8E005D8679 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		94ECE8D819A0D5FD00E2641B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D719A0D5FD00E2641B /* Foundation.framework */; };
 		94ECE8DA19A0D5FD00E2641B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */; };
 		94ECE8DC19A0D5FD00E2641B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ECE8DB19A0D5FD00E2641B /* UIKit.framework */; };
@@ -78,6 +79,7 @@
 		944CFB0F19DB058900870E02 /* QZSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZSetsViewController.m; sourceTree = "<group>"; };
 		944CFB1019DB058900870E02 /* QZUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZUsersViewController.h; sourceTree = "<group>"; };
 		944CFB1119DB058900870E02 /* QZUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZUsersViewController.m; sourceTree = "<group>"; };
+		947EB7E31BB31F8E005D8679 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94ECE8D419A0D5FD00E2641B /* ios_quizlet_client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_quizlet_client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ECE8D719A0D5FD00E2641B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ECE8D919A0D5FD00E2641B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -130,6 +132,7 @@
 			children = (
 				94ECE8E919A0D5FD00E2641B /* Main_iPhone.storyboard */,
 				94ECE8EC19A0D5FD00E2641B /* Main_iPad.storyboard */,
+				947EB7E31BB31F8E005D8679 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				94ECE8EE19A0D5FD00E2641B /* Main_iPad.storyboard in Resources */,
 				6DA62BED19AF5F510068D567 /* image1.jpg in Resources */,
 				94ECE8F319A0D5FD00E2641B /* Images.xcassets in Resources */,
+				947EB7E41BB31F8E005D8679 /* LaunchScreen.storyboard in Resources */,
 				94ECE8EB19A0D5FD00E2641B /* Main_iPhone.storyboard in Resources */,
 				94ECE8E219A0D5FD00E2641B /* InfoPlist.strings in Resources */,
 			);
