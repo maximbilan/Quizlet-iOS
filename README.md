@@ -56,7 +56,7 @@ For setup the library you should call in your <i>AppDelegate</i> class in the <i
     return YES;
 }
 </pre>
-And in the method <i>openURL</i>:
+And also in the method <i>openURL</i>:
 
 <pre>
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -69,7 +69,7 @@ And in the method <i>openURL</i>:
 }
 </pre>
 
-And after that user can be authorized. Using the following method:
+And after that user should be authorized. Use the following method:
 <pre>
 [[Quizlet sharedQuizlet] authorize:^(void) {
     NSLog(@"User was authorized");
