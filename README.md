@@ -45,7 +45,7 @@ This framework requires <b>AFNetworking 2.0</b>. You can easily use other librar
 
 ## How to use
 
-For setup the library you should call in your <i>AppDelegate</i> class in the <i>didFinishLaunchingWithOptions</i> method the following code:
+For setup client you should create instance with your client ID, secret key and redirect URI. See the following code:
 <pre>
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -56,7 +56,7 @@ For setup the library you should call in your <i>AppDelegate</i> class in the <i
     return YES;
 }
 </pre>
-And also in the method <i>openURL</i>:
+And also in the method <i>openURL</i> add the next lines:
 
 <pre>
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -69,7 +69,7 @@ And also in the method <i>openURL</i>:
 }
 </pre>
 
-And after that user should be authorized. Use the following method:
+For any Quizlet's requests the user should be authorized. Use the following method:
 <pre>
 [[Quizlet sharedQuizlet] authorize:^(void) {
     NSLog(@"User was authorized");
