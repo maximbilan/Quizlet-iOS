@@ -12,14 +12,11 @@ Also we provide simple iOS example, which contains all possible requests to Quiz
 
 ## Installation
 
-<br>
-<br>
 <b>Cocoapods:</b>
 <pre>
 pod 'Quizlet-iOS'
 </pre>
-
-<b>Manual:</b><br><br>
+<b>Manual:</b><br>
 Copy '<i>Quizlet</i>' folder from '<i>Sources</i>' to your project.<br>
 List of needed files:
 <pre>
