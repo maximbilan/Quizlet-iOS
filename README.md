@@ -12,7 +12,7 @@ Also we provide simple iOS example, which contains all possible requests to Quiz
 
 ## Installation
 
-<b>Cocoapods:</b>
+<b>CocoaPods:</b>
 <pre>
 pod 'Quizlet-iOS'
 </pre>
