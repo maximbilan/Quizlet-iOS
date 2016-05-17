@@ -16,9 +16,9 @@ Also we provide simple iOS example, which contains all possible requests to Quiz
 <pre>
 pod 'Quizlet-iOS'
 </pre>
-<b>Manual:</b><br>
+<b>Manual:</b>
 <pre>
-Copy '<i>Quizlet</i>' folder from '<i>Sources</i>' to your project.<br>
+Copy '<i>Quizlet</i>' folder from '<i>Sources</i>' to your project.
 List of needed files:
 
 Quizlet.h
