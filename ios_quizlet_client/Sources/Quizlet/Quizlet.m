@@ -160,7 +160,8 @@
         if (code.length > 0) {
             [self.auth requestTokenFromAuthServerWithClientID:self.clientID
                                                 withSecretKey:self.secretKey
-                                                     withCode:code];
+                                                     withCode:code
+												  redirectURI:self.redirectURI];
             return YES;
         }
     }

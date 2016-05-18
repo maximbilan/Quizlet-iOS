@@ -37,7 +37,7 @@ typedef void(^QuizletAuthCompletionFailure)(NSError *error);
 @property (nonatomic, strong, readwrite) QuizletAuthCompletionFailure authFailure;
 
 - (void)redirectToAuthServerWithClientID:(NSString *)clientID;
-- (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code;
+- (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code redirectURI:(NSString *)redirectURI;
 
 - (void)determineAccoutTypeFromString:(NSString *)string;
 

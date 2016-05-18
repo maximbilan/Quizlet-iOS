@@ -91,11 +91,12 @@ static NSString * const QuizletAuthGrantType    = @"authorization_code";
     [[UIApplication sharedApplication] openURL:url];
 }
 
-- (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code
+- (void)requestTokenFromAuthServerWithClientID:(NSString *)clientID withSecretKey:(NSString *)secretKey withCode:(NSString *)code redirectURI:(NSString *)redirectURI
 {
     NSDictionary *parameters = @{
                                  @"grant_type" : QuizletAuthGrantType,
-                                 @"code" : code
+                                 @"code" : code,
+								 @"redirect_uri" : redirectURI
                                  };
     
     NSString *authData = [NSString stringWithFormat:@"%@:%@", clientID, secretKey];
