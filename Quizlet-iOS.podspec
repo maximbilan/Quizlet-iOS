@@ -11,6 +11,6 @@ The Quizlet API lets developers interested in building study tools to interact w
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/maximbilan/ios_quizlet_client.git", :tag => "v0.4" }
   s.source_files  = "Classes", "ios_quizlet_client/Sources/Quizlet/**/*.{h,m}"
-  s.dependency "AFNetworking"
+  s.dependency "AFNetworking", "~> 2.6.3"
   s.requires_arc = true
 end
