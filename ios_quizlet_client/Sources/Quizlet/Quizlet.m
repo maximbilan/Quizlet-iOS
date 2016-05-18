@@ -85,7 +85,9 @@
 {
     self.auth.authSuccess = success;
     self.auth.authFailure = failure;
-    
+	
+	__weak Quizlet *weakSelf = self;
+	
     if (self.auth.accessToken && self.auth.userId) {
         [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
 #ifdef QUIZLET_LOG
@@ -93,16 +95,16 @@
 #endif
             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
             if (responseDictionary) {
-                [self.auth determineAccoutTypeFromString:responseDictionary[@"account_type"]];
+                [weakSelf.auth determineAccoutTypeFromString:responseDictionary[@"account_type"]];
             }
-            self.auth.isAuthorized = YES;
+            weakSelf.auth.isAuthorized = YES;
             success();
         } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
             NSLog(@"%@", error);
 #endif
-            self.auth.isAuthorized = NO;
-            [self.auth redirectToAuthServerWithClientID:self.clientID];
+            weakSelf.auth.isAuthorized = NO;
+            [weakSelf.auth redirectToAuthServerWithClientID:weakSelf.clientID];
         }];
     }
     else {
@@ -144,8 +146,7 @@
     for (NSString *keyVar in keyVars) {
         NSArray *a = [keyVar componentsSeparatedByString:@"="];
         if ([a count] == 2) {
-            params[[a[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] =
-            [a[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            params[[a[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] = [a[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         }
     }
     

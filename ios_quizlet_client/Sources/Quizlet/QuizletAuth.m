@@ -106,7 +106,9 @@ static NSString * const QuizletAuthGrantType    = @"authorization_code";
     NSDictionary *headerFields = @{
                                    @"Authorization" : [NSString stringWithFormat:@"Basic %@", base64String]
                                    };
-    
+	
+	__weak QuizletAuth *weakSelf = self;
+	
     QuizletRequest *request = [[QuizletRequest alloc] init];
     [request POST:QuizletAuthTokenUrl parameters:parameters headerFields:headerFields success:^(id responseObject) {
 #ifdef QUIZLET_LOG
@@ -116,50 +118,50 @@ static NSString * const QuizletAuthGrantType    = @"authorization_code";
             NSDictionary *dict = (NSDictionary *)responseObject;
             if (dict) {
                 if (dict[@"access_token"]) {
-                    self.accessToken = dict[@"access_token"];
+                    weakSelf.accessToken = dict[@"access_token"];
                 }
                 if (dict[@"expires_in"]) {
-                    self.expiresIn = [dict[@"expires_in"] doubleValue];
+                    weakSelf.expiresIn = [dict[@"expires_in"] doubleValue];
                 }
                 if (dict[@"scope"]) {
-                    self.scope = [dict[@"scope"] integerValue];
+                    weakSelf.scope = [dict[@"scope"] integerValue];
                 }
                 if (dict[@"token_type"]) {
-                    self.tokenType = dict[@"token_type"];
+                    weakSelf.tokenType = dict[@"token_type"];
                 }
                 if (dict[@"user_id"]) {
-                    self.userId = dict[@"user_id"];
+                    weakSelf.userId = dict[@"user_id"];
                 }
             }
         }
         
-        self.isAuthorized = YES;
-        [self save];
+        weakSelf.isAuthorized = YES;
+        [weakSelf save];
         
         QuizletUsers *users = [[QuizletUsers alloc] init];
-        [users userDetailsWithAuth:self success:^(id responseObject) {
+        [users userDetailsWithAuth:weakSelf success:^(id responseObject) {
 #ifdef QUIZLET_LOG
             NSLog(@"%@", responseObject);
 #endif
             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
             if (responseDictionary) {
-                [self determineAccoutTypeFromString:responseDictionary[@"account_type"]];
+                [weakSelf determineAccoutTypeFromString:responseDictionary[@"account_type"]];
             };
             
-            self.authSuccess();
+            weakSelf.authSuccess();
         } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
             NSLog(@"%@", error);
 #endif
-            self.authSuccess();
+            weakSelf.authSuccess();
         }];
         
     } failure:^(NSError *error) {
 #ifdef QUIZLET_LOG
         NSLog(@"error %@", error);
 #endif
-        self.isAuthorized = NO;
-        self.authFailure(error);
+        weakSelf.isAuthorized = NO;
+        weakSelf.authFailure(error);
     }];
 }
 
