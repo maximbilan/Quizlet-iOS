@@ -44,7 +44,7 @@ QuizletUsers.m
 
 This framework requires <b>AFNetworking 2.0</b>. You can easily use other libraries, <b>AFNetwoking</b> used only in <i>QuizletRequest</i> class. And I think it's not a big problem will change code of http requests.
 
-## How to use
+## Using
 
 For setup client you should create instance with your client ID, secret key and redirect URI. See the following code:
 <pre>
