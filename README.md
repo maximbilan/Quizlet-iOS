@@ -18,7 +18,7 @@ pod 'Quizlet-iOS'
 </pre>
 <b>Manual:</b>
 <pre>
-Copy '<i>Quizlet</i>' folder from '<i>Sources</i>' to your project.
+Copy <i>Quizlet</i> folder from <i>Sources</i> to your project.
 List of needed files:
 
 Quizlet.h
