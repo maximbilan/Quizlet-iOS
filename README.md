@@ -20,7 +20,7 @@ pod 'Quizlet-iOS'
 <pre>
 Copy <i>Quizlet</i> folder from <i>Sources</i> to your project.
 List of needed files:
-
+<i>
 Quizlet.h
 Quilzet.m
 QuizletConfig.h
@@ -40,6 +40,7 @@ QuizletSets.h
 QuizletSets.m
 QuizletUsers.h
 QuizletUsers.m
+</i>
 </pre>
 
 This framework requires <b>AFNetworking 2.0</b>. You can easily use other libraries, <b>AFNetwoking</b> used only in <i>QuizletRequest</i> class. And I think it's not a big problem will change code of http requests.
