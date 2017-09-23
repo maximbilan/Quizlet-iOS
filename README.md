@@ -1,9 +1,11 @@
 Quizlet iOS
 ==================
 
-[![Version](https://img.shields.io/cocoapods/v/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/ios_quizlet_client)
-[![License](https://img.shields.io/cocoapods/l/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/ios_quizlet_client)
-[![Platform](https://img.shields.io/cocoapods/p/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/ios_quizlet_client)
+[![Version](https://img.shields.io/cocoapods/v/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/Quizlet-iOS)
+[![License](https://img.shields.io/cocoapods/l/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/Quizlet-iOS)
+[![Platform](https://img.shields.io/cocoapods/p/Quizlet-iOS.svg?style=flat)](http://cocoadocs.org/docsets/Quizlet-iOS)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/Quizlet-iOS.svg)](https://cocoapods.org/pods/Quizlet-iOS)
+[![CocoaPods](https://img.shields.io/cocoapods/dm/Quizlet-iOS.svg)](https://cocoapods.org/pods/Quizlet-iOS)
 
 iOS client for working with Quizlet API 2.0. The Quizlet API lets developers interested in building study tools to interact with Quizlet's vast content database of over 1640 million flashcards. The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.
 <br>
