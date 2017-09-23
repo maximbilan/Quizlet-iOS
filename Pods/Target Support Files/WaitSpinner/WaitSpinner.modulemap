@@ -1,0 +1,6 @@
+framework module WaitSpinner {
+  umbrella header "WaitSpinner-umbrella.h"
+
+  export *
+  module * { export * }
+}
