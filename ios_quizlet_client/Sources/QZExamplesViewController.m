@@ -87,10 +87,8 @@ static NSString * const QZExamplesDescrs[] = {
 };
 
 @interface QZExamplesViewController ()
-{
-    NSInteger examplesCount;
-}
 
+@property (nonatomic) NSInteger examplesCount;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
 
 @end
@@ -103,7 +101,7 @@ static NSString * const QZExamplesDescrs[] = {
 {
     [super viewDidLoad];
     
-    examplesCount = 0;
+    self.examplesCount = 0;
     self.loginButton.enabled = YES;
 }
 
@@ -111,7 +109,7 @@ static NSString * const QZExamplesDescrs[] = {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return examplesCount;
+    return self.examplesCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -201,10 +199,12 @@ static NSString * const QZExamplesDescrs[] = {
 
 - (IBAction)loginButtonAction:(UIBarButtonItem *)sender
 {
+	__weak QZExamplesViewController *weakSelf = self;
+	
     [[Quizlet sharedQuizlet] authorize:^(void) {
-        self.loginButton.enabled = NO;
-        examplesCount = QZExamplesCount;
-        [self.tableView reloadData];
+        weakSelf.loginButton.enabled = NO;
+        weakSelf.examplesCount = QZExamplesCount;
+        [weakSelf.tableView reloadData];
         NSLog(@"User was authorized");
 #ifdef PRINT_ACCESS_TOKEN
         NSLog(@"Access token: %@", [[Quizlet sharedQuizlet] accessToken]);

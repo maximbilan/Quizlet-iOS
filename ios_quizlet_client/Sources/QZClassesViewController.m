@@ -14,10 +14,8 @@
 #import "Quizlet.h"
 
 @interface QZClassesViewController ()
-{
-    WaitSpinner *waitSpinner;
-}
 
+@property (strong, nonatomic) WaitSpinner *waitSpinner;
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *classIdTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
@@ -32,7 +30,7 @@
 {
     [super viewDidLoad];
     
-    waitSpinner = [[WaitSpinner alloc] init];
+    self.waitSpinner = [[WaitSpinner alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,13 +39,15 @@
     
     self.logTextView.text = @"";
     
-    [waitSpinner showInView:self.view];
-    
+    [self.waitSpinner showInView:self.view];
+	
+	__weak QZClassesViewController *weakSelf = self;
+	
     switch (self.exampleId) {
         case QZExamplesViewClass:
         case QZExamplesViewClassSets:
         {
-            [waitSpinner hide];
+            [self.waitSpinner hide];
             self.classIdTextField.hidden = NO;
             self.submitButton.hidden = NO;
         }
@@ -60,11 +60,11 @@
                                          @"description" : @"Class 1"
                                         };
             [[Quizlet sharedQuizlet] addClassFromDictionary:dictionary success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -76,11 +76,11 @@
                                          @"description" : @"Class 2"
                                          };
             [[Quizlet sharedQuizlet] editClassWithDictionary:dictionary byClassId:@"1080268" success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -88,11 +88,11 @@
         case QZExamplesDeleteClass:
         {
             [[Quizlet sharedQuizlet] deleteClassByClassId:@"1080268" success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -100,11 +100,11 @@
         case QZExamplesAddSetToClass:
         {
             [[Quizlet sharedQuizlet] addSetBySetId:@"415" forClassId:@"1080268" success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -112,11 +112,11 @@
         case QZExamplesRemoveSetFromClass:
         {
             [[Quizlet sharedQuizlet] deleteSetBySetId:@"415" fromClassByClassId:@"1080268" success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -124,11 +124,11 @@
         case QZExamplesJoinClass:
         {
             [[Quizlet sharedQuizlet] joinClassByClassId:@"5" success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
                 self.logTextView.text = [error description];
-                [waitSpinner hide];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -136,11 +136,11 @@
         case QZExamplesLeaveClass:
         {
             [[Quizlet sharedQuizlet] leaveClassByClassId:@"5" success:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -158,17 +158,19 @@
     
     if (self.classIdTextField.text.length > 0) {
         
-        [waitSpinner showInView:self.view];
-        
+        [self.waitSpinner showInView:self.view];
+		
+		__weak QZClassesViewController *weakSelf = self;
+		
         switch (self.exampleId) {
             case QZExamplesViewClass:
             {
                 [[Quizlet sharedQuizlet] viewClassByClassId:self.classIdTextField.text success:^(id responseObject) {
-                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+					[weakSelf.waitSpinner hide];
                 } failure:^(NSError *error) {
-                    self.logTextView.text = [error description];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [error description];
+                    [weakSelf.waitSpinner hide];
                 }];
             }
             break;
@@ -176,11 +178,11 @@
             case QZExamplesViewClassSets:
             {
                 [[Quizlet sharedQuizlet] viewClassSetsByClassId:self.classIdTextField.text success:^(id responseObject) {
-                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [weakSelf.waitSpinner hide];
                 } failure:^(NSError *error) {
-                    self.logTextView.text = [error description];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [error description];
+                    [weakSelf.waitSpinner hide];
                 }];
             }
             break;

@@ -15,10 +15,8 @@
 #import "QuizletImages.h"
 
 @interface QZUsersViewController ()
-{
-    WaitSpinner *waitSpinner;
-}
 
+@property (strong, nonatomic) WaitSpinner *waitSpinner;
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UITextField *setIdTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
@@ -33,7 +31,7 @@
 {
     [super viewDidLoad];
     
-    waitSpinner = [[WaitSpinner alloc] init];
+    self.waitSpinner = [[WaitSpinner alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,17 +40,19 @@
     
     self.logTextView.text = @"";
     
-    [waitSpinner showInView:self.view];
-    
+    [self.waitSpinner showInView:self.view];
+	
+	__weak QZUsersViewController *weakSelf = self;
+	
     switch (self.exampleId) {
         case QZExamplesUserDetails:
         {
             [[Quizlet sharedQuizlet] userDetails:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -60,11 +60,11 @@
         case QZExamplesUserSets:
         {
             [[Quizlet sharedQuizlet] userSets:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -72,11 +72,11 @@
         case QZExamplesUserFavorites:
         {
             [[Quizlet sharedQuizlet] userFavorites:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -84,11 +84,11 @@
         case QZExamplesUserClasses:
         {
             [[Quizlet sharedQuizlet] userClasses:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -96,11 +96,11 @@
         case QZExamplesUserStudied:
         {
             [[Quizlet sharedQuizlet] userStudied:^(id responseObject) {
-                self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                [weakSelf.waitSpinner hide];
             } failure:^(NSError *error) {
-                self.logTextView.text = [error description];
-                [waitSpinner hide];
+                weakSelf.logTextView.text = [error description];
+                [weakSelf.waitSpinner hide];
             }];
         }
         break;
@@ -108,9 +108,9 @@
         case QZExamplesMarkSetAsFavorite:
         case QZExamplesUnmarkSetAsFavorite:
         {
-            [waitSpinner hide];
-            self.setIdTextField.hidden = NO;
-            self.submitButton.hidden = NO;
+            [weakSelf.waitSpinner hide];
+            weakSelf.setIdTextField.hidden = NO;
+            weakSelf.submitButton.hidden = NO;
         }
         break;
             
@@ -126,18 +126,20 @@
     [self.setIdTextField resignFirstResponder];
     
     if (self.setIdTextField.text.length > 0) {
-        
-        [waitSpinner showInView:self.view];
+		
+		__weak QZUsersViewController *weakSelf = self;
+		
+        [self.waitSpinner showInView:self.view];
         
         switch (self.exampleId) {
             case QZExamplesMarkSetAsFavorite:
             {
                 [[Quizlet sharedQuizlet] markUserSetAsFavoriteBySetId:self.setIdTextField.text success:^(id responseObject) {
-                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [weakSelf.waitSpinner hide];
                 } failure:^(NSError *error) {
-                    self.logTextView.text = [error description];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [error description];
+                    [weakSelf.waitSpinner hide];
                 }];
             }
             break;
@@ -145,11 +147,11 @@
             case QZExamplesUnmarkSetAsFavorite:
             {
                 [[Quizlet sharedQuizlet] unmarkUserSetAsFavoriteBySetId:self.setIdTextField.text success:^(id responseObject) {
-                    self.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [NSString stringWithFormat:@"%@", responseObject];
+                    [weakSelf.waitSpinner hide];
                 } failure:^(NSError *error) {
-                    self.logTextView.text = [error description];
-                    [waitSpinner hide];
+                    weakSelf.logTextView.text = [error description];
+                    [weakSelf.waitSpinner hide];
                 }];
             }
             break;
