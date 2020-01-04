@@ -8,7 +8,8 @@ Quizlet iOS
 [![CocoaPods](https://img.shields.io/cocoapods/dm/Quizlet-iOS.svg)](https://cocoapods.org/pods/Quizlet-iOS)
 
 iOS client for working with Quizlet API 2.0. The Quizlet API lets developers interested in building study tools to interact with Quizlet's vast content database of over 1640 million flashcards. The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.
-<br>
+
+<b>Note: As of December 2018, <a href="https://quizlet.com/api/2.0/docs">Quizlet</a> has paused issuing new API keys.</b>
 
 Also we provide simple iOS example, which contains all possible requests to Quizlet API.
 
